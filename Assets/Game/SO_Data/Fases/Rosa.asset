@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f899913cb77744b4d89be62d4956c0ca, type: 3}
+  m_Script: {fileID: 11500000, guid: bb210a22e5b93ef418cf321539a7d429, type: 3}
   m_Name: Rosa
   m_EditorClassIdentifier: 
-  faseID: 3
-  faseNome: 3
-  faseAnimControl: {fileID: 9100000, guid: 784e696a5bfc2004e9d1b4098fe34d85, type: 2}
+  faseID: 0
+  faseNome: 0
+  faseAnimControl: {fileID: 0}
   fasePoder: {fileID: 0}
   faseInimiPossiveis: []

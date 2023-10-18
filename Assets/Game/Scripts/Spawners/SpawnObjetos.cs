@@ -5,9 +5,10 @@ public class SpawnObjetos : MonoBehaviour
 {
     [SerializeField] GameObject[] Objetos;
 
-    public float meuTempo;
-
-    public static float tempoCriacao = 20f;
+    [Space(20)]
+    [Header("Tempo criação objetos")]
+    [SerializeField] private float meuTempo;
+    [SerializeField] private static float tempoCriacao = 20f;
 
     private void OnEnable()
     {

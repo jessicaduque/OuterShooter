@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7de994ac95af7384685acc3b72c0bf13, type: 3}
+  m_Script: {fileID: 11500000, guid: 852e17a30abcd314db62a0fa213d2b2d, type: 3}
   m_Name: Gelo
   m_EditorClassIdentifier: 
-  poderID: 1
-  poderNome: Gelo
-  poderFraqueza: {fileID: 11400000, guid: 27dfb67c63465a74db90365b7258a100, type: 2}
-  poderPrefab: {fileID: 6274166741965861979, guid: 7ac9262a4091e19459cf221278c1a125, type: 3}
-  protAnimControl: {fileID: 9100000, guid: 7c52a32be7b885b4dac86335db9dbe3e, type: 2}
+  poderID: 0
+  poderNome: 0
+  poderPlayerAnimControl: {fileID: 0}
+  poderAumentoEfetividade: {fileID: 0}

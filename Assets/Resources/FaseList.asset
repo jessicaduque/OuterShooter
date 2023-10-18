@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85eeadcfb1c542d49ae6f70a934e8543, type: 3}
+  m_Script: {fileID: 11500000, guid: 1913548ba37d15047aa5863690cbf03e, type: 3}
   m_Name: FaseList
   m_EditorClassIdentifier: 
-  fases: []
+  fases:
+  - {fileID: 11400000, guid: efe9be61cdc16ba4ba037580eb46c7d7, type: 2}
+  - {fileID: 11400000, guid: 7a3d914709c9506489cf56ff0c8ff764, type: 2}
+  - {fileID: 11400000, guid: 56ebaa337fcaf39468c4de5ad49a2ced, type: 2}
+  - {fileID: 11400000, guid: 7034e0ea7faf9cb4ca716aa54e56eecb, type: 2}
