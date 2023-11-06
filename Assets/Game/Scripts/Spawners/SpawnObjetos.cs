@@ -1,9 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using Utils.Singleton;
 
-public class SpawnObjetos : MonoBehaviour
+public class SpawnObjetos : Singleton<SpawnObjetos>
 {
     [SerializeField] GameObject[] Objetos;
+
+    [SerializeField] Transform[] pontosSpawn;
 
     [Space(20)]
     [Header("Tempo criação objetos")]
@@ -36,11 +39,10 @@ public class SpawnObjetos : MonoBehaviour
 
     void InstanciarObjeto()
     {
-        float posY = Random.Range(-4.2f, 4.3f);
-        Vector2 novaPos = new Vector2(transform.position.x, posY);
         int extraEscolhido = 0;
-        int tipoExtra = Random.Range(0, 101);
-        if (tipoExtra < 60)
+
+        int tipoExtra = Random.Range(0, 10);
+        if (tipoExtra < 6)
         {
             extraEscolhido = 0;
         }
@@ -48,9 +50,8 @@ public class SpawnObjetos : MonoBehaviour
         {
             extraEscolhido = 1;
         }
-        GameObject Extra = Instantiate(Objetos[extraEscolhido], novaPos, Quaternion.identity);
-        Destroy(Extra, 10f);
-        meuTempo = 0;
+
+        GameObject Extra = Instantiate(Objetos[extraEscolhido], pontosSpawn[Random.Range(0, pontosSpawn.Length)].position, Quaternion.identity);
         
     }
 }

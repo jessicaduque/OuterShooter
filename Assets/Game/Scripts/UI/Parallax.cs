@@ -5,19 +5,19 @@ public class Parallax : MonoBehaviour
 {
     private float comprimentoX;
     private float PosAtualX;
-    private Transform cam;
+    private Transform cam => Helpers.cam;
     [SerializeField] private float tempoParalaxe;
     private float auxTimeParallax = 0f;
-    [SerializeField] private bool parallaxRodando = false;
+    [SerializeField] private bool parallaxRodando;
 
     void Awake()
     {
         comprimentoX = GetComponent<SpriteRenderer>().bounds.size.x;
-        cam = Camera.main.transform;
         PosAtualX = transform.position.x;
+        parallaxRodando = false;
     }
 
-    void MovimentoParalaxe(float tp)
+    private void MovimentoParalaxe(float tp)
     {
         PosAtualX -= tp * Time.deltaTime;
         float rePos = cam.transform.position.x * (1 - tp);

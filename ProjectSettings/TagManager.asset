@@ -11,9 +11,9 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
-  - 
+  - PlayerShot
+  - Enemy
+  - Walls
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tiros
+    uniqueID: 3749914765
+    locked: 0
+  - name: Personagens
+    uniqueID: 253304439
+    locked: 0
+  - name: Objetos
+    uniqueID: 3832582839
+    locked: 0
+  - name: UI
+    uniqueID: 2230875923
     locked: 0

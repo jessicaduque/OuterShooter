@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poderID: 0
   poderNome: 0
-  poderPlayerAnimControl: {fileID: 0}
-  poderAumentoEfetividade: {fileID: 0}
+  poderPlayerAnimControl: {fileID: 9100000, guid: 17aed22cbb5034048b753143a228d787, type: 2}
+  poderAumentoEfetividade: {fileID: 11400000, guid: 41c4fecb49bcb2a428c8809408b069a3, type: 2}

@@ -16,6 +16,7 @@ public enum NomePoder
 
 public enum EstadoJogo
 {
+    AntesInicio,
     Inicial,
     CriarFase,
     Lutar,
