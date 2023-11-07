@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Utils.Singleton;
 
 public class LevelController : Singleton<LevelController>
@@ -43,6 +41,7 @@ public class LevelController : Singleton<LevelController>
                 CriarFase();
                 break;
             case EstadoJogo.Lutar:
+                Lutar();
                 //movendoPlaneta = false;
                 ////PlayerMov.AnimatateAttack();
                 ////PlayerContr.PermitirAtacar();
@@ -86,15 +85,24 @@ public class LevelController : Singleton<LevelController>
     private void CriarFase()
     {
         numeroFase++;
-        AleatorizarFase();
         _spawnObjetos.enabled = true;
+        AleatorizarFase();
     }
 
-    void AleatorizarFase()
+    private void AleatorizarFase()
     {
-        //faseAtual = fases[Random.Range(0, fases.Count)];
-        //_uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
+        faseAtual = fases[Random.Range(0, fases.Count)];
+        _uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
         //WaveManager.I.SpawnarWave(new List<GameObject>(faseAtual.faseInimiPossiveis));
+    }
+
+    #endregion
+
+    #region Lutar
+
+    private void Lutar()
+    {
+        
     }
 
     #endregion
