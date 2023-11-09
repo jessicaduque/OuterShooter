@@ -12,6 +12,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
     
     private bool podeMover = false;
 
+    private LevelController _levelController => LevelController.I;
+
     private new void Awake()
     {
         transform.position = posInicial;
@@ -55,15 +57,16 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     public IEnumerator MoverParaX()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.6f);
         AnimateBool("Mover", true);
-        Vector3 posFinal = new Vector3(-8, 0, 0);
+        Vector3 posFinal = new Vector3(-7.2f, 0, 0);
         while (transform.position != posFinal)
         {
-            transform.position = Vector3.MoveTowards(transform.position, posFinal, 1.2f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, posFinal, 2f * Time.deltaTime);
             yield return false;
         }
         PermitirMovimento(true);
+        _levelController.IniciarJogoFinal();
         yield return true;
     }
 

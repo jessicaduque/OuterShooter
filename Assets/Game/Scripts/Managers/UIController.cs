@@ -21,11 +21,14 @@ public class UIController : Singleton<UIController>
     [SerializeField] Button b_creditos;
     [SerializeField] Button b_pause;
     [SerializeField] Button b_ultimate;
+    [SerializeField] Button b_reiniciar;
 
     [Space(20)]
     [Header("Textos")]
     [SerializeField] private TMP_Text t_score;
     [SerializeField] private TMP_Text t_quantEstrelas;
+    [SerializeField] private TMP_Text t_scoreFinal;
+    [SerializeField] private TMP_Text t_bestScoreFinal;
 
     [Space(20)]
     [Header("Planeta")]
@@ -51,7 +54,7 @@ public class UIController : Singleton<UIController>
     private new void Awake()
     {
         b_iniciarJogo.onClick.AddListener(IniciarJogo);
-        b_creditos?.onClick.AddListener(() => ControlCreditsPanel(true));
+        b_creditos.onClick.AddListener(() => ControlCreditsPanel(true));
         b_pause.onClick.AddListener(() => ControlPausePanel(true));
         b_ultimate.enabled = false;
         b_ultimate.onClick.AddListener(ApertouUltimate);
@@ -82,6 +85,15 @@ public class UIController : Singleton<UIController>
         t_quantEstrelas.text = _scoreManager.GetScore().ToString();
     }
 
+    private void AtualizarTextosScoreFinal()
+    {
+        t_bestScoreFinal.text += " " + _bankManager.GetBestScore().ToString(); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
+        b_reiniciar.enabled = false;
+        Sequence seq = DOTween.Sequence();
+        seq.Append(DOTween.To(x => t_scoreFinal.text = x.ToString(), 0, _bankManager.GetQuantEstrelas(), 1.2f)); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
+        seq.Append(b_reiniciar.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 1f).OnComplete(() => b_reiniciar.enabled = true));
+    }
+
     #endregion
 
     #region Panels
@@ -91,7 +103,7 @@ public class UIController : Singleton<UIController>
         Helpers.FadeCrossPanel(StartPanel, UIPanel);
     }
 
-    private void ControlCreditsPanel(bool estado)
+    public void ControlCreditsPanel(bool estado)
     {
         _fadePreto.FadePanel(CreditsPanel, estado);
     }
@@ -136,6 +148,7 @@ public class UIController : Singleton<UIController>
 
     public void ControlGameOverPanel(bool estado)
     {
+        AtualizarTextosScoreFinal();
         if (estado)
         {
             Helpers.FadeInPanel(GameOverPanel);
@@ -153,10 +166,11 @@ public class UIController : Singleton<UIController>
 
     public IEnumerator MoverPlanetaFora()
     {
+        yield return new WaitForSeconds(0.4f);
         Vector3 posFinal = new Vector3(posXFinalPlanetaFora, 0, 0);
         while (planetaObjeto.transform.position != posFinal)
         {
-            planetaObjeto.transform.position = Vector3.MoveTowards(planetaObjeto.transform.position, posFinal, 1.6f * Time.deltaTime);
+            planetaObjeto.transform.position = Vector3.MoveTowards(planetaObjeto.transform.position, posFinal, 2.6f * Time.deltaTime);
             yield return null;
         }
     }
@@ -167,7 +181,7 @@ public class UIController : Singleton<UIController>
         Vector3 posFinal = new Vector3(posXFinalPlanetaDentro, 0, 0);
         while (planetaObjeto.transform.position != posFinal)
         {
-            planetaObjeto.transform.position = Vector3.MoveTowards(planetaObjeto.transform.position, posFinal, 20f * Time.deltaTime);
+            planetaObjeto.transform.position = Vector3.MoveTowards(planetaObjeto.transform.position, posFinal, 3f * Time.deltaTime);
             yield return null;
         }
     }

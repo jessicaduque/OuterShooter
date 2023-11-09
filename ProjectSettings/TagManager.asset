@@ -50,6 +50,9 @@ TagManager:
   - name: Objetos
     uniqueID: 3832582839
     locked: 0
+  - name: Explosions
+    uniqueID: 3612023389
+    locked: 0
   - name: UI
     uniqueID: 2230875923
     locked: 0

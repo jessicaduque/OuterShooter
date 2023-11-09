@@ -12,6 +12,8 @@ public class Asteroide : MonoBehaviour
     private BoxCollider2D thisCollider;
     private Rigidbody2D thisRB;
 
+    [SerializeField] private GameObject explosaoGameObject;
+
     private Tween thisTween;
 
     private PlayerController _playerController => PlayerController.I;
@@ -50,14 +52,9 @@ public class Asteroide : MonoBehaviour
             thisRB.velocity = Vector3.zero;
             _playerController.LevarDano();
             thisTween.Kill();
-            StartCoroutine(Disable());
+            Instantiate(explosaoGameObject, transform.position, transform.rotation);
+            gameObject.SetActive(false);
         }
-    }
-    private IEnumerator Disable()
-    {
-        yield return new WaitForSecondsRealtime(1);
-
-        gameObject.SetActive(false);
     }
 
 }

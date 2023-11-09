@@ -105,9 +105,10 @@ MonoBehaviour:
   - {fileID: -1973553311, guid: ccf27267e1294a046b109602a3e71337, type: 3}
   - {fileID: 1757800511, guid: ccf27267e1294a046b109602a3e71337, type: 3}
   velocidades:
-  - 4
-  - 5
   - 6
+  - 7
+  - 8
+  explosaoGameObject: {fileID: 6586420172352211812, guid: 9ce0fbc83d12c924b87d6be724ab9289, type: 3}
 --- !u!61 &4480122776012825064
 BoxCollider2D:
   m_ObjectHideFlags: 0

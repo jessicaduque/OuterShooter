@@ -10,12 +10,18 @@ public class SpawnObjetos : Singleton<SpawnObjetos>
 
     [Space(20)]
     [Header("Tempo criação objetos")]
-    [SerializeField] private float meuTempo;
-    [SerializeField] private static float tempoCriacao = 20f;
+    private float meuTempo;
+    [SerializeField] private float tempoCriacao = 10f;
+
+    private new void Awake()
+    {
+        
+    }
 
     private void OnEnable()
     {
         meuTempo = 0.0f;
+        StartCoroutine(GerarObjetos());
     }
 
     private void OnDisable()

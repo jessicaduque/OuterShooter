@@ -1,12 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public List<GameObject> pooledObjects;
-    public GameObject objectToPool;
-    public int amountToPool;
+    [SerializeField] private List<PoolDetails> poolDetails;
+    public List<List<GameObject>> pooledObjects;
 
     private void Awake()
     {
@@ -15,25 +13,43 @@ public class ObjectPool : MonoBehaviour
 
     void Start()
     {
-        pooledObjects = new List<GameObject>();
+        pooledObjects = new List<List<GameObject>>();
         GameObject tmp;
-        for (int i = 0; i < amountToPool; i++)
+        foreach(PoolDetails pd in poolDetails)
         {
-            tmp = Instantiate(objectToPool);
-            tmp.SetActive(false);
-            pooledObjects.Add(tmp);
+            List<GameObject> listaPool = new List<GameObject>();
+
+            for (int i = 0; i < pd.amountToPool; i++)
+            {
+                tmp = Instantiate(pd.objectToPool);
+                tmp.SetActive(false);
+
+                listaPool.Add(tmp);
+            }
+
+            pooledObjects.Add(listaPool);
         }
+        
     }
 
-    public GameObject GetPooledObject()
+    //public GameObject GetPooledObject(string tag)
+    //{
+    //    for (int i = 0; i < amountToPool; i++)
+    //    {
+    //        if (!pooledObjects[i].activeInHierarchy)
+    //        {
+    //            return pooledObjects[i];
+    //        }
+    //    }
+    //    return null;
+    //}
+
+    [System.Serializable]
+
+    public class PoolDetails
     {
-        for (int i = 0; i < amountToPool; i++)
-        {
-            if (!pooledObjects[i].activeInHierarchy)
-            {
-                return pooledObjects[i];
-            }
-        }
-        return null;
+        public GameObject objectToPool;
+        public int amountToPool;
     }
+
 }

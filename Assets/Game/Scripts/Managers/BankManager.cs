@@ -18,9 +18,12 @@ public class BankManager : Singleton<BankManager>
     private bool barreiraContraMeteoros = false;
     private bool maiorChanceAsEstre = false;
 
+    private const string KEY_BESTSCORE = "BestScore"; // TEMPORARIO
+    private int bestScore; // TEMPORARIO
+
     private new void Awake()
     {
-
+        bestScore = (PlayerPrefs.HasKey(KEY_BESTSCORE) ? PlayerPrefs.GetInt(KEY_BESTSCORE) : 0); // TEMPORARIO
     }
 
     private bool Comprar(int valor)
@@ -156,6 +159,27 @@ public class BankManager : Singleton<BankManager>
     private float GetChanceAtaqueSeguir()
     {
         return chanceAtaqueSeguir;
+    }
+
+    #endregion
+
+    #region BestScoreTEMPORARIO
+
+    private bool ChecarBestScore()
+    {
+        if (estrelas > bestScore)
+        {
+            bestScore = estrelas;
+            PlayerPrefs.SetInt(KEY_BESTSCORE, bestScore);
+            return true;
+        }
+        return false;
+    }
+
+    public int GetBestScore()
+    {
+        ChecarBestScore();
+        return bestScore;
     }
 
     #endregion

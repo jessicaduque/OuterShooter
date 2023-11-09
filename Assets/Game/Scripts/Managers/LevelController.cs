@@ -5,9 +5,12 @@ using Utils.Singleton;
 public class LevelController : Singleton<LevelController>
 {
     [Header("Elementos de uma fase")]
-    private List<FaseDetails> fases;
+    [SerializeField] private List<FaseDetails> fases;
+    [SerializeField] private FaseDetails faseTerra;
     private FaseDetails faseAtual;
     private FaseDetails fasePassada;
+
+    [SerializeField] GameObject SpawnObjetosGameObject;
 
     EstadoJogo estadoAtualLevel;
 
@@ -19,12 +22,10 @@ public class LevelController : Singleton<LevelController>
     private UIController _uiController => UIController.I;
     private PlayerMovement _playerMovement => PlayerMovement.I;
     private PlayerController _playerController => PlayerController.I;
-    private FaseList _faseList => FaseList.Instance;
     private SpawnObjetos _spawnObjetos => SpawnObjetos.I;
 
     private new void Awake()
     {
-        fases = _faseList.GetFasesSemTerra();
         SetEstadoJogo(EstadoJogo.AntesInicio);
     }
 
@@ -78,6 +79,11 @@ public class LevelController : Singleton<LevelController>
         StartCoroutine(_uiController.MoverPlanetaFora());
     }
 
+    public void IniciarJogoFinal()
+    {
+        SetEstadoJogo(EstadoJogo.CriarFase);
+    }
+
     #endregion
 
     #region CriarFase
@@ -85,7 +91,7 @@ public class LevelController : Singleton<LevelController>
     private void CriarFase()
     {
         numeroFase++;
-        _spawnObjetos.enabled = true;
+        SpawnObjetosGameObject.SetActive(true);
         AleatorizarFase();
     }
 

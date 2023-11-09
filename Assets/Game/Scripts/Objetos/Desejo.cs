@@ -24,9 +24,15 @@ public class Desejo : MonoBehaviour
     {
         // Colocar desejo para rotacionar infinitamente
         thisSequence = DOTween.Sequence();
-        thisSequence.Append(transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 1f).SetLoops(-1, LoopType.Yoyo));
-        thisSequence.Join(transform.DOLocalRotate(new Vector3(0, 0, 20), 0.5f).SetLoops(-1, LoopType.Yoyo));
-        thisSequence.Append(transform.DOLocalRotate(new Vector3(0, 0, -20), 0.5f).SetLoops(-1, LoopType.Yoyo));
+        thisSequence.Append(transform.DOScale(new Vector3(1.3f, 1.3f, 1.3f), 0.7f).SetLoops(-1, LoopType.Yoyo));
+
+        Sequence newSeq = DOTween.Sequence();
+        newSeq.Append(transform.DOLocalRotate(new Vector3(0, 0, 20), 0.1f).SetLoops(2, LoopType.Yoyo));
+        newSeq.Append(transform.DOLocalRotate(new Vector3(0, 0, -20), 0.1f).SetLoops(2, LoopType.Yoyo));
+        newSeq.AppendInterval(0.3f);
+        newSeq.SetLoops(-1);
+
+        thisSequence.Join(newSeq);
 
         // Fazer asteróideir para esquerda
         thisRB.velocity = new Vector2(-velocidades[Random.Range(0, velocidades.Length)], 0);

@@ -60,7 +60,7 @@ public class Parallax : MonoBehaviour
 
         while (true)
         {
-            MovimentoParalaxe(tempoParalaxe);
+            MovimentoParalaxe(auxTimeParallax);
             yield return new WaitForSeconds(Time.deltaTime);
         }
     }
