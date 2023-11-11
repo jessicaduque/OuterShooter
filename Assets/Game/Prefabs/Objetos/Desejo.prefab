@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidades:
-  - 5
   - 6
   - 7
 --- !u!95 &345879711370843465

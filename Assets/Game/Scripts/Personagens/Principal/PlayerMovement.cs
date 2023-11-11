@@ -31,7 +31,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
             Vector3 desCorri = Camera.main.ScreenToWorldPoint(destino);
 
             // Destino final corrigido
-            Vector3 dFinal = new Vector3(-8, Mathf.Clamp(desCorri.y, -3.8f, 3.8f), 0);
+            Vector3 dFinal = new Vector3(transform.position.x, Mathf.Clamp(desCorri.y, -3.8f, 3.8f), 0);
 
             // Mover objeto
             transform.position = Vector3.MoveTowards(transform.position, dFinal, tempoMover * Time.deltaTime);
@@ -58,6 +58,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public IEnumerator MoverParaX()
     {
         yield return new WaitForSeconds(0.6f);
+        PermitirMovimento(true);
         AnimateBool("Mover", true);
         Vector3 posFinal = new Vector3(-7.2f, 0, 0);
         while (transform.position != posFinal)
@@ -65,7 +66,6 @@ public class PlayerMovement : Singleton<PlayerMovement>
             transform.position = Vector3.MoveTowards(transform.position, posFinal, 2f * Time.deltaTime);
             yield return false;
         }
-        PermitirMovimento(true);
         _levelController.IniciarJogoFinal();
         yield return true;
     }

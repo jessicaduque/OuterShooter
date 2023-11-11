@@ -31,6 +31,12 @@ public class UIController : Singleton<UIController>
     [SerializeField] private TMP_Text t_bestScoreFinal;
 
     [Space(20)]
+    [Header("CanvasGroup")]
+    [SerializeField] private CanvasGroup score;
+    [SerializeField] private CanvasGroup bestScore;
+
+
+    [Space(20)]
     [Header("Planeta")]
     [SerializeField] GameObject planetaObjeto;
     [SerializeField] float posXFinalPlanetaFora;
@@ -58,6 +64,7 @@ public class UIController : Singleton<UIController>
         b_pause.onClick.AddListener(() => ControlPausePanel(true));
         b_ultimate.enabled = false;
         b_ultimate.onClick.AddListener(ApertouUltimate);
+        b_reiniciar.onClick.AddListener(RecomecarJogo);
     }
 
     private void Start()
@@ -87,11 +94,14 @@ public class UIController : Singleton<UIController>
 
     private void AtualizarTextosScoreFinal()
     {
-        t_bestScoreFinal.text += " " + _bankManager.GetBestScore().ToString(); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
         b_reiniciar.enabled = false;
-        Sequence seq = DOTween.Sequence();
-        seq.Append(DOTween.To(x => t_scoreFinal.text = x.ToString(), 0, _bankManager.GetQuantEstrelas(), 1.2f)); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
-        seq.Append(b_reiniciar.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 1f).OnComplete(() => b_reiniciar.enabled = true));
+        t_bestScoreFinal.text = _bankManager.GetBestScore().ToString(); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
+        Sequence seq = DOTween.Sequence().SetUpdate(true);
+        seq.PrependInterval(0.2f);
+        seq.Append(score.DOFade(1, 0.3f));
+        seq.Append(bestScore.DOFade(1, 0.3f));
+        seq.Join(DOTween.To(x => t_scoreFinal.text = x.ToString(), 0, _bankManager.GetQuantEstrelas(), 0.9f)); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
+        seq.Append(b_reiniciar.transform.DOScale(new Vector3(1f, 1f, 1f), 1f).SetEase(Ease.OutBounce).OnComplete(() => b_reiniciar.enabled = true));
     }
 
     #endregion
@@ -148,7 +158,6 @@ public class UIController : Singleton<UIController>
 
     public void ControlGameOverPanel(bool estado)
     {
-        AtualizarTextosScoreFinal();
         if (estado)
         {
             Helpers.FadeInPanel(GameOverPanel);
@@ -157,6 +166,7 @@ public class UIController : Singleton<UIController>
         {
             Helpers.FadeOutPanel(GameOverPanel);
         }
+        AtualizarTextosScoreFinal();
         Time.timeScale = (estado ? 0 : 1);
     }
 

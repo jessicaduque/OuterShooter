@@ -49,11 +49,13 @@ public class Asteroide : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")){
+            Vibration.Vibrate();
             thisRB.velocity = Vector3.zero;
             _playerController.LevarDano();
             thisTween.Kill();
             Instantiate(explosaoGameObject, transform.position, transform.rotation);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 

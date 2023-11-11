@@ -42,16 +42,22 @@ public class PlayerController : Singleton<PlayerController>
         {
             _playerMovement.AnimateBool("Morte", true);
             _playerMovement.AnimateTrigger("TrigMorte");
+            _playerMovement.PermitirMovimento(false);
+            thisCollider.enabled = false;
         }
     }
 
     public void Morrer()
     {
-        thisCollider.enabled = false;
         _levelController.ChecarMaisUmaChance();
     }
 
     #endregion
+
+    public void Reviver()
+    {
+        thisCollider.enabled = true;
+    }
 
     private void SetarPoder()
     {

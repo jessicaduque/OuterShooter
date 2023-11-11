@@ -10,7 +10,7 @@ public class GameManager : Singleton<GameManager>
 
         //Application.targetFrameRate = 60;
 
-        //Vibration.Init();
+        Vibration.Init();
     }
 
 }

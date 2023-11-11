@@ -24,15 +24,14 @@ public class Desejo : MonoBehaviour
     {
         // Colocar desejo para rotacionar infinitamente
         thisSequence = DOTween.Sequence();
-        thisSequence.Append(transform.DOScale(new Vector3(1.3f, 1.3f, 1.3f), 0.7f).SetLoops(-1, LoopType.Yoyo));
+        thisSequence.Append(transform.DOScale(new Vector3(1.3f, 1.3f, 1.3f), 0.7f));
 
         Sequence newSeq = DOTween.Sequence();
         newSeq.Append(transform.DOLocalRotate(new Vector3(0, 0, 20), 0.1f).SetLoops(2, LoopType.Yoyo));
         newSeq.Append(transform.DOLocalRotate(new Vector3(0, 0, -20), 0.1f).SetLoops(2, LoopType.Yoyo));
         newSeq.AppendInterval(0.3f);
-        newSeq.SetLoops(-1);
-
         thisSequence.Join(newSeq);
+        thisSequence.SetLoops(-1); 
 
         // Fazer asteróideir para esquerda
         thisRB.velocity = new Vector2(-velocidades[Random.Range(0, velocidades.Length)], 0);
@@ -49,7 +48,8 @@ public class Desejo : MonoBehaviour
         {
             _bankManager.AdicionarEstrelas();
 
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
