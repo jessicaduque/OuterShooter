@@ -23,7 +23,7 @@ public class AdController : MonoBehaviour
 
     // These ad units are configured to always serve test ads.
 #if UNITY_ANDROID
-    private string _adUnitId = "ca-app-pub-3940256099942544/5224354917";
+    private string _adUnitId = "ca-app-pub-4689899983088673~3000251246";
 #elif UNITY_IPHONE
   private string _adUnitId = "ca-app-pub-3940256099942544/1712485313";
 #else
@@ -78,7 +78,6 @@ public class AdController : MonoBehaviour
             rewardedAd.Show((Reward reward) =>
             {
                 // TODO: Reward the user.
-                Debug.Log("DEU CERTO");
                 _levelController.MaisUmaChance();
                 LoadRewardedAd();
             });

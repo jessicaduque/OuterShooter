@@ -37,6 +37,10 @@ public class UIController : Singleton<UIController>
 
 
     [Space(20)]
+    [Header("ScrollRect")]
+    [SerializeField] private ScrollRect creditsScrollRect;
+
+    [Space(20)]
     [Header("Planeta")]
     [SerializeField] GameObject planetaObjeto;
     [SerializeField] float posXFinalPlanetaFora;
@@ -100,7 +104,7 @@ public class UIController : Singleton<UIController>
         seq.PrependInterval(0.2f);
         seq.Append(score.DOFade(1, 0.3f));
         seq.Append(bestScore.DOFade(1, 0.3f));
-        seq.Join(DOTween.To(x => t_scoreFinal.text = x.ToString(), 0, _bankManager.GetQuantEstrelas(), 0.9f)); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
+        seq.Join(DOTween.To(x => t_scoreFinal.text = ((int) x).ToString(), 0, _bankManager.GetQuantEstrelas(), 1.2f)); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
         seq.Append(b_reiniciar.transform.DOScale(new Vector3(1f, 1f, 1f), 1f).SetEase(Ease.OutBounce).OnComplete(() => b_reiniciar.enabled = true));
     }
 
@@ -115,6 +119,7 @@ public class UIController : Singleton<UIController>
 
     public void ControlCreditsPanel(bool estado)
     {
+        if (estado) { creditsScrollRect.verticalNormalizedPosition = 1; }
         _fadePreto.FadePanel(CreditsPanel, estado);
     }
 

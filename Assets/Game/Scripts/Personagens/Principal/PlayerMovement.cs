@@ -60,10 +60,9 @@ public class PlayerMovement : Singleton<PlayerMovement>
         yield return new WaitForSeconds(0.6f);
         PermitirMovimento(true);
         AnimateBool("Mover", true);
-        Vector3 posFinal = new Vector3(-7.2f, 0, 0);
-        while (transform.position != posFinal)
+        while (transform.position.x != -7.2f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, posFinal, 2f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(-7.2f, transform.position.y, 0), 2f * Time.deltaTime);
             yield return false;
         }
         _levelController.IniciarJogoFinal();

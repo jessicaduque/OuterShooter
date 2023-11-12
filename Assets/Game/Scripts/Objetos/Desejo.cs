@@ -24,7 +24,7 @@ public class Desejo : MonoBehaviour
     {
         // Colocar desejo para rotacionar infinitamente
         thisSequence = DOTween.Sequence();
-        thisSequence.Append(transform.DOScale(new Vector3(1.3f, 1.3f, 1.3f), 0.7f));
+        thisSequence.Append(transform.DOScale(new Vector3(1.3f, 1.3f, 1.3f), 0.5f).SetLoops(2, LoopType.Yoyo));
 
         Sequence newSeq = DOTween.Sequence();
         newSeq.Append(transform.DOLocalRotate(new Vector3(0, 0, 20), 0.1f).SetLoops(2, LoopType.Yoyo));
@@ -40,6 +40,7 @@ public class Desejo : MonoBehaviour
     private void OnDisable()
     {
         thisSequence?.Kill();
+        Destroy(this.gameObject); //TEMPORÁRIO PAREDES
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,7 +50,7 @@ public class Desejo : MonoBehaviour
             _bankManager.AdicionarEstrelas();
 
             //gameObject.SetActive(false);
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

@@ -44,6 +44,7 @@ public class Asteroide : MonoBehaviour
     private void OnDisable()
     {
         thisTween?.Kill();
+        Destroy(this.gameObject); //TEMPORÁRIO PAREDES
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,7 +56,7 @@ public class Asteroide : MonoBehaviour
             thisTween.Kill();
             Instantiate(explosaoGameObject, transform.position, transform.rotation);
             //gameObject.SetActive(false);
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 

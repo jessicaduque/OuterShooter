@@ -54,8 +54,10 @@ public class PlayerController : Singleton<PlayerController>
 
     #endregion
 
-    public void Reviver()
+    public IEnumerator Reviver()
     {
+        
+        yield return new WaitForSeconds(1);
         thisCollider.enabled = true;
     }
 

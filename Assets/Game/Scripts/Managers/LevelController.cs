@@ -122,6 +122,7 @@ public class LevelController : Singleton<LevelController>
         if (chanceExtra)
         {
             _uiController.ControlAdChancePanel(true);
+            chanceExtra = false;
         }
         else
         {
@@ -131,6 +132,10 @@ public class LevelController : Singleton<LevelController>
 
     public void MaisUmaChance()
     {
+        _playerMovement.AnimateBool("Morte", false);
+        StartCoroutine(_playerController.Reviver());
+        _playerMovement.PermitirMovimento(true);
+        _uiController.ControlAdChancePanel(false);
         Time.timeScale = 1;
         SetEstadoJogo(EstadoJogo.Lutar);
     }
