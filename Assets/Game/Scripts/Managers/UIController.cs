@@ -156,7 +156,7 @@ public class UIController : Singleton<UIController>
         }
         else
         {
-            Helpers.FadeOutPanel(ChancePanel);
+            ChancePanel.SetActive(false);
         }
         Time.timeScale = (estado ? 0 : 1);
     }

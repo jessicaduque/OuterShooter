@@ -1,0 +1,6 @@
+Este aplicativo não coleta e nem guarda informações pessoais.
+
+Caso instalado do Google Play Store, então o Google Play coleta algumas informações pessoais. Estes podem ser esclarecidos através da política de privacidade dos Serviços de Google Play através deste link:
+https://policies.google.com/privacy
+
+Qualquer dúvida que possa surgir acerca da política, contate Jessica Duque através do email: jduquedeveloper@gmail.com
