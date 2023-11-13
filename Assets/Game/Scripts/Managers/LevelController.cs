@@ -24,6 +24,8 @@ public class LevelController : Singleton<LevelController>
     private PlayerController _playerController => PlayerController.I;
     private SpawnObjetos _spawnObjetos => SpawnObjetos.I;
 
+    private AudioManager _audioManager => AudioManager.I;
+
     private new void Awake()
     {
         SetEstadoJogo(EstadoJogo.AntesInicio);
@@ -75,6 +77,7 @@ public class LevelController : Singleton<LevelController>
 
     private void IniciarJogo()
     {
+        _audioManager.PlayCrossFade("Main");
         StartCoroutine(_playerMovement.MoverParaX());
         StartCoroutine(_uiController.MoverPlanetaFora());
     }

@@ -17,6 +17,7 @@ public class Asteroide : MonoBehaviour
     private Tween thisTween;
 
     private PlayerController _playerController => PlayerController.I;
+    private AudioManager _audioManager => AudioManager.I;
 
     private void Awake()
     {
@@ -51,6 +52,7 @@ public class Asteroide : MonoBehaviour
     {
         if (collision.CompareTag("Player")){
             Vibration.Vibrate();
+            _audioManager.PlaySfx("ExplosionNormal");
             thisRB.velocity = Vector3.zero;
             _playerController.LevarDano();
             thisTween.Kill();

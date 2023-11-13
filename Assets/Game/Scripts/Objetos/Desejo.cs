@@ -11,6 +11,7 @@ public class Desejo : MonoBehaviour
     private Sequence thisSequence;
 
     [SerializeField] private float[] velocidades;
+    private AudioManager _audioManager => AudioManager.I;
 
     private BankManager _bankManager => BankManager.I;
 
@@ -47,6 +48,7 @@ public class Desejo : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            _audioManager.PlaySfx("Star");
             _bankManager.AdicionarEstrelas();
 
             //gameObject.SetActive(false);

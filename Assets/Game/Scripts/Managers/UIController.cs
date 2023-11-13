@@ -61,6 +61,7 @@ public class UIController : Singleton<UIController>
     private BankManager _bankManager => BankManager.I;
     private ScoreManager _scoreManager => ScoreManager.I;
 
+    private AudioManager _audioManager => AudioManager.I;
     private new void Awake()
     {
         b_iniciarJogo.onClick.AddListener(IniciarJogo);
@@ -249,6 +250,7 @@ public class UIController : Singleton<UIController>
 
     public void RecomecarJogo()
     {
+        _audioManager.PlayCrossFade("Menu");
         _fadePreto.FadeOutScene("Main");
     }
 

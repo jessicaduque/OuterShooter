@@ -3,8 +3,8 @@ using DG.Tweening;
 
 public static class Helpers
 {
-    public const float tempoPretoFade = 0.6f;
-    public const float tempoPanelFade = 0.4f;
+    public const float tempoPretoFade = 0.4f;
+    public const float tempoPanelFade = 0.25f;
     public static Transform cam => Camera.main.transform;
 
     public static void FadeInPanel(GameObject panel)
