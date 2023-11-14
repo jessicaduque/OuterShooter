@@ -4,5 +4,11 @@
     <uses-library android:required="false" android:name="org.apache.http.legacy" />
     <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-4689899983088673~3000251246" />
     <meta-data android:name="com.google.unity.ads.UNITY_VERSION" android:value="2021.3.18f1" />
+	  <meta-data
+          android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
+          android:value="true"/>
+	  <meta-data
+          android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
+          android:value="true"/>
   </application>
 </manifest>

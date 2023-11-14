@@ -6,10 +6,9 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] protected float speed;
     [SerializeField] protected int enemyHealth;
-    [SerializeField] protected GameObject efeitoExplosao;
     [SerializeField] protected float waitLimitShot;
-    [SerializeField] protected GameObject ShotPrefab;
-    [SerializeField] protected GameObject Player;
+    [SerializeField] protected Pool ShotPrefab;
+    [SerializeField] protected Pool efeitoExplosao;
     [SerializeField] protected int pointsToGive;
     [SerializeField] protected int energyToGive;
 
@@ -17,26 +16,35 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected Transform FirePointMiddle;
 
     protected float waitTimeShot = 0f;
-    bool visible;
+    protected SpriteRenderer thisSpriteRenderer;
 
+    public bool estaVivo;
     private UIController _uiController => UIController.I;
     private ScoreManager _scoreManager => ScoreManager.I;
     private PlayerController _playerController => PlayerController.I;
 
-    protected void Start()
+    private PoolManager _poolManager=> PoolManager.I;
+    private SpawnManager _spawnManager => SpawnManager.I;
+    private void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        thisSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    protected void Update()
+    private void OnEnable()
     {
-        visible = GetComponentInChildren<SpriteRenderer>().isVisible;
-        Atirar(FirePointMiddle);
+        estaVivo = true;
     }
+
+    private void OnDisable()
+    {
+        estaVivo = false;
+    }
+
+    #region Levar Dano
 
     public void LevarDano(int dano)
     {
-        if (visible)
+        if (thisSpriteRenderer.isVisible)
         {
             enemyHealth -= dano;
             if (enemyHealth <= 0)
@@ -48,35 +56,43 @@ public class Enemy : MonoBehaviour
 
     public void Morrer()
     {
-        Instantiate(efeitoExplosao, transform.position, Quaternion.identity);
+        estaVivo = false;
+
+        _spawnManager.DiminuirInimigosVivos();
+
+        _poolManager.GetObject(efeitoExplosao.tagPool, transform.position, Quaternion.identity);
 
         _uiController.AdicionarPontosUltimate(energyToGive);
         _scoreManager.AdicionarPontosScore(pointsToGive);
 
-        Destroy(this.gameObject);
+        _poolManager.ReturnPool(gameObject);
     }
 
-    public virtual void Atirar(Transform PontoSaida)
-    {
-        if (visible)
-        {
-            waitTimeShot += Time.deltaTime;
+    #endregion
 
-            if (waitTimeShot > waitLimitShot)
-            {
-                GameObject tiro = Instantiate(ShotPrefab, PontoSaida.position, PontoSaida.rotation);
+    //public virtual void Atirar(Transform PontoSaida)
+    //{
+    //    if (visible)
+    //    {
+    //        waitTimeShot += Time.deltaTime;
 
-                waitTimeShot = 0f;
+    //        if (waitTimeShot > waitLimitShot)
+    //        {
+    //            GameObject tiro = Instantiate(ShotPrefab, PontoSaida.position, PontoSaida.rotation);
 
-            }
-        }
-    }
+    //            waitTimeShot = 0f;
+
+    //        }
+    //    }
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == Player)
+        if (collision.gameObject.CompareTag("Player"))
         {
+            Vibration.Vibrate();
             _playerController.LevarDano();
+            Morrer();
         }
     }
 

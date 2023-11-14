@@ -48,7 +48,6 @@ public class SpawnObjetos : Singleton<SpawnObjetos>
     void InstanciarObjeto()
     {
         int extraEscolhido = 0;
-
         int tipoExtra = Random.Range(0, 10);
         if (tipoExtra < 6)
         {
