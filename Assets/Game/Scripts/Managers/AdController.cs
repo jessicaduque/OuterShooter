@@ -77,7 +77,6 @@ public class AdController : MonoBehaviour
         {
             rewardedAd.Show((Reward reward) =>
             {
-                // TODO: Reward the user.
                 _levelController.MaisUmaChance();
                 LoadRewardedAd();
             });

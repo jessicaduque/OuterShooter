@@ -4,7 +4,7 @@ using Utils.Singleton;
 
 public class SpawnObjetos : Singleton<SpawnObjetos>
 {
-    [SerializeField] GameObject[] Objetos;
+    [SerializeField] Pool[] Objetos;
 
     [SerializeField] Transform[] pontosSpawn;
 
@@ -12,6 +12,8 @@ public class SpawnObjetos : Singleton<SpawnObjetos>
     [Header("Tempo criação objetos")]
     private float meuTempo;
     [SerializeField] private float tempoCriacao = 10f;
+
+    private PoolManager _poolManager => PoolManager.I;
 
     private new void Awake()
     {
@@ -57,7 +59,6 @@ public class SpawnObjetos : Singleton<SpawnObjetos>
             extraEscolhido = 1;
         }
 
-        GameObject Extra = Instantiate(Objetos[extraEscolhido], pontosSpawn[Random.Range(0, pontosSpawn.Length)].position, Quaternion.identity);
-        
+        _poolManager.GetObject(Objetos[extraEscolhido].tagPool, pontosSpawn[Random.Range(0, pontosSpawn.Length)].position, Quaternion.identity);
     }
 }

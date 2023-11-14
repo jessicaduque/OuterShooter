@@ -15,6 +15,8 @@ public class Desejo : MonoBehaviour
 
     private BankManager _bankManager => BankManager.I;
 
+    private PoolManager _poolManager => PoolManager.I;
+
     private void Awake()
     {
         thisCollider = GetComponent<BoxCollider2D>();
@@ -41,7 +43,6 @@ public class Desejo : MonoBehaviour
     private void OnDisable()
     {
         thisSequence?.Kill();
-        Destroy(this.gameObject); //TEMPORÁRIO PAREDES
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,9 +51,7 @@ public class Desejo : MonoBehaviour
         {
             _audioManager.PlaySfx("Star");
             _bankManager.AdicionarEstrelas();
-
-            //gameObject.SetActive(false);
-            Destroy(this.gameObject);
+            _poolManager.ReturnPool(gameObject);
         }
     }
 }

@@ -17,8 +17,8 @@ public class Asteroide : MonoBehaviour
     private Tween thisTween;
 
     private PlayerController _playerController => PlayerController.I;
-    private AudioManager _audioManager => AudioManager.I;
 
+    private PoolManager _poolManager => PoolManager.I;
     private void Awake()
     {
         thisRenderer = GetComponent<SpriteRenderer>();
@@ -45,20 +45,17 @@ public class Asteroide : MonoBehaviour
     private void OnDisable()
     {
         thisTween?.Kill();
-        Destroy(this.gameObject); //TEMPORÁRIO PAREDES
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")){
             Vibration.Vibrate();
-            _audioManager.PlaySfx("ExplosionNormal");
             thisRB.velocity = Vector3.zero;
             _playerController.LevarDano();
             thisTween.Kill();
-            Instantiate(explosaoGameObject, transform.position, transform.rotation);
-            //gameObject.SetActive(false);
-            Destroy(this.gameObject);
+            _poolManager.GetObject("ExplosionNormal", transform.position, transform.rotation);
+            _poolManager.ReturnPool(gameObject);
         }
     }
 

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc971a5bddd843c46a5ddc215fe008d6, type: 3}
+  m_Name: Desejo
+  m_EditorClassIdentifier: 
+  tagPool: Desejo
+  prefab: {fileID: 1375920701003402248, guid: 64c97be81b43529449cea2de21f8cb33, type: 3}
+  amount: 12
+  isExpandable: 1
