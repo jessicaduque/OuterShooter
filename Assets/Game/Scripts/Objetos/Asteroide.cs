@@ -35,8 +35,10 @@ public class Asteroide : MonoBehaviour
         Vector3 tam = thisRenderer.bounds.size;
         thisCollider.size = tam;
 
+        int rotationSpeed = Random.Range(2, 4);
+
         // Colocar asteróide para rotacionar infinitamente
-        thisTween = transform.DOLocalRotate(new Vector3(0, 0, 360), 4, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear).SetLoops(-1);
+        thisTween = transform.DOLocalRotate(new Vector3(0, 0, (rotationSpeed == 3 ? -360 : 360)), rotationSpeed, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear).SetLoops(-1);
 
         // Fazer asteróideir para esquerda
         thisRB.velocity = new Vector2(-velocidades[Random.Range(0, velocidades.Length)], 0);

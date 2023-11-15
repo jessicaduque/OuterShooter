@@ -11,13 +11,16 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] PoderDetails poderAtual;
 
     private BoxCollider2D thisCollider;
+    private int vidas = 1;
 
     public PlayerAttack _playerAttack;
 
     private PlayerMovement _playerMovement => PlayerMovement.I;
     private LevelController _levelController => LevelController.I;
 
-    private int vidas = 1;
+    private UIController _uiController => UIController.I;
+
+    
 
     private new void Awake()
     {
@@ -40,10 +43,13 @@ public class PlayerController : Singleton<PlayerController>
 
         if(vidas <= 0)
         {
+            _playerMovement.SetAnimatorUnscaled(true);
+            _uiController.SetPausePanelActive(true);
             _playerMovement.AnimateBool("Morte", true);
             _playerMovement.AnimateTrigger("TrigMorte");
             _playerMovement.PermitirMovimento(false);
             thisCollider.enabled = false;
+            Time.timeScale = 0;
         }
     }
 
@@ -56,7 +62,10 @@ public class PlayerController : Singleton<PlayerController>
 
     public IEnumerator Reviver()
     {
-        
+        _playerMovement.SetAnimatorUnscaled(false);
+        _playerMovement.AnimateBool("Morte", false);
+        _uiController.SetPausePanelActive(false);
+        _playerMovement.PermitirMovimento(true);
         yield return new WaitForSeconds(1);
         thisCollider.enabled = true;
     }

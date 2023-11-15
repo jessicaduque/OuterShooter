@@ -49,7 +49,10 @@ public class PlayerMovement : Singleton<PlayerMovement>
         anim.SetTrigger(nomeTrigger);
     }
 
-
+    public void SetAnimatorUnscaled(bool estado) 
+    {
+        anim.updateMode = (estado ? AnimatorUpdateMode.UnscaledTime : AnimatorUpdateMode.Normal);
+    }
     public void PermitirMovimento(bool estado)
     {
         podeMover = estado;

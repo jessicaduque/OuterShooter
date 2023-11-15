@@ -57,11 +57,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: PIXEL1_LARANJA
+  m_Name: PIXEL1_AZUL
   m_EditorClassIdentifier: 
-  hashCode: 1578433743
+  hashCode: 581565725
   material: {fileID: 268008519628560494}
-  materialHashCode: 934030735
+  materialHashCode: -1018165091
   m_Version: 1.1.0
   m_SourceFontFileGUID: 8595a1030c62c2f42a6a105c339d4988
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 8595a1030c62c2f42a6a105c339d4988, type: 3}
@@ -5299,7 +5299,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.2
+    - _OutlineWidth: 0.29
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
@@ -5331,7 +5331,7 @@ Material:
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
-    - _OutlineColor: {r: 1, g: 0.36130688, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0.04573341, b: 0.6313726, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}

@@ -21,7 +21,7 @@ public class UIController : Singleton<UIController>
     [SerializeField] Button b_creditos;
     [SerializeField] Button b_pause;
     [SerializeField] Button b_ultimate;
-    [SerializeField] Button b_reiniciar;
+    [SerializeField] Button b_reiniciarGameOver;
 
     [Space(20)]
     [Header("Textos")]
@@ -69,7 +69,6 @@ public class UIController : Singleton<UIController>
         b_pause.onClick.AddListener(() => ControlPausePanel(true));
         b_ultimate.enabled = false;
         b_ultimate.onClick.AddListener(ApertouUltimate);
-        b_reiniciar.onClick.AddListener(RecomecarJogo);
     }
 
     private void Start()
@@ -80,6 +79,7 @@ public class UIController : Singleton<UIController>
 
     private void IniciarJogo()
     {
+        b_iniciarJogo.enabled = false;
         ControlStartPanel();
         _backgroundController.MudarEstadoParallax(true);
         _levelController.SetEstadoJogo(EstadoJogo.Inicial);
@@ -99,14 +99,14 @@ public class UIController : Singleton<UIController>
 
     private void AtualizarTextosScoreFinal()
     {
-        b_reiniciar.enabled = false;
+        b_reiniciarGameOver.enabled = false;
         t_bestScoreFinal.text = _bankManager.GetBestScore().ToString(); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
         Sequence seq = DOTween.Sequence().SetUpdate(true);
         seq.PrependInterval(0.2f);
         seq.Append(score.DOFade(1, 0.3f));
         seq.Append(bestScore.DOFade(1, 0.3f));
         seq.Join(DOTween.To(x => t_scoreFinal.text = ((int) x).ToString(), 0, _bankManager.GetQuantEstrelas(), 1.2f)); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
-        seq.Append(b_reiniciar.transform.DOScale(new Vector3(1f, 1f, 1f), 1f).SetEase(Ease.OutBounce).OnComplete(() => b_reiniciar.enabled = true));
+        seq.Append(b_reiniciarGameOver.transform.DOScale(new Vector3(1f, 1f, 1f), 1f).SetEase(Ease.OutBounce).OnComplete(() => b_reiniciarGameOver.enabled = true));
     }
 
     #endregion
@@ -135,6 +135,10 @@ public class UIController : Singleton<UIController>
             Helpers.FadeOutPanel(PausePanel);
         }
         Time.timeScale = (estado ? 0 : 1);
+    }
+    public void SetPausePanelActive(bool estado)
+    {
+        PausePanel.SetActive(estado);
     }
 
     public void ControlUIPanel(bool estado)
@@ -176,6 +180,7 @@ public class UIController : Singleton<UIController>
         Time.timeScale = (estado ? 0 : 1);
     }
 
+    
     #endregion
 
     #region Planeta

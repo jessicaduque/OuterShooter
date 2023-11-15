@@ -135,9 +135,7 @@ public class LevelController : Singleton<LevelController>
 
     public void MaisUmaChance()
     {
-        _playerMovement.AnimateBool("Morte", false);
-        StartCoroutine(_playerController.Reviver());
-        _playerMovement.PermitirMovimento(true);
+        StartCoroutine(_playerController.Reviver());   
         _uiController.ControlAdChancePanel(false);
         Time.timeScale = 1;
         SetEstadoJogo(EstadoJogo.Lutar);
