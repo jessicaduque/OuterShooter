@@ -19,6 +19,7 @@ public class UIController : Singleton<UIController>
     [Header("Botões")]
     [SerializeField] Button b_iniciarJogo;
     [SerializeField] Button b_creditos;
+    [SerializeField] Button b_video;
     [SerializeField] Button b_pause;
     [SerializeField] Button b_ultimate;
     [SerializeField] Button b_reiniciarGameOver;
@@ -69,6 +70,7 @@ public class UIController : Singleton<UIController>
         b_pause.onClick.AddListener(() => ControlPausePanel(true));
         b_ultimate.enabled = false;
         b_ultimate.onClick.AddListener(ApertouUltimate);
+        b_video.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.9f;
     }
 
     private void Start()
@@ -255,7 +257,7 @@ public class UIController : Singleton<UIController>
 
     public void RecomecarJogo()
     {
-        _audioManager.PlayCrossFade("Menu");
+        _audioManager.FadeOutMusic("Main");
         _fadePreto.FadeOutScene("Main");
     }
 

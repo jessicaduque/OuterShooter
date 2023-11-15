@@ -28,10 +28,8 @@ public class AudioManager : Singleton<AudioManager>
 
     private bool _musicSource1IsPlaying;
 
-    protected override void Awake()
+    protected new void Awake()
     {
-        base.Awake();
-
         InitSetup();
     }
 
@@ -52,7 +50,7 @@ public class AudioManager : Singleton<AudioManager>
         {
             if (mixer == keyMixerMusic)
             {
-                masterMixer.SetFloat(mixer, -10f);
+                masterMixer.SetFloat(mixer, -5f);
             }
             else
             {
@@ -347,7 +345,7 @@ public class AudioManager : Singleton<AudioManager>
         if (value)
         {
             EnabledMusicLevel = 1;
-            masterMixer.SetFloat(keyMixerMusic, -10f);
+            masterMixer.SetFloat(keyMixerMusic, -5f);
         }
         else
         {
