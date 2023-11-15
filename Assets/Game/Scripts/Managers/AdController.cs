@@ -25,7 +25,7 @@ public class AdController : MonoBehaviour
 #if UNITY_ANDROID
     private string _adUnitId = "ca-app-pub-4689899983088673~3000251246";
 #elif UNITY_IPHONE
-  private string _adUnitId = "ca-app-pub-3940256099942544/1712485313";
+  private string _adUnitId = "ca-app-pub-4689899983088673~3000251246";
 #else
   private string _adUnitId = "unused";
 #endif
