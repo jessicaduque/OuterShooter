@@ -5,27 +5,66 @@ using Utils.Singleton;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
-    private PoolManager _poolManager => PoolManager.I;
-    private FaseDetails faseAtual;
+    private List<GameObject> InimigosPossiveisList;
+
     private int quantInimigosFase;
     private int quantInimigosVivos;
+    private int quantInimigosEscondidos;
+    private NomeFase nomeFase;
 
-    private void ResetarValoresFase()
+    private PoolManager _poolManager => PoolManager.I;
+    private EnemyMovement _enemyMovement => EnemyMovement.I;
+    private void ResetarValoresFase(int quantIni)
     {
-        quantInimigosFase = faseAtual.faseInimiPossiveis.Length;
+        quantInimigosFase = quantIni;
         quantInimigosVivos = quantInimigosFase;
+        quantInimigosEscondidos = 0;
+    }
+
+    private void DeterminarFase(NomeFase nome)
+    {
+        nomeFase = nome;
+
+        switch (nomeFase)
+        {
+            case NomeFase.Fogo:
+                // Código
+                break;
+            case NomeFase.Gelo:
+                SpawnGelo();
+                break;
+            case NomeFase.Rosa:
+                // Código
+                break;
+        }
     }
 
     #region Public
 
-    public void SetFase(FaseDetails fase)
+    public void ComecarNovaFase(List<GameObject> inimigos, NomeFase nome)
     {
-        faseAtual = fase;
+        ResetarValoresFase(inimigos.Count);
+        InimigosPossiveisList = inimigos;
+        DeterminarFase(nome);
+    }
+
+    public void AumentarInimigosEscondidos()
+    {
+        quantInimigosEscondidos++;
     }
 
     public void DiminuirInimigosVivos()
     {
         quantInimigosVivos--;
+    }
+
+    #endregion
+
+    #region Fase de Gelo
+
+    private void SpawnGelo()
+    {
+
     }
 
     #endregion

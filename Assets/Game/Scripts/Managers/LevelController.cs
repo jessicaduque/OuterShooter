@@ -108,7 +108,7 @@ public class LevelController : Singleton<LevelController>
 
     public void SpawnInimigos()
     {
-        //SpawnManager.I.SpawnarWave(new List<GameObject>(faseAtual.faseInimiPossiveis));
+        _spawnManager.ComecarNovaFase(new List<GameObject>(faseAtual.faseInimiPossiveis), faseAtual.faseNome);
         SetEstadoJogo(EstadoJogo.Lutar);
     }
 

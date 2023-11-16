@@ -122,7 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSpeed: 5
   dano: 2
-  efeitoExplosao: {fileID: 5801840601581237026, guid: 40b50dd8e006d0d488907d12ff45371d, type: 3}
+  efeitoExplosao: {fileID: 11400000, guid: 636a07b6f40c6c943821987d55b4e21a, type: 2}
+  shotPlayer: 1
 --- !u!50 &525307559
 Rigidbody2D:
   serializedVersion: 4

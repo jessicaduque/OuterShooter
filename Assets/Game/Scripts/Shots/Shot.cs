@@ -9,6 +9,8 @@ public class Shot : MonoBehaviour
     [SerializeField] private int dano;
     [SerializeField] private Pool efeitoExplosao;
 
+    [SerializeField] private bool shotPlayer;
+
     private PoolManager _poolManager => PoolManager.I;
 
     private void Awake()
@@ -18,7 +20,7 @@ public class Shot : MonoBehaviour
 
     private void OnEnable()
     {
-        Rb2D.velocity = new Vector2(shotSpeed, 0);
+        Rb2D.velocity = new Vector2((shotPlayer ? shotSpeed : -shotSpeed), 0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3066712471221984350}
   - component: {fileID: 2315814054612227381}
   - component: {fileID: -561070976958955379}
+  - component: {fileID: -1417275842206752683}
   m_Layer: 9
   m_Name: IceBunnyShot
   m_TagString: Untagged
@@ -154,3 +155,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1417275842206752683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066712471221984349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b685baf184c815418281c28b835d4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSpeed: 6.2
+  dano: 1
+  efeitoExplosao: {fileID: 11400000, guid: 9a789e0b3215ab940b2563b88c8b805f, type: 2}
+  shotPlayer: 0
