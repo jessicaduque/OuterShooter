@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagPool: WaterPlayerShot
   prefab: {fileID: 5251921442383544753, guid: 9f5c6f52bb893294380b05b27de62d2f, type: 3}
-  amount: 30
+  amount: 15
   isExpandable: 1

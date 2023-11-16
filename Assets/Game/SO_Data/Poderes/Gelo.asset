@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852e17a30abcd314db62a0fa213d2b2d, type: 3}
   m_Name: Gelo
   m_EditorClassIdentifier: 
-  poderID: 0
-  poderNome: 0
-  poderPlayerAnimControl: {fileID: 0}
-  poderAumentoEfetividade: {fileID: 0}
+  poderID: 1
+  poderNome: 1
+  poderPlayerAnimControl: {fileID: 9100000, guid: 7c52a32be7b885b4dac86335db9dbe3e, type: 2}
+  poderAumentoEfetividade: {fileID: 11400000, guid: 181a402a23065f448954e32ad98a3a91, type: 2}
+  poderImageEscolha: {fileID: 0}

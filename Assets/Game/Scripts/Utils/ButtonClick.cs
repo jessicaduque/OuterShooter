@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,9 +13,13 @@ public class ButtonClick : MonoBehaviour
         thisButton.onClick.AddListener(MakeSound);
     }
 
-    private void OnDisable()
+    private void OnEnable()
     {
         thisButton.enabled = true;
+    }
+
+    private void OnDisable()
+    {
         StopAllCoroutines();
     }
 
@@ -32,4 +35,5 @@ public class ButtonClick : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         thisButton.enabled = true;
     }
+
 }

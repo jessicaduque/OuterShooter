@@ -10,6 +10,10 @@ public class LevelController : Singleton<LevelController>
     private FaseDetails faseAtual;
     private FaseDetails fasePassada;
 
+    [Header("Scripts de ataque do Player")]
+    [SerializeField] private PlayerAttack[] playerAttackScripts;
+    private PlayerAttack _playerAttack;
+
     [SerializeField] GameObject SpawnObjetosGameObject;
 
     EstadoJogo estadoAtualLevel;
@@ -23,6 +27,7 @@ public class LevelController : Singleton<LevelController>
     private PlayerMovement _playerMovement => PlayerMovement.I;
     private PlayerController _playerController => PlayerController.I;
     private SpawnObjetos _spawnObjetos => SpawnObjetos.I;
+    private SpawnManager _spawnManager => SpawnManager.I;
 
     private AudioManager _audioManager => AudioManager.I;
 
@@ -45,10 +50,6 @@ public class LevelController : Singleton<LevelController>
                 break;
             case EstadoJogo.Lutar:
                 Lutar();
-                //movendoPlaneta = false;
-                ////PlayerMov.AnimatateAttack();
-                ////PlayerContr.PermitirAtacar();
-                //// Código
                 break;
             case EstadoJogo.EscolherPoder:
                 //GetComponent<GerenciadorDeExtras>().enabled = false;
@@ -84,6 +85,7 @@ public class LevelController : Singleton<LevelController>
 
     public void IniciarJogoFinal()
     {
+        faseAtual = faseTerra;
         SetEstadoJogo(EstadoJogo.CriarFase);
     }
 
@@ -94,7 +96,7 @@ public class LevelController : Singleton<LevelController>
     private void CriarFase()
     {
         numeroFase++;
-        SpawnObjetosGameObject.SetActive(true);
+        //SpawnObjetosGameObject.SetActive(true);
         AleatorizarFase();
     }
 
@@ -102,7 +104,12 @@ public class LevelController : Singleton<LevelController>
     {
         faseAtual = fases[Random.Range(0, fases.Count)];
         _uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
-        //WaveManager.I.SpawnarWave(new List<GameObject>(faseAtual.faseInimiPossiveis));
+    }
+
+    public void SpawnInimigos()
+    {
+        //SpawnManager.I.SpawnarWave(new List<GameObject>(faseAtual.faseInimiPossiveis));
+        SetEstadoJogo(EstadoJogo.Lutar);
     }
 
     #endregion
@@ -111,7 +118,7 @@ public class LevelController : Singleton<LevelController>
 
     private void Lutar()
     {
-        
+        DefineActivateAttack(faseAtual.faseID);
     }
 
     #endregion
@@ -143,4 +150,10 @@ public class LevelController : Singleton<LevelController>
 
     #endregion
 
+    #region Player Activate Attack
+    private void DefineActivateAttack(int id)
+    {
+        playerAttackScripts[id].enabled = true;
+    }
+    #endregion
 }

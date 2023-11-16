@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    protected float waitTimeShot;
-    protected float waitLimitShot;
-    protected bool podeAtacar;
-
     protected float ultimatePoints;
-    protected float ultimateMaxPoints;
+    [SerializeField] protected float ultimateMaxPoints;
     protected bool ultimateLiberado;
-
-    protected PoderDetails poder;
 
     private Animator PlayerAnimator;
 
+    protected PoolManager _poolManager => PoolManager.I;
     private void Awake()
     {
         ultimateLiberado = false;
@@ -24,17 +19,17 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerAnimator.SetBool("Atacando", true);
+        PlayerAnimator.SetBool("Attack", true);
     }
 
     private void OnDisable()
     {
-        PlayerAnimator.SetBool("Atacando", false);
+        PlayerAnimator.SetBool("Attack", false);
     }
 
-    protected virtual void AtaqueNormal()
+    public virtual void Attack()
     {
-        waitTimeShot += Time.deltaTime;
+
     }
 
     #region Ultimate
