@@ -21,6 +21,7 @@ public class LevelController : Singleton<LevelController>
     private bool chanceExtra = true;   
 
     private int numeroFase = 0;
+    private int fasesSemTerra = 0;
 
     private BankManager _bankManager => BankManager.I;
     private UIController _uiController => UIController.I;
@@ -58,10 +59,6 @@ public class LevelController : Singleton<LevelController>
             case EstadoJogo.Terra:
                 // Código
                 break;
-            case EstadoJogo.Morte:
-                //GetComponent<GerenciadorDeExtras>().enabled = false;
-                // Código
-                break;
         }
     }
 
@@ -96,8 +93,16 @@ public class LevelController : Singleton<LevelController>
     private void CriarFase()
     {
         numeroFase++;
-        //SpawnObjetosGameObject.SetActive(true);
-        AleatorizarFase();
+        fasesSemTerra++;
+        if(fasesSemTerra == 3)
+        {
+            SetEstadoJogo(EstadoJogo.Terra);
+        }
+        else
+        {
+            //SpawnObjetosGameObject.SetActive(true);
+            AleatorizarFase();
+        }
     }
 
     private void AleatorizarFase()

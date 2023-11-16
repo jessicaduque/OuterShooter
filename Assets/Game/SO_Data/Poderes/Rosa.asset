@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852e17a30abcd314db62a0fa213d2b2d, type: 3}
   m_Name: Rosa
   m_EditorClassIdentifier: 
-  poderID: 0
-  poderNome: 0
+  poderID: 3
+  poderNome: 3
   poderPlayerAnimControl: {fileID: 0}
   poderAumentoEfetividade: {fileID: 0}
+  poderImageEscolha: {fileID: 0}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb210a22e5b93ef418cf321539a7d429, type: 3}
   m_Name: Fogo
   m_EditorClassIdentifier: 
-  faseID: 0
-  faseNome: 0
+  faseID: 2
+  faseNome: 2
   faseAnimControl: {fileID: 0}
   fasePoder: {fileID: 0}
   faseInimiPossiveis: []

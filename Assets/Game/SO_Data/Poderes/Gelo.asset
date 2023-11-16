@@ -15,5 +15,5 @@ MonoBehaviour:
   poderID: 1
   poderNome: 1
   poderPlayerAnimControl: {fileID: 9100000, guid: 7c52a32be7b885b4dac86335db9dbe3e, type: 2}
-  poderAumentoEfetividade: {fileID: 11400000, guid: 181a402a23065f448954e32ad98a3a91, type: 2}
+  poderAumentoEfetividade: {fileID: 11400000}
   poderImageEscolha: {fileID: 0}
