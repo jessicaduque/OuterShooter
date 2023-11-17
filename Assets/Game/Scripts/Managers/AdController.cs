@@ -15,6 +15,12 @@ public class AdController : Singleton<AdController>
     // Start is called before the first frame update
     void Start()
     {
+        RequestConfiguration requestConfiguration = new RequestConfiguration
+        {
+            TagForChildDirectedTreatment = TagForChildDirectedTreatment.True,
+            MaxAdContentRating = MaxAdContentRating.G
+        };
+        MobileAds.SetRequestConfiguration(requestConfiguration);
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
             LoadInterstitialAd();
