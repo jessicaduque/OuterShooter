@@ -7,6 +7,7 @@ public class ControleFadePreto : Singleton<ControleFadePreto>
 {
     [SerializeField] public GameObject TelaPretaPanel;
     [SerializeField] public CanvasGroup cg_TelaPreta;
+    private bool restart;
 
     private float tempoFadePreto => Helpers.tempoPretoFade;
 
@@ -22,6 +23,11 @@ public class ControleFadePreto : Singleton<ControleFadePreto>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         FadeInSceneStart();
+        if (restart)
+        {
+            LevelController.I.RestartStraightGame();
+            restart = false;
+        }
     }
 
     public void FadeInSceneStart()
@@ -44,6 +50,16 @@ public class ControleFadePreto : Singleton<ControleFadePreto>
             panel.SetActive(estado); 
             FadeInSceneStart(); 
         };
+    }
+
+    public void RestartStraightGame()
+    {
+        TelaPretaPanel.SetActive(true);
+        cg_TelaPreta.DOFade(1, tempoFadePreto).OnComplete(() => {
+            restart = true;
+            SceneManager.LoadScene("Main");
+            
+        }).SetUpdate(true);
     }
 
     private void OnDestroy()

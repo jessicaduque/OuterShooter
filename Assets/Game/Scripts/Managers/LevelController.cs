@@ -68,7 +68,11 @@ public class LevelController : Singleton<LevelController>
         ControleEstados();
     }
 
-
+    public void RestartStraightGame()
+    {
+        _uiController.SetStartPanelFalse();
+        SetEstadoJogo(EstadoJogo.Inicial);
+    }
     #endregion
 
     #region InicioJogo

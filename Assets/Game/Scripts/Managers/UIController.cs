@@ -23,6 +23,7 @@ public class UIController : Singleton<UIController>
     [SerializeField] Button b_pause;
     [SerializeField] Button b_ultimate;
     [SerializeField] Button b_reiniciarGameOver;
+    [SerializeField] Button b_menuGameOver;
     [SerializeField] Button b_adButton1;
     [SerializeField] Button b_adButton2;
 
@@ -106,6 +107,7 @@ public class UIController : Singleton<UIController>
 
     private void AtualizarTextosScoreFinal()
     {
+        b_menuGameOver.enabled = false;
         b_reiniciarGameOver.enabled = false;
         t_bestScoreFinal.text = _bankManager.GetBestScore().ToString(); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
         Sequence seq = DOTween.Sequence().SetUpdate(true);
@@ -113,7 +115,8 @@ public class UIController : Singleton<UIController>
         seq.Append(score.DOFade(1, 0.3f));
         seq.Append(bestScore.DOFade(1, 0.3f));
         seq.Join(DOTween.To(x => t_scoreFinal.text = ((int) x).ToString(), 0, _bankManager.GetQuantEstrelas(), 1.2f)); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
-        seq.Append(b_reiniciarGameOver.transform.DOScale(new Vector3(1f, 1f, 1f), 1f).SetEase(Ease.OutBounce).OnComplete(() => b_reiniciarGameOver.enabled = true));
+        seq.Append(b_menuGameOver.transform.DOScale(new Vector3(1f, 1f, 1f), 1f).SetEase(Ease.OutBounce).OnComplete(() => b_menuGameOver.enabled = true));
+        seq.Join(b_reiniciarGameOver.transform.DOScale(new Vector3(1f, 1f, 1f), 1f).SetEase(Ease.OutBounce).OnComplete(() => b_reiniciarGameOver.enabled = true));
     }
 
     #endregion
@@ -146,6 +149,11 @@ public class UIController : Singleton<UIController>
     public void SetPausePanelActive(bool estado)
     {
         PausePanel.SetActive(estado);
+    }
+    public void SetStartPanelFalse()
+    {
+        StartPanel.SetActive(false);
+        Helpers.FadeInPanel(UIPanel);
     }
 
     public void ControlUIPanel(bool estado)
@@ -199,8 +207,9 @@ public class UIController : Singleton<UIController>
         planetaObjeto.transform.DOMove(posFinal, 4f).SetEase(Ease.InSine);
     }
 
-    public void MoverPlanetaDentro()
+    private IEnumerator MoverPlanetaDentro()
     {
+        yield return new WaitForSeconds(2);
         _backgroundController.MudarEstadoParallax(false);
         planetaObjeto.transform.position = new Vector2(posXInicioPlanetaDentro, 0);
         Vector3 posFinal = new Vector3(posXFinalPlanetaDentro, 0, 0);
@@ -219,7 +228,7 @@ public class UIController : Singleton<UIController>
     public void SetarPlanetaAnimator(RuntimeAnimatorController animator)
     {
         planetaAnimator.runtimeAnimatorController = animator;
-        MoverPlanetaDentro();
+        StartCoroutine(MoverPlanetaDentro());
     }
 
     #endregion
@@ -254,9 +263,14 @@ public class UIController : Singleton<UIController>
 
     #region Scenes
 
-    public void RecomecarJogo()
+    public void RestartStraightGame()
     {
-        _audioManager.FadeOutMusic("Main");
+        _fadePreto.RestartStraightGame();
+    }
+
+    public void BackMenu()
+    {
+        _audioManager.PlayCrossFade("Menu");
         _fadePreto.FadeOutScene("Main");
     }
 

@@ -57,6 +57,7 @@ public class CreditsSettings : MonoBehaviour
     private void InicialPanelSetup()
     {
         b_settings.interactable = false;
+        b_credits.interactable = true;
         outline_bSettings.enabled = true;
         outline_bCredits.enabled = false;
         cg_settings.alpha = 1;

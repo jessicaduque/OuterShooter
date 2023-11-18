@@ -28,8 +28,10 @@ public class AudioManager : Singleton<AudioManager>
 
     private bool _musicSource1IsPlaying;
 
-    protected new void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         InitSetup();
     }
 

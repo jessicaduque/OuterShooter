@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f16bcc39ceffd4a9005e06204d0865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxEffect: {fileID: 0}
+  SfxEffect: {fileID: 11400000, guid: e9734802b350d3d45ad748d4abdae91b, type: 2}
 --- !u!95 &4161459163431110717
 Animator:
   serializedVersion: 5
