@@ -9,6 +9,8 @@ public class CreditsSettings : MonoBehaviour
     [Header("Change between panels")]
     [SerializeField] private Button b_settings;
     [SerializeField] private Button b_credits;
+    private Outline outline_bSettings;
+    private Outline outline_bCredits;
     [SerializeField] private CanvasGroup cg_settings;
     [SerializeField] private CanvasGroup cg_credits;
 
@@ -34,8 +36,14 @@ public class CreditsSettings : MonoBehaviour
         sprite_musicOn = musicIcon.sprite;
         sprite_effectsOn = effectsIcon.sprite;
 
+        outline_bSettings = b_settings.GetComponent<Outline>();
+        outline_bCredits = b_credits.GetComponent<Outline>();
+
         b_music.onClick.AddListener(ChangeMusicState);
         b_effects.onClick.AddListener(ChangeEffectsState);
+
+        b_settings.onClick.AddListener(OpenSettings);
+        b_credits.onClick.AddListener(OpenCredits);
     }
 
     private void OnEnable()
@@ -48,25 +56,41 @@ public class CreditsSettings : MonoBehaviour
 
     private void InicialPanelSetup()
     {
-        b_settings.onClick.AddListener(OpenSettings);
-        b_credits.onClick.AddListener(OpenCredits);
+        b_settings.interactable = false;
+        outline_bSettings.enabled = true;
+        outline_bCredits.enabled = false;
         cg_settings.alpha = 1;
         cg_credits.alpha = 0;
+        cg_settings.gameObject.SetActive(true);
         cg_credits.gameObject.SetActive(false);
     }
 
     private void OpenCredits()
     {
-        cg_settings.DOFade(0, 0.4f).OnComplete(() => {
+        _audioManager.PlaySfx("ButtonClick");
+        outline_bSettings.enabled = false;
+        outline_bCredits.enabled = true;
+        b_credits.interactable = false;
+        cg_settings.DOFade(0, 0.4f).OnComplete(() =>
+        {
+            b_settings.interactable = true;
             cg_settings.gameObject.SetActive(false);
+            cg_credits.gameObject.SetActive(true);
             cg_credits.DOFade(1, 0.4f);
-            });
+        });
     }
 
     private void OpenSettings()
     {
-        cg_credits.DOFade(0, 0.4f).OnComplete(() => {
+        _audioManager.PlaySfx("ButtonClick");
+        outline_bSettings.enabled = true;
+        outline_bCredits.enabled = false;
+        b_settings.interactable = false;
+        cg_credits.DOFade(0, 0.4f).OnComplete(() =>
+        {
+            b_credits.interactable = true;
             cg_credits.gameObject.SetActive(false);
+            cg_settings.gameObject.SetActive(true);
             cg_settings.DOFade(1, 0.4f);
         });
     }
@@ -88,6 +112,7 @@ public class CreditsSettings : MonoBehaviour
 
     private void ChangeMusicState()
     {
+        _audioManager.PlaySfx("ButtonClick");
         musicOn = !musicOn;
         ChangeSpritesMusic();
         _audioManager.ChangeStateMixerMusic(musicOn);
@@ -97,6 +122,7 @@ public class CreditsSettings : MonoBehaviour
         effectsOn = !effectsOn;
         ChangeSpritesEffects();
         _audioManager.ChangeStateMixerSFX(effectsOn);
+        if (effectsOn) { _audioManager.PlaySfx("ButtonClick"); }
     }
 
     private void ChangeSpritesMusic()

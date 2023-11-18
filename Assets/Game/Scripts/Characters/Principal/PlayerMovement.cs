@@ -64,7 +64,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         PermitirMovimento(true);
         AnimateBool("Mover", true);
         yield return new WaitForSeconds(0.8f);
-        transform.DOMoveY(-7.2f, 4f).SetEase(Ease.InSine);
+        transform.DOMoveX(-7.2f, 4f).SetEase(Ease.InSine);
         while (transform.position.x != -7.2f)
         {
             yield return false;

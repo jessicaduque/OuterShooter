@@ -48,15 +48,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (enabled == 1)
         {
-            if (mixer == keyMixerMusic)
-            {
-                masterMixer.SetFloat(mixer, -5f);
-            }
-            else
-            {
-                masterMixer.SetFloat(mixer, 0f);
-            }
-
+            masterMixer.SetFloat(mixer, 0f);
         }
         else
         {
@@ -345,7 +337,7 @@ public class AudioManager : Singleton<AudioManager>
         if (value)
         {
             EnabledMusicLevel = 1;
-            masterMixer.SetFloat(keyMixerMusic, -5f);
+            masterMixer.SetFloat(keyMixerMusic, -0f);
         }
         else
         {

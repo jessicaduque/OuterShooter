@@ -2467,6 +2467,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9048670100128895864, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048670100128895864, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 715474429, guid: 8d681c8057759c5438e7d3d5b22f99db, type: 3}
+    - target: {fileID: 9048670100128895864, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2719,7 +2727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9048670100128895867, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 130
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 9048670100128895867, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2751,18 +2759,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9048670100128895866, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
   m_PrefabInstance: {fileID: 4967708470359963868}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &696822819125207887
+--- !u!114 &6575872132219181191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4135303962253372326}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b8ac70c8a29734394bbd2af0061c09, type: 3}
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.3417766, b: 0, a: 1}
+  m_EffectDistance: {x: 10, y: 10}
+  m_UseGraphicAlpha: 0
 --- !u!224 &4135303962253372327 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9048670100128895867, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
@@ -2786,6 +2797,14 @@ PrefabInstance:
     - target: {fileID: 1798528054679099108, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
       propertyPath: m_PreserveAspect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048670100128895864, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048670100128895864, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9048670100128895864, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2885,7 +2904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9048670100128895867, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 130
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 9048670100128895867, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2906,18 +2925,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9048670100128895866, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
   m_PrefabInstance: {fileID: 7520649830734646938}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3741806004657789120
+--- !u!114 &5300554765741343471
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571161087727623648}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b8ac70c8a29734394bbd2af0061c09, type: 3}
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.3417766, b: 0, a: 1}
+  m_EffectDistance: {x: 10, y: 10}
+  m_UseGraphicAlpha: 0
 --- !u!224 &1571161087727623649 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9048670100128895867, guid: ccf7c9d24db9f024d8afb9ba09327df1, type: 3}
