@@ -171,7 +171,7 @@ public class AudioManager : Singleton<AudioManager>
             StartCoroutine(FadeOut(currentMusicSource, targetVolume, sound.volume, duration, stopTheEnd));
         }
     }
-    public void PlayCrossFade(string soundName, float targetVol = 1, float duration = 0.75f)
+    public void PlayCrossFade(string soundName, float targetVol = 1, float duration = 0.5f)
     {
         Sound sound = GetMusic(soundName);
 

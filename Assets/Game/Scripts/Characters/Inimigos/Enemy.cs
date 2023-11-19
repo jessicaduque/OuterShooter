@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     
     protected SpriteRenderer thisSpriteRenderer;
 
-    public bool estaVivo;
+    public bool estaVivoEAtivo;
     private UIController _uiController => UIController.I;
     private ScoreManager _scoreManager => ScoreManager.I;
     private PlayerController _playerController => PlayerController.I;
@@ -29,12 +29,12 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        estaVivo = true;
+        estaVivoEAtivo = true;
     }
 
     private void OnDisable()
     {
-        estaVivo = false;
+        estaVivoEAtivo = false;
     }
 
     #region Levar Dano
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
 
     public void Morrer()
     {
-        estaVivo = false;
+        estaVivoEAtivo = false;
 
         _spawnManager.DiminuirInimigosVivos();
 

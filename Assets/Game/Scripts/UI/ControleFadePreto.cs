@@ -10,6 +10,7 @@ public class ControleFadePreto : Singleton<ControleFadePreto>
     private bool restart;
 
     private float tempoFadePreto => Helpers.tempoPretoFade;
+    private AudioManager _audioManager => AudioManager.I;
 
     protected override void Awake()
     {
@@ -26,6 +27,7 @@ public class ControleFadePreto : Singleton<ControleFadePreto>
         if (restart)
         {
             LevelController.I.RestartStraightGame();
+            _audioManager.FadeInMusic("Main");
             restart = false;
         }
     }

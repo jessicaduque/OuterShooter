@@ -10,10 +10,6 @@ public class LevelController : Singleton<LevelController>
     private FaseDetails faseAtual;
     private FaseDetails fasePassada;
 
-    [Header("Scripts de ataque do Player")]
-    [SerializeField] private PlayerAttack[] playerAttackScripts;
-    private PlayerAttack _playerAttack;
-
     [SerializeField] GameObject SpawnObjetosGameObject;
 
     EstadoJogo estadoAtualLevel;
@@ -29,7 +25,7 @@ public class LevelController : Singleton<LevelController>
     private PlayerController _playerController => PlayerController.I;
     private SpawnObjetos _spawnObjetos => SpawnObjetos.I;
     private SpawnManager _spawnManager => SpawnManager.I;
-
+    private PoolManager _poolManager => PoolManager.I;
     private AudioManager _audioManager => AudioManager.I;
 
     private new void Awake()
@@ -50,7 +46,7 @@ public class LevelController : Singleton<LevelController>
                 CriarFase();
                 break;
             case EstadoJogo.Lutar:
-                Lutar();
+                //Lutar();
                 break;
             case EstadoJogo.EscolherPoder:
                 //GetComponent<GerenciadorDeExtras>().enabled = false;
@@ -82,6 +78,7 @@ public class LevelController : Singleton<LevelController>
         _audioManager.PlayCrossFade("Main");
         StartCoroutine(_playerMovement.MoverParaX());
         StartCoroutine(_uiController.MoverPlanetaFora());
+        _playerController.SetarPoder(faseTerra);
     }
 
     public void IniciarJogoFinal()
@@ -104,7 +101,7 @@ public class LevelController : Singleton<LevelController>
         }
         else
         {
-            //SpawnObjetosGameObject.SetActive(true);
+            SpawnObjetosGameObject.SetActive(true);
             AleatorizarFase();
         }
     }
@@ -112,13 +109,13 @@ public class LevelController : Singleton<LevelController>
     private void AleatorizarFase()
     {
         faseAtual = fases[Random.Range(0, fases.Count)];
-        _uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
+        //_uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
     }
 
     public void SpawnInimigos()
     {
-        _spawnManager.ComecarNovaFase(new List<GameObject>(faseAtual.faseInimiPossiveis), faseAtual.faseNome);
         SetEstadoJogo(EstadoJogo.Lutar);
+        //_spawnManager.ComecarNovaFase(new List<GameObject>(faseAtual.faseInimiPossiveis), faseAtual.faseNome, numeroFase);
     }
 
     #endregion
@@ -127,7 +124,7 @@ public class LevelController : Singleton<LevelController>
 
     private void Lutar()
     {
-        DefineActivateAttack(faseAtual.faseID);
+        _playerController.DefineActivateAttack();
     }
 
     #endregion
@@ -151,18 +148,32 @@ public class LevelController : Singleton<LevelController>
 
     public void MaisUmaChance()
     {
-        StartCoroutine(_playerController.Reviver());   
+        StartCoroutine(_playerController.Reviver());
+        ReturnShotsAndObjectsPool();
         _uiController.ControlAdChancePanel(false);
         Time.timeScale = 1;
         SetEstadoJogo(EstadoJogo.Lutar);
     }
 
-    #endregion
-
-    #region Player Activate Attack
-    private void DefineActivateAttack(int id)
+    private void ReturnShotsAndObjectsPool()
     {
-        playerAttackScripts[id].enabled = true;
+        foreach (Asteroide asteroid in FindObjectsOfType<Asteroide>())
+        {
+            if (asteroid.gameObject.activeInHierarchy)
+            {
+                asteroid.Explode();
+            }
+        }
+
+        foreach (Shot shot in FindObjectsOfType<Shot>())
+        {
+            if (shot.gameObject.activeInHierarchy)
+            {
+                _poolManager.ReturnPool(shot.gameObject);
+            }
+        }
+
     }
+
     #endregion
 }

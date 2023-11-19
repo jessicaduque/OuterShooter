@@ -60,7 +60,6 @@ public class UIController : Singleton<UIController>
     private LevelController _levelController => LevelController.I;
     private ControleFadePreto _fadePreto => ControleFadePreto.I;
     private BackgroundController _backgroundController => BackgroundController.I;
-    private PlayerController _playerController => PlayerController.I;
 
     private BankManager _bankManager => BankManager.I;
     private ScoreManager _scoreManager => ScoreManager.I;
@@ -150,6 +149,10 @@ public class UIController : Singleton<UIController>
     {
         PausePanel.SetActive(estado);
     }
+    public void PauseListener(bool state)
+    {
+        b_pause.enabled = state;
+    }
     public void SetStartPanelFalse()
     {
         StartPanel.SetActive(false);
@@ -185,13 +188,13 @@ public class UIController : Singleton<UIController>
     {
         if (estado)
         {
+            AtualizarTextosScoreFinal();
             Helpers.FadeInPanel(GameOverPanel);
         }
         else
         {
             Helpers.FadeOutPanel(GameOverPanel);
         }
-        AtualizarTextosScoreFinal();
         Time.timeScale = (estado ? 0 : 1);
     }
 
@@ -209,7 +212,7 @@ public class UIController : Singleton<UIController>
 
     private IEnumerator MoverPlanetaDentro()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.2f);
         _backgroundController.MudarEstadoParallax(false);
         planetaObjeto.transform.position = new Vector2(posXInicioPlanetaDentro, 0);
         Vector3 posFinal = new Vector3(posXFinalPlanetaDentro, 0, 0);
@@ -265,6 +268,7 @@ public class UIController : Singleton<UIController>
 
     public void RestartStraightGame()
     {
+        _audioManager.StopMusic();
         _fadePreto.RestartStraightGame();
     }
 

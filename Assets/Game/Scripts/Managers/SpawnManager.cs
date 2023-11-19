@@ -8,9 +8,11 @@ public class SpawnManager : Singleton<SpawnManager>
     private List<GameObject> InimigosPossiveisList;
 
     private int quantInimigosFase;
+    private int quantInimigosWave;
     private int quantInimigosVivos;
     private int quantInimigosEscondidos;
     private NomeFase nomeFase;
+    private int numeroFase;
 
     private PoolManager _poolManager => PoolManager.I;
     private EnemyMovement _enemyMovement => EnemyMovement.I;
@@ -41,8 +43,9 @@ public class SpawnManager : Singleton<SpawnManager>
 
     #region Public
 
-    public void ComecarNovaFase(List<GameObject> inimigos, NomeFase nome)
+    public void ComecarNovaFase(List<GameObject> inimigos, NomeFase nome, int numeroFase)
     {
+        this.numeroFase = numeroFase;
         ResetarValoresFase(inimigos.Count);
         InimigosPossiveisList = inimigos;
         DeterminarFase(nome);
@@ -56,6 +59,10 @@ public class SpawnManager : Singleton<SpawnManager>
     public void DiminuirInimigosVivos()
     {
         quantInimigosVivos--;
+        if (quantInimigosVivos <= 0)
+        {
+            Debug.Log("Acabou fase!");
+        }
     }
 
     #endregion
@@ -64,7 +71,6 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void SpawnGelo()
     {
-
     }
 
     #endregion

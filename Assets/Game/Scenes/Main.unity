@@ -2718,6 +2718,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5319404847867509067, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5319404847867509067, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5319404847867509067, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5319404847867509067, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5363200637852852778, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2824,6 +2840,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6681681545757530871, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
       propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689156497833075848, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689156497833075848, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689156497833075848, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689156497833075848, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8689156497833075851, guid: 19d113a436d0b114593a2a16a0411beb, type: 3}
@@ -3620,6 +3652,14 @@ PrefabInstance:
       propertyPath: poderAtual
       value: 
       objectReference: {fileID: 11400000, guid: 181a402a23065f448954e32ad98a3a91, type: 2}
+    - target: {fileID: 806269917, guid: 41dc08ee7d1038346b3e6ba1fa775c00, type: 3}
+      propertyPath: playerAttackScripts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 806269917, guid: 41dc08ee7d1038346b3e6ba1fa775c00, type: 3}
+      propertyPath: playerAttackScripts.Array.data[0]
+      value: 
+      objectReference: {fileID: 806269918}
     - target: {fileID: 4747318507089673491, guid: 41dc08ee7d1038346b3e6ba1fa775c00, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -4491,8 +4531,6 @@ MonoBehaviour:
   fases:
   - {fileID: 11400000, guid: 7a3d914709c9506489cf56ff0c8ff764, type: 2}
   faseTerra: {fileID: 11400000, guid: 7034e0ea7faf9cb4ca716aa54e56eecb, type: 2}
-  playerAttackScripts:
-  - {fileID: 806269918}
   SpawnObjetosGameObject: {fileID: 764011496}
 --- !u!1 &1754684335
 GameObject:

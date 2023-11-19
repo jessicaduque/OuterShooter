@@ -70,7 +70,6 @@ public class AdController : Singleton<AdController>
         {
             Debug.Log("Showing interstitial ad.");
             interstitialAd.Show();
-           
         }
         else
         {
