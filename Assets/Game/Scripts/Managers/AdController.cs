@@ -12,10 +12,6 @@ public class AdController : Singleton<AdController>
     public string _adUnitId;
     private LevelController _levelController => LevelController.I;
 
-    private new void Awake()
-    {
-        
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +22,6 @@ public class AdController : Singleton<AdController>
             MaxAdContentRating = MaxAdContentRating.G
         };
         MobileAds.SetRequestConfiguration(requestConfiguration);
-
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
             LoadInterstitialAd();
@@ -76,7 +71,6 @@ public class AdController : Singleton<AdController>
         {
             Debug.Log("Showing interstitial ad.");
             interstitialAd.Show();
-           
         }
         else
         {
@@ -123,5 +117,4 @@ public class AdController : Singleton<AdController>
             LoadInterstitialAd();
         };
     }
-
 }

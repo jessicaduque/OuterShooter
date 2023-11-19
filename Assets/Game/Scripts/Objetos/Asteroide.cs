@@ -49,13 +49,22 @@ public class Asteroide : MonoBehaviour
         thisTween?.Kill();
     }
 
+    public void Explode()
+    {
+        if (thisRenderer.isVisible)
+        {
+            Vibration.Vibrate();
+            _poolManager.GetObject("ExplosionNormal", transform.position, transform.rotation);
+            _poolManager.ReturnPool(gameObject);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")){
             Vibration.Vibrate();
             thisRB.velocity = Vector3.zero;
             _playerController.LevarDano();
-            thisTween.Kill();
             _poolManager.GetObject("ExplosionNormal", transform.position, transform.rotation);
             _poolManager.ReturnPool(gameObject);
         }

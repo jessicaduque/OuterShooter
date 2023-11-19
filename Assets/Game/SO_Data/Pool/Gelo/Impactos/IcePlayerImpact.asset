@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: IcePlayerImpact
   m_EditorClassIdentifier: 
   tagPool: IcePlayerImpact
-  prefab: {fileID: 0}
+  prefab: {fileID: 81092567336303667, guid: 0c335d9261bf2e2499a034202c91357f, type: 3}
   amount: 1
   isExpandable: 1

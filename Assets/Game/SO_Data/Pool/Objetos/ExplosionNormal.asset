@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagPool: ExplosionNormal
   prefab: {fileID: 6586420172352211812, guid: 9ce0fbc83d12c924b87d6be724ab9289, type: 3}
-  amount: 1
-  isExpandable: 0
+  amount: 2
+  isExpandable: 1

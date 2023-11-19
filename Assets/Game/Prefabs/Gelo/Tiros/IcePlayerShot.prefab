@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6274166741965861980}
   - component: {fileID: 6274166741965861981}
   - component: {fileID: 6274166741965861978}
-  - component: {fileID: 6274166741965861969}
   - component: {fileID: 6274166741965861982}
   - component: {fileID: 6274166741965861983}
-  m_Layer: 8
+  - component: {fileID: 1186918754346296189}
+  m_Layer: 6
   m_Name: IcePlayerShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 368745955
+  m_SortingLayerID: -545052531
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 813689386, guid: 133f6cc16a5d13b4f843611f412adb41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -108,24 +108,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &6274166741965861969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6274166741965861979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6b48e356ee02b345aeea45971a6b318, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shotSpeed: 5
-  dano: 1
-  efeitoExplosao: {fileID: 81092567336303667, guid: 0c335d9261bf2e2499a034202c91357f, type: 3}
-  waitLimitShot: 0.4
-  PontosSaida:
-  - {x: 1.2, y: 0}
 --- !u!50 &6274166741965861982
 Rigidbody2D:
   serializedVersion: 4
@@ -173,3 +155,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.48159838, y: 0.5045532}
   m_EdgeRadius: 0
+--- !u!114 &1186918754346296189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274166741965861979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b685baf184c815418281c28b835d4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSpeed: 0
+  dano: 3
+  efeitoExplosao: {fileID: 11400000, guid: 33a90b565b1d8a0419489e6fdbbf871a, type: 2}
+  shotPlayer: 1

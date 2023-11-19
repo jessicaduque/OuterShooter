@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shot : MonoBehaviour
@@ -9,29 +7,39 @@ public class Shot : MonoBehaviour
 
     [SerializeField] protected float shotSpeed;
     [SerializeField] private int dano;
-    [SerializeField] private GameObject efeitoExplosao;
+    [SerializeField] private Pool efeitoExplosao;
 
+    [SerializeField] private bool shotPlayer;
+
+    private PoolManager _poolManager => PoolManager.I;
 
     private void Awake()
     {
         Rb2D = GetComponent<Rigidbody2D>();
-        Rb2D.velocity = new Vector2(0, shotSpeed);
+    }
+
+    private void OnEnable()
+    {
+        Rb2D.velocity = new Vector2((shotPlayer ? shotSpeed : -shotSpeed), 0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if(other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<PlayerController>().LevarDano();
-        }
-        else if (other.CompareTag("Enemy"))
-        {
-            other.gameObject.GetComponent<Enemy>().LevarDano(dano);
-        }
+            _poolManager.GetObject(efeitoExplosao.tagPool, transform.position, Quaternion.identity);
+            _poolManager.ReturnPool(gameObject);
 
-        GameObject explosao = Instantiate(efeitoExplosao, other.gameObject.transform.position, Quaternion.identity);
-
-        Destroy(this.gameObject);
+            if (other.CompareTag("Player"))
+            {
+                other.gameObject.GetComponent<PlayerController>().LevarDano();
+            }
+            else
+            {
+                other.gameObject.GetComponent<Enemy>().LevarDano(dano);
+            }
+        }
+        
     }
 
 }

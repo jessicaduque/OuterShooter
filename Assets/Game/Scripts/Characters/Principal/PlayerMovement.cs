@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,12 +61,12 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     public IEnumerator MoverParaX()
     {
-        yield return new WaitForSeconds(0.6f);
         PermitirMovimento(true);
         AnimateBool("Mover", true);
+        yield return new WaitForSeconds(0.8f);
+        transform.DOMoveX(-7.2f, 4f).SetEase(Ease.InSine);
         while (transform.position.x != -7.2f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(-7.2f, transform.position.y, 0), 2f * Time.deltaTime);
             yield return false;
         }
         _levelController.IniciarJogoFinal();

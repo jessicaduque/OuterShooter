@@ -28,8 +28,10 @@ public class AudioManager : Singleton<AudioManager>
 
     private bool _musicSource1IsPlaying;
 
-    protected new void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         InitSetup();
     }
 
@@ -48,15 +50,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (enabled == 1)
         {
-            if (mixer == keyMixerMusic)
-            {
-                masterMixer.SetFloat(mixer, -5f);
-            }
-            else
-            {
-                masterMixer.SetFloat(mixer, 0f);
-            }
-
+            masterMixer.SetFloat(mixer, 0f);
         }
         else
         {
@@ -177,7 +171,7 @@ public class AudioManager : Singleton<AudioManager>
             StartCoroutine(FadeOut(currentMusicSource, targetVolume, sound.volume, duration, stopTheEnd));
         }
     }
-    public void PlayCrossFade(string soundName, float targetVol = 1, float duration = 0.75f)
+    public void PlayCrossFade(string soundName, float targetVol = 1, float duration = 0.5f)
     {
         Sound sound = GetMusic(soundName);
 
@@ -345,7 +339,7 @@ public class AudioManager : Singleton<AudioManager>
         if (value)
         {
             EnabledMusicLevel = 1;
-            masterMixer.SetFloat(keyMixerMusic, -5f);
+            masterMixer.SetFloat(keyMixerMusic, -0f);
         }
         else
         {

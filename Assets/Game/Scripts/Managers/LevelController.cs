@@ -17,13 +17,15 @@ public class LevelController : Singleton<LevelController>
     private bool chanceExtra = true;   
 
     private int numeroFase = 0;
+    private int fasesSemTerra = 0;
 
     private BankManager _bankManager => BankManager.I;
     private UIController _uiController => UIController.I;
     private PlayerMovement _playerMovement => PlayerMovement.I;
     private PlayerController _playerController => PlayerController.I;
     private SpawnObjetos _spawnObjetos => SpawnObjetos.I;
-
+    private SpawnManager _spawnManager => SpawnManager.I;
+    private PoolManager _poolManager => PoolManager.I;
     private AudioManager _audioManager => AudioManager.I;
 
     private new void Awake()
@@ -44,21 +46,13 @@ public class LevelController : Singleton<LevelController>
                 CriarFase();
                 break;
             case EstadoJogo.Lutar:
-                Lutar();
-                //movendoPlaneta = false;
-                ////PlayerMov.AnimatateAttack();
-                ////PlayerContr.PermitirAtacar();
-                //// Código
+                //Lutar();
                 break;
             case EstadoJogo.EscolherPoder:
                 //GetComponent<GerenciadorDeExtras>().enabled = false;
                 // Código
                 break;
             case EstadoJogo.Terra:
-                // Código
-                break;
-            case EstadoJogo.Morte:
-                //GetComponent<GerenciadorDeExtras>().enabled = false;
                 // Código
                 break;
         }
@@ -70,7 +64,11 @@ public class LevelController : Singleton<LevelController>
         ControleEstados();
     }
 
-
+    public void RestartStraightGame()
+    {
+        _uiController.SetStartPanelFalse();
+        SetEstadoJogo(EstadoJogo.Inicial);
+    }
     #endregion
 
     #region InicioJogo
@@ -80,10 +78,12 @@ public class LevelController : Singleton<LevelController>
         _audioManager.PlayCrossFade("Main");
         StartCoroutine(_playerMovement.MoverParaX());
         StartCoroutine(_uiController.MoverPlanetaFora());
+        _playerController.SetarPoder(faseTerra);
     }
 
     public void IniciarJogoFinal()
     {
+        faseAtual = faseTerra;
         SetEstadoJogo(EstadoJogo.CriarFase);
     }
 
@@ -94,15 +94,28 @@ public class LevelController : Singleton<LevelController>
     private void CriarFase()
     {
         numeroFase++;
-        SpawnObjetosGameObject.SetActive(true);
-        AleatorizarFase();
+        fasesSemTerra++;
+        if(fasesSemTerra == 3)
+        {
+            SetEstadoJogo(EstadoJogo.Terra);
+        }
+        else
+        {
+            SpawnObjetosGameObject.SetActive(true);
+            AleatorizarFase();
+        }
     }
 
     private void AleatorizarFase()
     {
         faseAtual = fases[Random.Range(0, fases.Count)];
-        _uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
-        //WaveManager.I.SpawnarWave(new List<GameObject>(faseAtual.faseInimiPossiveis));
+        //_uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
+    }
+
+    public void SpawnInimigos()
+    {
+        SetEstadoJogo(EstadoJogo.Lutar);
+        //_spawnManager.ComecarNovaFase(new List<GameObject>(faseAtual.faseInimiPossiveis), faseAtual.faseNome, numeroFase);
     }
 
     #endregion
@@ -111,7 +124,7 @@ public class LevelController : Singleton<LevelController>
 
     private void Lutar()
     {
-        
+        _playerController.DefineActivateAttack();
     }
 
     #endregion
@@ -135,12 +148,32 @@ public class LevelController : Singleton<LevelController>
 
     public void MaisUmaChance()
     {
-        StartCoroutine(_playerController.Reviver());   
+        StartCoroutine(_playerController.Reviver());
+        ReturnShotsAndObjectsPool();
         _uiController.ControlAdChancePanel(false);
         Time.timeScale = 1;
         SetEstadoJogo(EstadoJogo.Lutar);
     }
 
-    #endregion
+    private void ReturnShotsAndObjectsPool()
+    {
+        foreach (Asteroide asteroid in FindObjectsOfType<Asteroide>())
+        {
+            if (asteroid.gameObject.activeInHierarchy)
+            {
+                asteroid.Explode();
+            }
+        }
 
+        foreach (Shot shot in FindObjectsOfType<Shot>())
+        {
+            if (shot.gameObject.activeInHierarchy)
+            {
+                _poolManager.ReturnPool(shot.gameObject);
+            }
+        }
+
+    }
+
+    #endregion
 }
