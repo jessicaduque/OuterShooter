@@ -12,7 +12,6 @@ public class AdController : Singleton<AdController>
     public string _adUnitId;
     private LevelController _levelController => LevelController.I;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -117,4 +116,5 @@ public class AdController : Singleton<AdController>
             LoadInterstitialAd();
         };
     }
+
 }
