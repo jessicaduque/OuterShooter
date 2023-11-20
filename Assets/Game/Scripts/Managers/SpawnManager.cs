@@ -5,21 +5,34 @@ using Utils.Singleton;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
-    private List<GameObject> InimigosPossiveisList;
+    private List<Pool> InimigosPossiveisList;
 
     private int quantInimigosFase;
     private int quantInimigosWave;
     private int quantInimigosVivos;
     private int quantInimigosEscondidos;
+
     private NomeFase nomeFase;
     private int numeroFase;
 
+    [Header("Start Points")]
+    [SerializeField] private Transform[] Bottom;
+    [SerializeField] private Transform[] Top;
+    [SerializeField] private Transform[] Right;
+
     private PoolManager _poolManager => PoolManager.I;
     private EnemyMovement _enemyMovement => EnemyMovement.I;
+    private LevelController _levelController => LevelController.I;
+
+
+    private new void Awake()
+    {
+
+    }
+
     private void ResetarValoresFase(int quantIni)
     {
         quantInimigosFase = quantIni;
-        quantInimigosVivos = quantInimigosFase;
         quantInimigosEscondidos = 0;
     }
 
@@ -33,7 +46,7 @@ public class SpawnManager : Singleton<SpawnManager>
                 // Código
                 break;
             case NomeFase.Gelo:
-                SpawnGelo();
+                SpawnGeloInicial();
                 break;
             case NomeFase.Rosa:
                 // Código
@@ -43,10 +56,9 @@ public class SpawnManager : Singleton<SpawnManager>
 
     #region Public
 
-    public void ComecarNovaFase(List<GameObject> inimigos, NomeFase nome, int numeroFase)
+    public void ComecarNovaFase(List<Pool> inimigos, NomeFase nome, int numeroFase)
     {
         this.numeroFase = numeroFase;
-        ResetarValoresFase(inimigos.Count);
         InimigosPossiveisList = inimigos;
         DeterminarFase(nome);
     }
@@ -69,9 +81,94 @@ public class SpawnManager : Singleton<SpawnManager>
 
     #region Fase de Gelo
 
-    private void SpawnGelo()
+    private void SpawnGeloInicial()
     {
+        switch (numeroFase)
+        {
+            case < 3:
+                ResetarValoresFase(numeroFase * 3);
+                StartCoroutine(SpawnGeloRobo1());
+                break;
+            case < 5:
+                ResetarValoresFase(10);
+                StartCoroutine(SpawnGeloRobo2());
+                break;
+        }
     }
+    private IEnumerator SpawnGeloRobo1()
+    {
+        quantInimigosWave = 3;
+        quantInimigosVivos = 3;
+
+        GameObject enemyRobot1 = _poolManager.GetObject(InimigosPossiveisList[1].tagPool, Right[0].position, Quaternion.identity);
+        _enemyMovement.FollowMovementPattern("InPlaceTop", enemyRobot1.transform);
+
+        GameObject enemyRobot2 = _poolManager.GetObject(InimigosPossiveisList[1].tagPool, Right[4].position, Quaternion.identity);
+        _enemyMovement.FollowMovementPattern("InPlaceBottom", enemyRobot2.transform);
+
+        GameObject enemyRobot3 = _poolManager.GetObject(InimigosPossiveisList[1].tagPool, Right[2].position, Quaternion.identity);
+        _enemyMovement.FollowMovementPattern("InPlaceMiddle", enemyRobot3.transform);
+
+        while(quantInimigosVivos > 0)
+        {
+            yield return null;
+        }
+
+        quantInimigosFase -= 3;
+
+        if (quantInimigosFase > 0)
+        {
+            StartCoroutine(SpawnGeloRobo1());
+        }
+        else
+        {
+            _levelController.SetEstadoJogo(EstadoJogo.EscolherPoder);
+        }
+    }
+
+
+    private IEnumerator SpawnGeloRobo2()
+    {
+        quantInimigosWave = 5;
+        quantInimigosVivos = 5;
+
+        GameObject enemyRobot1 = _poolManager.GetObject(InimigosPossiveisList[1].tagPool, Right[0].position, Quaternion.identity);
+        _enemyMovement.FollowMovementPattern("InPlaceTop", enemyRobot1.transform);
+
+        GameObject enemyRobot2 = _poolManager.GetObject(InimigosPossiveisList[1].tagPool, Right[4].position, Quaternion.identity);
+        _enemyMovement.FollowMovementPattern("InPlaceBottom", enemyRobot2.transform);
+
+        GameObject enemyRobot3 = _poolManager.GetObject(InimigosPossiveisList[1].tagPool, Right[2].position, Quaternion.identity);
+        _enemyMovement.FollowMovementPattern("InPlaceMiddle", enemyRobot3.transform);
+
+        GameObject enemyRobot4 = _poolManager.GetObject(InimigosPossiveisList[1].tagPool, Right[1].position, Quaternion.identity);
+        _enemyMovement.FollowMovementPattern("InPlaceTopMiddle", enemyRobot4.transform);
+
+        GameObject enemyRobot5 = _poolManager.GetObject(InimigosPossiveisList[1].tagPool, Right[3].position, Quaternion.identity);
+        _enemyMovement.FollowMovementPattern("InPlaceBottomMiddle", enemyRobot5.transform);
+
+        while (quantInimigosVivos > 0)
+        {
+            yield return null;
+        }
+
+        quantInimigosFase -= 5;
+
+        if (quantInimigosFase > 0)
+        {
+            StartCoroutine(SpawnGeloRobo2());
+        }
+        else
+        {
+            _levelController.SetEstadoJogo(EstadoJogo.EscolherPoder);
+        }
+    }
+
+    //private IEnumerator SpawnGeloBunny()
+    //{
+
+    //}
+
 
     #endregion
 }

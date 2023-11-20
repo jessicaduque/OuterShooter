@@ -11,7 +11,7 @@ public class ScoreManager : Singleton<ScoreManager>
 
     private new void Awake()
     {
-        //bestScore = (PlayerPrefs.HasKey(KEY_BESTSCORE) ? PlayerPrefs.GetInt(KEY_BESTSCORE) : 0);
+        bestScore = (PlayerPrefs.HasKey(KEY_BESTSCORE) ? PlayerPrefs.GetInt(KEY_BESTSCORE) : 0);
         score = 0;
     }
 

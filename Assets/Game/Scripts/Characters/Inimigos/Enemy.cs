@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
     [Header("Shot Variables")]
     [SerializeField] protected Pool ShotPrefab;
     [SerializeField] protected Transform FirePointMiddle;
-    [SerializeField] protected float waitTimeShot;
     
     protected SpriteRenderer thisSpriteRenderer;
 

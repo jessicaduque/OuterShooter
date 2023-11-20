@@ -14,6 +14,7 @@ public class UIController : Singleton<UIController>
     [SerializeField] GameObject StartPanel;
     [SerializeField] GameObject CreditsPanel;
     [SerializeField] GameObject GameOverPanel;
+    [SerializeField] GameObject EscolherPoderPanel;
 
     [Space(20)]
     [Header("Botões")]
@@ -26,6 +27,8 @@ public class UIController : Singleton<UIController>
     [SerializeField] Button b_menuGameOver;
     [SerializeField] Button b_adButton1;
     [SerializeField] Button b_adButton2;
+    [SerializeField] Button b_escolhaAtual;
+    [SerializeField] Button b_escolhaNovo;
 
     [Space(20)]
     [Header("Textos")]
@@ -33,6 +36,9 @@ public class UIController : Singleton<UIController>
     [SerializeField] private TMP_Text t_quantEstrelas;
     [SerializeField] private TMP_Text t_scoreFinal;
     [SerializeField] private TMP_Text t_bestScoreFinal;
+
+    private Image im_PoderAtual;
+    private Image im_PoderNovo;
 
     [Space(20)]
     [Header("CanvasGroup")]
@@ -67,15 +73,19 @@ public class UIController : Singleton<UIController>
     private AudioManager _audioManager => AudioManager.I;
     private new void Awake()
     {
+        b_video.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.9f;
+        planetaAnimator = planetaObjeto.GetComponent<Animator>();
+
+        // Button Listeners
         b_iniciarJogo.onClick.AddListener(IniciarJogo);
         b_creditos.onClick.AddListener(() => ControlCreditsPanel(true));
         b_pause.onClick.AddListener(() => ControlPausePanel(true));
-        b_ultimate.enabled = false;
         b_ultimate.onClick.AddListener(ApertouUltimate);
-        b_video.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.9f;
         b_adButton1.onClick.AddListener(ShowAd);
         b_adButton2.onClick.AddListener(ShowAd);
-        planetaAnimator = planetaObjeto.GetComponent<Animator>();
+        
+
+        b_ultimate.enabled = false;
     }
 
     private void Start()
@@ -86,6 +96,7 @@ public class UIController : Singleton<UIController>
 
     private void IniciarJogo()
     {
+        _audioManager.PlaySfx("ButtonClick");
         b_iniciarJogo.enabled = false;
         ControlStartPanel();
         _levelController.SetEstadoJogo(EstadoJogo.Inicial);
@@ -100,19 +111,19 @@ public class UIController : Singleton<UIController>
 
     private void AtualizarTextoScore()
     {
-        t_quantEstrelas.text = _scoreManager.GetScore().ToString();
+        t_score.text = _scoreManager.GetScore().ToString();
     }
 
     private void AtualizarTextosScoreFinal()
     {
         b_menuGameOver.enabled = false;
         b_reiniciarGameOver.enabled = false;
-        t_bestScoreFinal.text = _bankManager.GetBestScore().ToString(); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
+        t_bestScoreFinal.text = _scoreManager.GetBestScore().ToString(); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
         Sequence seq = DOTween.Sequence().SetUpdate(true);
         seq.PrependInterval(0.2f);
         seq.Append(score.DOFade(1, 0.3f));
         seq.Append(bestScore.DOFade(1, 0.3f));
-        seq.Join(DOTween.To(x => t_scoreFinal.text = ((int) x).ToString(), 0, _bankManager.GetQuantEstrelas(), 1.2f)); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
+        seq.Join(DOTween.To(x => t_scoreFinal.text = ((int) x).ToString(), 0, _scoreManager.GetScore(), 1.2f)); // DEPOIS TROCA BANKMANAGER PARA SCOREMANAGER (TEMPORARIO)
         seq.Append(b_menuGameOver.transform.DOScale(new Vector3(1f, 1f, 1f), 1f).SetEase(Ease.OutBounce).OnComplete(() => b_menuGameOver.enabled = true));
         seq.Join(b_reiniciarGameOver.transform.DOScale(new Vector3(1f, 1f, 1f), 1f).SetEase(Ease.OutBounce).OnComplete(() => b_reiniciarGameOver.enabled = true));
     }
@@ -197,7 +208,20 @@ public class UIController : Singleton<UIController>
         Time.timeScale = (estado ? 0 : 1);
     }
 
-    
+    public void ControlEscolhaPanel(bool estado, Sprite atual, Sprite novo)
+    {
+        if (estado)
+        {
+            im_PoderAtual.sprite = atual;
+            im_PoderNovo.sprite = novo;
+            Helpers.FadeInPanel(EscolherPoderPanel);
+        }
+        else
+        {
+            Helpers.FadeOutPanel(EscolherPoderPanel);
+        }
+    }
+
     #endregion
 
     #region Planeta
@@ -212,6 +236,7 @@ public class UIController : Singleton<UIController>
 
     private IEnumerator MoverPlanetaDentro()
     {
+        _playerAttack = FindObjectOfType<PlayerAttack>();
         yield return new WaitForSeconds(1.2f);
         _backgroundController.MudarEstadoParallax(false);
         planetaObjeto.transform.position = new Vector2(posXInicioPlanetaDentro, 0);

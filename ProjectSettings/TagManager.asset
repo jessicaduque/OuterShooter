@@ -46,11 +46,11 @@ TagManager:
   - name: Tiros
     uniqueID: 3749914765
     locked: 0
-  - name: Personagens
-    uniqueID: 253304439
-    locked: 0
   - name: Objetos
     uniqueID: 3832582839
+    locked: 0
+  - name: Personagens
+    uniqueID: 253304439
     locked: 0
   - name: Explosions
     uniqueID: 3612023389

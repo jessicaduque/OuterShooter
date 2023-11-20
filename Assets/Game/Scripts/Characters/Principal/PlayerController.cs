@@ -65,12 +65,11 @@ public class PlayerController : Singleton<PlayerController>
         thisCollider.enabled = true;
     }
 
-    public void DefineActivateAttack()
-    {
-        playerAttackScripts[poderAtual.poderID].enabled = true;
-    }
-
     #endregion
+    public void DefineActivateAttack(bool state)
+    {
+        playerAttackScripts[poderAtual.poderID].enabled = state;
+    }
 
     public void SetarPoder(FaseDetails fase)
     {

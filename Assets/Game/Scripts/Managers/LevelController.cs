@@ -9,8 +9,7 @@ public class LevelController : Singleton<LevelController>
     [SerializeField] private FaseDetails faseTerra;
     private FaseDetails faseAtual;
     private FaseDetails fasePassada;
-
-    [SerializeField] GameObject SpawnObjetosGameObject;
+    [SerializeField] private GameObject SpawnObjetosGameObject;
 
     EstadoJogo estadoAtualLevel;
 
@@ -46,11 +45,10 @@ public class LevelController : Singleton<LevelController>
                 CriarFase();
                 break;
             case EstadoJogo.Lutar:
-                //Lutar();
+                Lutar();
                 break;
             case EstadoJogo.EscolherPoder:
-                //GetComponent<GerenciadorDeExtras>().enabled = false;
-                // Código
+                EscolherPoderInicial();
                 break;
             case EstadoJogo.Terra:
                 // Código
@@ -101,8 +99,7 @@ public class LevelController : Singleton<LevelController>
         }
         else
         {
-            SpawnObjetosGameObject.SetActive(true);
-            //AleatorizarFase();
+            AleatorizarFase();
         }
     }
 
@@ -115,7 +112,7 @@ public class LevelController : Singleton<LevelController>
     public void SpawnInimigos()
     {
         SetEstadoJogo(EstadoJogo.Lutar);
-        //_spawnManager.ComecarNovaFase(new List<GameObject>(faseAtual.faseInimiPossiveis), faseAtual.faseNome, numeroFase);
+        _spawnManager.ComecarNovaFase(new List<Pool>(faseAtual.faseInimiPossiveis), faseAtual.faseNome, numeroFase);
     }
 
     #endregion
@@ -124,7 +121,31 @@ public class LevelController : Singleton<LevelController>
 
     private void Lutar()
     {
-        _playerController.DefineActivateAttack();
+        SpawnObjetosGameObject.SetActive(true);
+        _playerController.DefineActivateAttack(true);
+    }
+
+    #endregion
+
+    #region EscolherPoder
+    
+    private void EscolherPoderInicial()
+    {
+        SpawnObjetosGameObject.SetActive(false);
+        fasePassada = faseAtual;
+        _playerController.DefineActivateAttack(false);
+        StartCoroutine(_uiController.MoverPlanetaFora());
+        EscolherPodeFinal();
+    }
+
+    private void EscolherPoder()
+    {
+       
+    }
+
+    private void EscolherPodeFinal()
+    {
+        SetEstadoJogo(EstadoJogo.CriarFase);
     }
 
     #endregion

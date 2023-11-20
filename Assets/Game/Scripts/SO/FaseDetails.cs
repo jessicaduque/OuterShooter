@@ -7,5 +7,5 @@ public class FaseDetails : ScriptableObject
     public NomeFase faseNome;
     public RuntimeAnimatorController faseAnimControl;
     public PoderDetails fasePoder;
-    public GameObject[] faseInimiPossiveis;
+    public Pool[] faseInimiPossiveis;
 }

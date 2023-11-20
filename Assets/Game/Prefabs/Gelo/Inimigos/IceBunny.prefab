@@ -200,9 +200,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 5
-  pointsToGive: 10
+  pointsToGive: 2
   energyToGive: 2
   ShotPrefab: {fileID: 11400000, guid: 65604e969910a1643a30f7a60a7357b2, type: 2}
   FirePointMiddle: {fileID: 105254919}
   waitTimeShot: 3
-  estaVivo: 0
+  estaVivoEAtivo: 0

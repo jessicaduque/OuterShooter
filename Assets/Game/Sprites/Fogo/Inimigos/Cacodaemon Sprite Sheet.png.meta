@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b45da247e3e443844aa46cf6c75c3ee1
+guid: a1b4546fba9a2b44a8d8413111fc2f5b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pixel_Magic_Effects_Icons_0
+      name: Cacodaemon Sprite Sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 32
-        height: 32
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,41 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f306ad3e015a06499a474dba1626210
-      internalID: 380870572
+      spriteID: 25c48645132b43649823089e5dc1818f
+      internalID: 268270987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel_Magic_Effects_Icons_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d68a418d48670644987a686587cb70ae
-      internalID: 487057368
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pixel_Magic_Effects_Icons_2
+      name: Cacodaemon Sprite Sheet_1
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
-        width: 32
-        height: 32
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,41 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 375509933c352974c9bf2fee64766f63
-      internalID: -539673474
+      spriteID: d6839852200b24349b2dec0e996f1974
+      internalID: 782479527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel_Magic_Effects_Icons_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 708aa6b26973503439d19540f3292ec9
-      internalID: -1185933683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pixel_Magic_Effects_Icons_4
+      name: Cacodaemon Sprite Sheet_2
       rect:
         serializedVersion: 2
         x: 128
-        y: 0
-        width: 32
-        height: 32
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,41 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9151b87948b010a4e817d127b34fc584
-      internalID: 503349468
+      spriteID: 0ec7dd15280f67340a41bb9bdbfd745d
+      internalID: 1734562991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel_Magic_Effects_Icons_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd310552dd1bd554bbb1c03fdbd525c8
-      internalID: 1826742096
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pixel_Magic_Effects_Icons_6
+      name: Cacodaemon Sprite Sheet_3
       rect:
         serializedVersion: 2
         x: 192
-        y: 0
-        width: 32
-        height: 32
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,41 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7a5ff2108f6b34488ce7403dc55d02d
-      internalID: -959404366
+      spriteID: ecfb4cb8abc6e9b468e8f7bf81467c50
+      internalID: -389330422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel_Magic_Effects_Icons_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8be84a07f80371644a41bc958008672e
-      internalID: -60522229
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pixel_Magic_Effects_Icons_8
+      name: Cacodaemon Sprite Sheet_4
       rect:
         serializedVersion: 2
         x: 256
-        y: 0
-        width: 32
-        height: 32
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecec2f2b586cece47960277b3eb9a96d
-      internalID: 345211811
+      spriteID: c1508820e4438354b80c8579138a47dd
+      internalID: 513601484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixel_Magic_Effects_Icons_9
+      name: Cacodaemon Sprite Sheet_5
       rect:
         serializedVersion: 2
-        x: 288
-        y: 0
-        width: 32
-        height: 32
+        x: 320
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94b7d17faac021442a08db10393fab37
-      internalID: -2057824658
+      spriteID: 3bfa5e35d3bb20245bb8072c273d321e
+      internalID: 1627559897
       vertices: []
       indices: 
       edges: []
@@ -337,16 +253,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Pixel_Magic_Effects_Icons_1: 487057368
-      Pixel_Magic_Effects_Icons_6: -959404366
-      Pixel_Magic_Effects_Icons_5: 1826742096
-      Pixel_Magic_Effects_Icons_3: -1185933683
-      Pixel_Magic_Effects_Icons_4: 503349468
-      Pixel_Magic_Effects_Icons_9: -2057824658
-      Pixel_Magic_Effects_Icons_0: 380870572
-      Pixel_Magic_Effects_Icons_8: 345211811
-      Pixel_Magic_Effects_Icons_7: -60522229
-      Pixel_Magic_Effects_Icons_2: -539673474
+      Cacodaemon Sprite Sheet_17: 1382195355
+      Cacodaemon Sprite Sheet_16: 1632640412
+      Cacodaemon Sprite Sheet_13: -777387892
+      Cacodaemon Sprite Sheet_15: -672560195
+      Cacodaemon Sprite Sheet_7: -1768577801
+      Cacodaemon Sprite Sheet_9: 9049386
+      Cacodaemon Sprite Sheet_12: 1296284147
+      Cacodaemon Sprite Sheet_2: 1734562991
+      Cacodaemon Sprite Sheet_5: 1627559897
+      Cacodaemon Sprite Sheet_0: 268270987
+      Cacodaemon Sprite Sheet_10: 1312026151
+      Cacodaemon Sprite Sheet_14: 755195799
+      Cacodaemon Sprite Sheet_21: -1591683948
+      Cacodaemon Sprite Sheet_23: -2058787794
+      Cacodaemon Sprite Sheet_20: -1935744916
+      Cacodaemon Sprite Sheet_6: -254949324
+      Cacodaemon Sprite Sheet_22: 1530841353
+      Cacodaemon Sprite Sheet_18: 899729714
+      Cacodaemon Sprite Sheet_8: 1992311216
+      Cacodaemon Sprite Sheet_3: -389330422
+      Cacodaemon Sprite Sheet_11: 1730560503
+      Cacodaemon Sprite Sheet_4: 513601484
+      Cacodaemon Sprite Sheet_19: -813273861
+      Cacodaemon Sprite Sheet_1: 782479527
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

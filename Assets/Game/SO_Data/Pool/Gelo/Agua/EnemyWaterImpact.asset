@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemyWaterImpact
   m_EditorClassIdentifier: 
   tagPool: EnemyWaterImpact
-  prefab: {fileID: 5251921442383544753, guid: 9f5c6f52bb893294380b05b27de62d2f, type: 3}
+  prefab: {fileID: 2753213830641421750, guid: 40b50dd8e006d0d488907d12ff45371d, type: 3}
   amount: 10
   isExpandable: 1

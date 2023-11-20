@@ -55,7 +55,6 @@ public class PoolManager : Singleton<PoolManager>
 
         GameObject objectPool = null;
 
-        Debug.Log(_poolDictionary[tagPool].Count);
         if (_poolDictionary[tagPool].Count > 0)
         {
             objectPool = _poolDictionary[tagPool].Dequeue();
