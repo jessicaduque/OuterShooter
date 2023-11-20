@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: IceRobotShot
   m_EditorClassIdentifier: 
   tagPool: IceRobotShot
-  prefab: {fileID: 3066712471221984349, guid: 1cfd2be327dae2c418f0831f64562ae9, type: 3}
+  prefab: {fileID: 489805475318338903, guid: 06962da962de4a641b60481fed0f0a9e, type: 3}
   amount: 20
   isExpandable: 1

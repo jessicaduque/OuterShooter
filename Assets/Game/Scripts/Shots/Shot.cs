@@ -3,22 +3,26 @@ using UnityEngine;
 public class Shot : MonoBehaviour
 {
     protected Rigidbody2D Rb2D;
-    protected GameObject Player;
 
     [SerializeField] protected float shotSpeed;
     [SerializeField] private int dano;
     [SerializeField] private Pool efeitoExplosao;
 
-    [SerializeField] private bool shotPlayer;
+    [SerializeField] protected bool shotPlayer;
 
     private PoolManager _poolManager => PoolManager.I;
 
-    private void Awake()
+    protected void Awake()
     {
         Rb2D = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
+    {
+        SetVelocity();
+    }
+
+    protected virtual void SetVelocity()
     {
         Rb2D.velocity = new Vector2((shotPlayer ? shotSpeed : -shotSpeed), 0);
     }

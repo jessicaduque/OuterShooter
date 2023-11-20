@@ -88,7 +88,6 @@ public class UIController : Singleton<UIController>
     {
         b_iniciarJogo.enabled = false;
         ControlStartPanel();
-        _backgroundController.MudarEstadoParallax(true);
         _levelController.SetEstadoJogo(EstadoJogo.Inicial);
     }
 
@@ -205,6 +204,7 @@ public class UIController : Singleton<UIController>
 
     public IEnumerator MoverPlanetaFora()
     {
+        _backgroundController.MudarEstadoParallax(true);
         yield return new WaitForSeconds(0.4f);
         Vector3 posFinal = new Vector3(posXFinalPlanetaFora, 0, 0);
         planetaObjeto.transform.DOMove(posFinal, 4f).SetEase(Ease.InSine);

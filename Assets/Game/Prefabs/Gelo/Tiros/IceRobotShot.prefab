@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 489805475318338902}
   - component: {fileID: 4100308582240754355}
   - component: {fileID: -8833890737114589019}
-  - component: {fileID: -2487806569659170629}
+  - component: {fileID: 6045020947740552018}
   m_Layer: 9
   m_Name: IceRobotShot
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 489805475318338903}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.19, y: -0.61, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.1}
+  m_LocalScale: {x: -0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 489805475318338903}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d1945e344e20488489df8b267592a500, type: 2}
+  m_Controller: {fileID: 9100000, guid: 700cc4e6de62fbc42a1c4f4cd5ec5133, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -118,21 +118,21 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0691939}
+  m_Offset: {x: 0, y: -0.017071068}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 1.5238096, y: 1.5238096}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.12, y: 2.213852}
+  m_Size: {x: 1.5238096, y: 0.6474891}
   m_EdgeRadius: 0
 --- !u!50 &-8833890737114589019
 Rigidbody2D:
@@ -155,7 +155,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-2487806569659170629
+--- !u!114 &6045020947740552018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,10 +164,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 489805475318338903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b685baf184c815418281c28b835d4f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bd2ab2f534f3eb4da6276ce3d49e7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotSpeed: 6
+  shotSpeed: 5.8
   dano: 1
   efeitoExplosao: {fileID: 11400000, guid: 9a789e0b3215ab940b2563b88c8b805f, type: 2}
   shotPlayer: 0

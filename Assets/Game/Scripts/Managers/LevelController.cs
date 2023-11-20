@@ -102,14 +102,14 @@ public class LevelController : Singleton<LevelController>
         else
         {
             SpawnObjetosGameObject.SetActive(true);
-            AleatorizarFase();
+            //AleatorizarFase();
         }
     }
 
     private void AleatorizarFase()
     {
         faseAtual = fases[Random.Range(0, fases.Count)];
-        //_uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
+        _uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
     }
 
     public void SpawnInimigos()
