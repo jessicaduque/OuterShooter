@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 253304439
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -999973654, guid: cb7d5ff416ac95a4688025b52c2c13ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -171,9 +171,12 @@ MonoBehaviour:
   enemyHealth: 10
   pointsToGive: 6
   energyToGive: 5
+  timesShot:
+  - 1
+  - 1.4
+  - 1.5
   ShotPrefab: {fileID: 11400000, guid: 21ddde3402749c64ea06959ae6bd50c4, type: 2}
   FirePointMiddle: {fileID: 3333365952508383118}
-  waitTimeShot: 5
   estaVivoEAtivo: 0
 --- !u!1 &9166713362209531286
 GameObject:

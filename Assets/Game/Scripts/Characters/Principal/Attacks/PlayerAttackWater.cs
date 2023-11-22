@@ -8,6 +8,9 @@ public class PlayerAttackWater : PlayerAttack
 
     public override void Attack()
     {
-        _poolManager.GetObject(prefabAtaqueNormal.tagPool, pontoSaida.position, Quaternion.identity);
+        if (this.enabled)
+        {
+            _poolManager.GetObject(prefabAtaqueNormal.tagPool, pontoSaida.position, Quaternion.identity);
+        }
     }
 }

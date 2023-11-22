@@ -15,5 +15,5 @@ MonoBehaviour:
   soundName: Star
   clip: {fileID: 8300000, guid: 9dc3fdffdc24ad641a23558abec4db23, type: 3}
   loop: 0
-  volume: 1
+  volume: 0.9
   pitch: 1

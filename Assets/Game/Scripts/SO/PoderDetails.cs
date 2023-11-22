@@ -8,5 +8,5 @@ public class PoderDetails : ScriptableObject
     public NomePoder poderNome;
     public RuntimeAnimatorController poderPlayerAnimControl;
     public PoderDetails poderAumentoEfetividade;
-    public Image poderImageEscolha;
+    public Sprite poderSpriteEscolha;
 }

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poderID: 2
   poderNome: 2
-  poderPlayerAnimControl: {fileID: 0}
-  poderAumentoEfetividade: {fileID: 0}
-  poderImageEscolha: {fileID: 0}
+  poderPlayerAnimControl: {fileID: 9100000, guid: 55323d0f8ab889e4eace2ba894af0754, type: 2}
+  poderAumentoEfetividade: {fileID: 11400000, guid: 20a6c1aa72abb964981f1dbe2a6b6c3e, type: 2}
+  poderSpriteEscolha: {fileID: 380870572, guid: b45da247e3e443844aa46cf6c75c3ee1, type: 3}

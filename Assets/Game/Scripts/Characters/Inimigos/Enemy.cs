@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int enemyHealth;
     [SerializeField] protected int pointsToGive;
     [SerializeField] protected int energyToGive;
+    [SerializeField] protected float[] timesShot;
+    private float timeShot;
 
     [Header("Shot Variables")]
     [SerializeField] protected Pool ShotPrefab;
@@ -29,11 +31,14 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         estaVivoEAtivo = true;
+        timeShot = timesShot[Random.Range(0, timesShot.Length)];
+        StartCoroutine(Atirar());
     }
 
     private void OnDisable()
     {
         estaVivoEAtivo = false;
+        StopAllCoroutines();
     }
 
     #region Levar Dano
@@ -54,7 +59,7 @@ public class Enemy : MonoBehaviour
     {
         estaVivoEAtivo = false;
 
-        _spawnManager.DiminuirInimigosVivos();
+        _spawnManager.AumentarInimigosMortos();
 
         _uiController.AdicionarPontosUltimate(energyToGive);
         _scoreManager.AdicionarPontosScore(pointsToGive);
@@ -64,12 +69,14 @@ public class Enemy : MonoBehaviour
 
     #endregion
 
-    public virtual void Atirar()
+    private IEnumerator Atirar()
     {
         if (thisSpriteRenderer.isVisible)
         {
             _poolManager.GetObject(ShotPrefab.tagPool, FirePointMiddle.position, Quaternion.identity);
         }
+        yield return new WaitForSeconds(timeShot);
+        StartCoroutine(Atirar());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

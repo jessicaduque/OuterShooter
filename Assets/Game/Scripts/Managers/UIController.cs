@@ -234,6 +234,11 @@ public class UIController : Singleton<UIController>
         planetaObjeto.transform.DOMove(posFinal, 4f).SetEase(Ease.InSine);
     }
 
+    public IEnumerator MoverPlanetaPlayer()
+    {
+
+    }
+
     private IEnumerator MoverPlanetaDentro()
     {
         _playerAttack = FindObjectOfType<PlayerAttack>();

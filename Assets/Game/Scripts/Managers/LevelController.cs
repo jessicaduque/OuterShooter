@@ -135,7 +135,6 @@ public class LevelController : Singleton<LevelController>
         fasePassada = faseAtual;
         _playerController.DefineActivateAttack(false);
         StartCoroutine(_uiController.MoverPlanetaFora());
-        EscolherPodeFinal();
     }
 
     private void EscolherPoder()

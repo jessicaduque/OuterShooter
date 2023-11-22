@@ -3,7 +3,7 @@ public enum NomeFase
     Terra,
     Gelo,
     Fogo,
-    Rosa
+    Lightning
 }
 
 public enum NomePoder
@@ -11,7 +11,7 @@ public enum NomePoder
     Agua,
     Gelo,
     Fogo,
-    Rosa
+    Lightning
 }
 
 public enum EstadoJogo

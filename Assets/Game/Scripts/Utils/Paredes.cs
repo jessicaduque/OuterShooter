@@ -8,9 +8,10 @@ public class Paredes : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            if (!collision.GetComponent<Enemy>().estaVivoEAtivo)
+            if (collision.GetComponent<Enemy>().estaVivoEAtivo)
             {
                 _spawnManager.AumentarInimigosEscondidos();
+                collision.GetComponent<Enemy>().estaVivoEAtivo = false;
             }
         }
         _poolManager.ReturnPool(collision.gameObject);
