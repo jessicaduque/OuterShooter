@@ -54,14 +54,12 @@ public class PlayerController : Singleton<PlayerController>
         _levelController.ChecarMaisUmaChance();
     }
 
-    public IEnumerator Reviver()
+    public void Reviver()
     {
         _uiController.PauseListener(true);
         _playerMovement.SetAnimatorUnscaled(false);
         _playerMovement.AnimateBool("Morte", false);
-        _uiController.SetPausePanelActive(false);
         _playerMovement.PermitirMovimento(true);
-        yield return new WaitForSeconds(1);
         thisCollider.enabled = true;
     }
 

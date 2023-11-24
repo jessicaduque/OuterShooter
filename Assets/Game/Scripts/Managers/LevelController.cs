@@ -51,7 +51,7 @@ public class LevelController : Singleton<LevelController>
                 EscolherPoderInicial();
                 break;
             case EstadoJogo.Terra:
-                // Código
+                Terra();
                 break;
         }
     }
@@ -174,6 +174,15 @@ public class LevelController : Singleton<LevelController>
 
     #endregion
 
+    #region Terra
+    
+    private void Terra()
+    {
+
+    }
+
+    #endregion
+
     #region FinalJogo
 
     public void ChecarMaisUmaChance()
@@ -194,7 +203,7 @@ public class LevelController : Singleton<LevelController>
     public void MaisUmaChance()
     {
         _uiController.ControlAdChancePanel(false);
-        StartCoroutine(_playerController.Reviver());
+        _playerController.Reviver();
         ReturnShotsAndObjectsPool();
         SetEstadoJogo(EstadoJogo.Lutar);
         Time.timeScale = 1;
