@@ -203,9 +203,9 @@ MonoBehaviour:
   pointsToGive: 2
   energyToGive: 2
   timesShot:
-  - 0.6
-  - 1.5
   - 2
+  - 2.4
+  - 3
   ShotPrefab: {fileID: 11400000, guid: 65604e969910a1643a30f7a60a7357b2, type: 2}
   FirePointMiddle: {fileID: 105254919}
   estaVivoEAtivo: 0

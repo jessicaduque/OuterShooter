@@ -27,7 +27,9 @@ public class PoolManager : Singleton<PoolManager>
             if (pool != null)
             {
                 GameObject containerPool = new GameObject(pool.tagPool);
+                
                 containerPool.transform.SetParent(transform);
+                
                 _containers.Add(containerPool);
 
                 Queue<GameObject> objectsPool = new Queue<GameObject>();
@@ -40,6 +42,7 @@ public class PoolManager : Singleton<PoolManager>
                 }
 
                 _poolDictionary.Add(pool.tagPool, objectsPool);
+
             }
 
         }

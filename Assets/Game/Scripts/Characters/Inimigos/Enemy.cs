@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected int enemyHealth;
+    private int HealthAtual;
     [SerializeField] protected int pointsToGive;
     [SerializeField] protected int energyToGive;
     [SerializeField] protected float[] timesShot;
@@ -23,6 +26,7 @@ public class Enemy : MonoBehaviour
 
     private PoolManager _poolManager=> PoolManager.I;
     private SpawnManager _spawnManager => SpawnManager.I;
+
     private void Awake()
     {
         thisSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -31,12 +35,14 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         estaVivoEAtivo = true;
+        HealthAtual = enemyHealth;
         timeShot = timesShot[Random.Range(0, timesShot.Length)];
         StartCoroutine(Atirar());
     }
 
     private void OnDisable()
     {
+        DOTween.Kill(this);
         estaVivoEAtivo = false;
         StopAllCoroutines();
     }
@@ -47,8 +53,8 @@ public class Enemy : MonoBehaviour
     {
         if (thisSpriteRenderer.isVisible)
         {
-            enemyHealth -= dano;
-            if (enemyHealth <= 0)
+            HealthAtual -= dano;
+            if (HealthAtual <= 0)
             {
                 Morrer();
             }
@@ -57,14 +63,18 @@ public class Enemy : MonoBehaviour
 
     public void Morrer()
     {
-        estaVivoEAtivo = false;
+        if (estaVivoEAtivo)
+        {
+            _spawnManager.AumentarInimigosMortos();
 
-        _spawnManager.AumentarInimigosMortos();
+            _uiController.AdicionarPontosUltimate(energyToGive);
+            _scoreManager.AdicionarPontosScore(pointsToGive);
 
-        _uiController.AdicionarPontosUltimate(energyToGive);
-        _scoreManager.AdicionarPontosScore(pointsToGive);
+            _poolManager.ReturnPool(gameObject);
 
-        _poolManager.ReturnPool(gameObject);
+            estaVivoEAtivo = false;
+        }
+        
     }
 
     #endregion

@@ -14,7 +14,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     private bool podeMover = false;
 
     private LevelController _levelController => LevelController.I;
-
+    private BackgroundController _backgroundController => BackgroundController.I;
     private new void Awake()
     {
         transform.position = posInicial;
@@ -32,7 +32,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
             Vector3 desCorri = Camera.main.ScreenToWorldPoint(destino);
 
             // Destino final corrigido
-            Vector3 dFinal = new Vector3(Mathf.Clamp(desCorri.x, -7.2f, 7.2f), Mathf.Clamp(desCorri.y, -3.8f, 3.8f), 0);
+            Vector3 dFinal = new Vector3(desCorri.x, Mathf.Clamp(desCorri.y, -3.8f, 3.8f), 0);
 
             // Mover objeto
             transform.position = Vector3.MoveTowards(transform.position, dFinal, tempoMover * Time.deltaTime);
@@ -61,16 +61,26 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     public IEnumerator MoverParaX()
     {
-        PermitirMovimento(true);
         AnimateBool("Mover", true);
         yield return new WaitForSeconds(0.8f);
         transform.DOMoveX(-7.2f, 4f).SetEase(Ease.InSine);
         while (transform.position.x != -7.2f)
         {
-            yield return false;
+            yield return null;
         }
-        _levelController.IniciarJogoFinal();
-        yield return true;
+        PermitirMovimento(true);
+    }
+
+    public IEnumerator MoverParaMeio()
+    {
+        PermitirMovimento(false);
+        AnimateBool("Mover", true);
+        transform.DOMove(new Vector2(-7.2f, 0), 3f).SetEase(Ease.InSine);
+        while (transform.position.x != -7.2f)
+        {
+            yield return null;
+        }
+        _backgroundController.MudarEstadoParallax(false);
     }
 
 

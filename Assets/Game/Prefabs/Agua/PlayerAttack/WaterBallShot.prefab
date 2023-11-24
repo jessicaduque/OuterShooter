@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b685baf184c815418281c28b835d4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotSpeed: 5
+  shotSpeed: 7
   dano: 2
   efeitoExplosao: {fileID: 11400000, guid: 636a07b6f40c6c943821987d55b4e21a, type: 2}
   shotPlayer: 1
@@ -158,16 +158,16 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0654788, y: 0.0039286613}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.61380863, y: 0.4173708}
   m_EdgeRadius: 0

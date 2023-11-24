@@ -29,7 +29,7 @@ public class LevelController : Singleton<LevelController>
 
     private new void Awake()
     {
-        SetEstadoJogo(EstadoJogo.AntesInicio);
+
     }
 
     #region EstadoJogo
@@ -73,15 +73,24 @@ public class LevelController : Singleton<LevelController>
 
     private void IniciarJogo()
     {
-        _audioManager.PlayCrossFade("Main");
-        StartCoroutine(_playerMovement.MoverParaX());
-        StartCoroutine(_uiController.MoverPlanetaFora());
-        _playerController.SetarPoder(faseTerra);
+        if(numeroFase == 0)
+        {
+            _playerController.SetarPoder(faseTerra.fasePoder);
+            faseAtual = faseTerra;
+            fasePassada = faseTerra;
+            _playerMovement.PermitirMovimento(false);
+            StartCoroutine(_uiController.MoverPlanetaFora());
+            StartCoroutine(_playerMovement.MoverParaX());
+        }
+        else
+        {
+            _playerMovement.PermitirMovimento(true);
+            StartCoroutine(_uiController.MoverPlanetaFora(2.5f));
+        }
     }
 
     public void IniciarJogoFinal()
     {
-        faseAtual = faseTerra;
         SetEstadoJogo(EstadoJogo.CriarFase);
     }
 
@@ -93,19 +102,24 @@ public class LevelController : Singleton<LevelController>
     {
         numeroFase++;
         fasesSemTerra++;
-        if(fasesSemTerra == 3)
-        {
-            SetEstadoJogo(EstadoJogo.Terra);
-        }
-        else
-        {
-            AleatorizarFase();
-        }
+        AleatorizarFase();
+        //if (fasesSemTerra == 3)
+        //{
+        //    SetEstadoJogo(EstadoJogo.Terra);
+        //    fasesSemTerra = 0;
+        //}
+        //else
+        //{
+        //    AleatorizarFase();
+        //}
     }
 
     private void AleatorizarFase()
     {
-        faseAtual = fases[Random.Range(0, fases.Count)];
+        while (faseAtual == fasePassada)
+        {
+            faseAtual = fases[Random.Range(0, fases.Count)];
+        }
         _uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
     }
 
@@ -131,20 +145,31 @@ public class LevelController : Singleton<LevelController>
     
     private void EscolherPoderInicial()
     {
-        SpawnObjetosGameObject.SetActive(false);
         fasePassada = faseAtual;
+        SpawnObjetosGameObject.SetActive(false);
+        ReturnShotsAndObjectsPool();
         _playerController.DefineActivateAttack(false);
-        StartCoroutine(_uiController.MoverPlanetaFora());
+        StartCoroutine(_playerMovement.MoverParaMeio());
+        StartCoroutine(_uiController.MoverPlanetaPlayer());
     }
 
-    private void EscolherPoder()
+    public void EscolherPoder()
     {
-       
+        _playerMovement.AnimateBool("Mover", false);
+        _uiController.ControlEscolhaPanel(true, _playerController.GetPoderAtual().poderSpriteEscolha, faseAtual.fasePoder.poderSpriteEscolha);
     }
 
-    private void EscolherPodeFinal()
+    public void EscolherPoderFinal(bool escolherPoderNovo)
     {
-        SetEstadoJogo(EstadoJogo.CriarFase);
+        if (escolherPoderNovo)
+        {
+            _playerController.SetarPoder(faseAtual.fasePoder);
+        }
+        _uiController.ControlEscolhaPanel(false, null, null);
+        _playerMovement.PermitirMovimento(true);
+        _playerMovement.AnimateBool("Mover", true);
+        fasePassada = faseAtual;
+        SetEstadoJogo(EstadoJogo.Inicial);
     }
 
     #endregion
@@ -179,7 +204,7 @@ public class LevelController : Singleton<LevelController>
     {
         foreach (Asteroide asteroid in FindObjectsOfType<Asteroide>())
         {
-            if (asteroid.gameObject.activeInHierarchy)
+            if (asteroid.gameObject.activeInHierarchy && asteroid.GetComponent<SpriteRenderer>().isVisible)
             {
                 asteroid.Explode();
             }
@@ -187,9 +212,17 @@ public class LevelController : Singleton<LevelController>
 
         foreach (Shot shot in FindObjectsOfType<Shot>())
         {
-            if (shot.gameObject.activeInHierarchy)
+            if (shot.gameObject.activeInHierarchy && shot.GetComponent<SpriteRenderer>().isVisible)
             {
-                _poolManager.ReturnPool(shot.gameObject);
+                if (shot.shotPlayer)
+                {
+                    _poolManager.ReturnPool(shot.gameObject);
+                }
+                else
+                {
+                    shot.Explodir();
+                }
+                
             }
         }
 

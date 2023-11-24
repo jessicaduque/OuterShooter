@@ -122,9 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b685baf184c815418281c28b835d4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotSpeed: 5
+  shotSpeed: 6
   dano: 2
-  efeitoExplosao: {fileID: 11400000, guid: 636a07b6f40c6c943821987d55b4e21a, type: 2}
+  efeitoExplosao: {fileID: 11400000, guid: b1bf69d879552d14cb4e2356390c4ec3, type: 2}
   shotPlayer: 1
 --- !u!50 &5684666469029985492
 Rigidbody2D:

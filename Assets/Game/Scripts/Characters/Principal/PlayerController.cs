@@ -5,7 +5,7 @@ using Utils.Singleton;
 
 public class PlayerController : Singleton<PlayerController>
 {
-    private RuntimeAnimatorController AnimController;
+    private Animator AnimController;
 
     [Header("Scripts de ataque do Player")]
     [SerializeField] private PlayerAttack[] playerAttackScripts;
@@ -25,7 +25,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private new void Awake()
     {
-        AnimController = GetComponent<RuntimeAnimatorController>();
+        AnimController = GetComponent<Animator>();
         thisCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -71,15 +71,20 @@ public class PlayerController : Singleton<PlayerController>
         playerAttackScripts[poderAtual.poderID].enabled = state;
     }
 
-    public void SetarPoder(FaseDetails fase)
+    public void SetarPoder(PoderDetails poder)
     {
-        poderAtual = fase.fasePoder;
+        poderAtual = poder;
         SetarPoderAnimator();
+    }
+
+    public PoderDetails GetPoderAtual()
+    {
+        return poderAtual;
     }
 
     private void SetarPoderAnimator()
     {
-        AnimController = poderAtual.poderPlayerAnimControl;
+        AnimController.runtimeAnimatorController = poderAtual.poderPlayerAnimControl;
     }
 
 }

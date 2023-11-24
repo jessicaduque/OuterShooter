@@ -17,7 +17,7 @@ public class EnemyMovement : Singleton<EnemyMovement>
         }
     }
 
-    public void FollowMovementPattern(string moveTag, Transform thisTransform, float[] times = null, float[] pauses = null)
+    public void FollowMovementPattern(string moveTag, Transform thisTransform, float[] times = null, float[] pauses = null, bool loop = false)
     {
         Sequence movementSequence = DOTween.Sequence();
         Movement thisMovement = MovementDictionary[moveTag];
@@ -27,10 +27,15 @@ public class EnemyMovement : Singleton<EnemyMovement>
         for (int movimento = 0; movimento < thisMovement.endPoints.Length; movimento++)
         {
             movementSequence.Append(thisTransform.DOMove(thisMovement.endPoints[movimento].position, movementTimes[movimento]));
-            if(movementPauses[movimento] != 0)
+            if (movementPauses[movimento] != 0)
             {
                 movementSequence.AppendInterval(movementPauses[movimento]);
             }
+        }
+
+        if (loop)
+        {
+            movementSequence.SetLoops(-2, LoopType.Yoyo);
         }
     }
 

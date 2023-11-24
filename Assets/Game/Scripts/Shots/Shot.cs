@@ -8,7 +8,7 @@ public class Shot : MonoBehaviour
     [SerializeField] private int dano;
     [SerializeField] private Pool efeitoExplosao;
 
-    [SerializeField] protected bool shotPlayer;
+    [SerializeField] public bool shotPlayer;
 
     private PoolManager _poolManager => PoolManager.I;
 
@@ -27,12 +27,17 @@ public class Shot : MonoBehaviour
         Rb2D.velocity = new Vector2((shotPlayer ? shotSpeed : -shotSpeed), 0);
     }
 
+    public void Explodir()
+    {
+        _poolManager.GetObject(efeitoExplosao.tagPool, transform.position, Quaternion.identity);
+        _poolManager.ReturnPool(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
-            _poolManager.GetObject(efeitoExplosao.tagPool, transform.position, Quaternion.identity);
-            _poolManager.ReturnPool(gameObject);
+            Explodir();
 
             if (other.CompareTag("Player"))
             {

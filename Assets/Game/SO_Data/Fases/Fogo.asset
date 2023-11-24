@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faseID: 2
   faseNome: 2
-  faseAnimControl: {fileID: 0}
-  fasePoder: {fileID: 0}
-  faseInimiPossiveis: []
+  faseAnimControl: {fileID: 9100000, guid: d9c6c720e00074349b3a2e71b5c17495, type: 2}
+  fasePoder: {fileID: 11400000, guid: 41c4fecb49bcb2a428c8809408b069a3, type: 2}
+  faseInimiPossiveis:
+  - {fileID: 11400000, guid: 421783e431efb24499344eb92acbe3db, type: 2}
+  - {fileID: 11400000, guid: bfdc1229575f26e40a33121445a5a380, type: 2}
+  - {fileID: 11400000, guid: d0350be80bbcf7b459f65c775cf71350, type: 2}

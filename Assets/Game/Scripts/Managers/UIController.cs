@@ -76,6 +76,9 @@ public class UIController : Singleton<UIController>
         b_video.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.9f;
         planetaAnimator = planetaObjeto.GetComponent<Animator>();
 
+        im_PoderAtual = b_escolhaAtual.GetComponent<Image>();
+        im_PoderNovo = b_escolhaNovo.GetComponent<Image>();
+
         // Button Listeners
         b_iniciarJogo.onClick.AddListener(IniciarJogo);
         b_creditos.onClick.AddListener(() => ControlCreditsPanel(true));
@@ -90,12 +93,27 @@ public class UIController : Singleton<UIController>
 
     private void Start()
     {
+        b_escolhaNovo.onClick.AddListener(() =>
+        {
+            _levelController.EscolherPoderFinal(true);
+            b_escolhaNovo.interactable = false;
+            b_escolhaAtual.interactable = false;
+        });
+        b_escolhaAtual.onClick.AddListener(() =>
+        {
+            _levelController.EscolherPoderFinal(false);
+            b_escolhaNovo.interactable = false;
+            b_escolhaAtual.interactable = false;
+        });
+
+
         _bankManager.AumentouEstrelas += AtualizarTextoEstrelas;
         _scoreManager.AumentouScore += AtualizarTextoScore;
     }
 
     private void IniciarJogo()
     {
+        _audioManager.PlayCrossFade("Main");
         _audioManager.PlaySfx("ButtonClick");
         b_iniciarJogo.enabled = false;
         ControlStartPanel();
@@ -212,6 +230,8 @@ public class UIController : Singleton<UIController>
     {
         if (estado)
         {
+            b_escolhaNovo.interactable = true;
+            b_escolhaAtual.interactable = true;
             im_PoderAtual.sprite = atual;
             im_PoderNovo.sprite = novo;
             Helpers.FadeInPanel(EscolherPoderPanel);
@@ -226,23 +246,36 @@ public class UIController : Singleton<UIController>
 
     #region Planeta
 
-    public IEnumerator MoverPlanetaFora()
+    public IEnumerator MoverPlanetaFora(float tempo = 4)
     {
         _backgroundController.MudarEstadoParallax(true);
         yield return new WaitForSeconds(0.4f);
         Vector3 posFinal = new Vector3(posXFinalPlanetaFora, 0, 0);
-        planetaObjeto.transform.DOMove(posFinal, 4f).SetEase(Ease.InSine);
+        planetaObjeto.transform.DOMove(posFinal, tempo).SetEase(Ease.InSine);
+        while(planetaObjeto.transform.position != posFinal)
+        {
+            yield return null;
+        }
+        _levelController.IniciarJogoFinal();
     }
 
     public IEnumerator MoverPlanetaPlayer()
     {
-
+        _backgroundController.MudarEstadoParallax(true);
+        yield return new WaitForSeconds(0.4f);
+        Vector3 posFinal = new Vector3(-7.2f, 0, 0);
+        planetaObjeto.transform.DOMove(posFinal, 7f).SetEase(Ease.OutSine);
+        while (planetaObjeto.transform.position.x != -7.2f)
+        {
+            yield return null;
+        }
+        _levelController.EscolherPoder();
     }
 
     private IEnumerator MoverPlanetaDentro()
     {
         _playerAttack = FindObjectOfType<PlayerAttack>();
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.5f);
         _backgroundController.MudarEstadoParallax(false);
         planetaObjeto.transform.position = new Vector2(posXInicioPlanetaDentro, 0);
         Vector3 posFinal = new Vector3(posXFinalPlanetaDentro, 0, 0);

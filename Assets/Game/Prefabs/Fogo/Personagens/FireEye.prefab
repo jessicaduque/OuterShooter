@@ -199,12 +199,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f65fb13b2dc2394397c527ff03b7702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 2
+  enemyHealth: 4
   pointsToGive: 3
   energyToGive: 3
   timesShot:
+  - 2
   - 4
-  - 4.3
+  - 5
   ShotPrefab: {fileID: 11400000, guid: 0d41944c1b8149144803000ecce91eaa, type: 2}
   FirePointMiddle: {fileID: 1477451736536295031}
   estaVivoEAtivo: 0

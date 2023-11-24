@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd2ab2f534f3eb4da6276ce3d49e7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotSpeed: 5.8
+  shotSpeed: 8
   dano: 1
   efeitoExplosao: {fileID: 11400000, guid: 9a789e0b3215ab940b2563b88c8b805f, type: 2}
   shotPlayer: 0
