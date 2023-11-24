@@ -299,35 +299,35 @@ MonoBehaviour:
     endPoints:
     - {fileID: 1051567001}
     times:
-    - 25
+    - 30
     pauses:
     - 0
   - movementTag: RightToLeft2
     endPoints:
     - {fileID: 1649489136}
     times:
-    - 20
+    - 30
     pauses:
     - 0
   - movementTag: RightToLeft3
     endPoints:
     - {fileID: 835293060}
     times:
-    - 20
+    - 30
     pauses:
     - 0
   - movementTag: RightToLeft4
     endPoints:
     - {fileID: 140741756}
     times:
-    - 20
+    - 30
     pauses:
     - 0
   - movementTag: RightToLeft5
     endPoints:
     - {fileID: 1023155095}
     times:
-    - 25
+    - 30
     pauses:
     - 0
   - movementTag: ZigZagBottom
@@ -575,7 +575,7 @@ PrefabInstance:
 
         https://pixerelia.itch.io/vas-basic-spells-and-buffs
 
-        
+
 
         -
         ASTROS
@@ -586,7 +586,7 @@ PrefabInstance:
 
         https://soulofkiran.itch.io/pixel-art-animated-star
 
-        
+
 
         -
         PERSONAGENS:
@@ -605,7 +605,7 @@ PrefabInstance:
 
         https://heirey.itch.io/metal-monster
 
-        
+
 
         -
         EFEITOS:
@@ -628,7 +628,7 @@ PrefabInstance:
 
         https://xyezawr.itch.io/free-pixel-effects-pack-17-mini-magick-shoots-3
 
-        
+
 
         -
         FONTES:
@@ -717,7 +717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 371168799189422153, guid: 847d79230fd511244b5a8a89c48718c0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960.00006
+      value: 960.0001
       objectReference: {fileID: 0}
     - target: {fileID: 371168799189422153, guid: 847d79230fd511244b5a8a89c48718c0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -873,7 +873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5766858996303952716, guid: 847d79230fd511244b5a8a89c48718c0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960.00006
+      value: 960.0001
       objectReference: {fileID: 0}
     - target: {fileID: 5766858996303952716, guid: 847d79230fd511244b5a8a89c48718c0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -949,7 +949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7440386952542832371, guid: 847d79230fd511244b5a8a89c48718c0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960.00006
+      value: 960.0001
       objectReference: {fileID: 0}
     - target: {fileID: 7440386952542832371, guid: 847d79230fd511244b5a8a89c48718c0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -973,7 +973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8340990754925300656, guid: 847d79230fd511244b5a8a89c48718c0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960.00006
+      value: 960.0001
       objectReference: {fileID: 0}
     - target: {fileID: 8340990754925300656, guid: 847d79230fd511244b5a8a89c48718c0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2648,7 +2648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960.00006, y: -340}
+  m_AnchoredPosition: {x: 960.0001, y: -340}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &712622385
@@ -4314,6 +4314,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4466395135710104845, guid: e4b5b191d4433ca4a986e0a76368e4b3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.4125
+      objectReference: {fileID: 0}
     - target: {fileID: 4466395135750754698, guid: e4b5b191d4433ca4a986e0a76368e4b3, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4369,6 +4373,10 @@ PrefabInstance:
     - target: {fileID: 4466395136467202227, guid: e4b5b191d4433ca4a986e0a76368e4b3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466395136674373118, guid: e4b5b191d4433ca4a986e0a76368e4b3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.825
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4b5b191d4433ca4a986e0a76368e4b3, type: 3}
@@ -4913,7 +4921,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960.00006, y: -740}
+  m_AnchoredPosition: {x: 960.0001, y: -740}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1503104461

@@ -265,14 +265,14 @@ public class SpawnManager : Singleton<SpawnManager>
         switch (numeroFase)
         {
             case < 4:
-                ResetarValoresFase(numeroFase < 3 ? 4 : 8);
+                ResetarValoresFase(numeroFase < 3 ? 5 : 10);
                 StartCoroutine(SpawnFireEye1());
                 break;
             case < 6:
                 ResetarValoresFase(numeroFase == 4 ? 6 : 12);
                 StartCoroutine(SpawnFireEye2());
                 break;
-            case >= 8:
+            case >= 6:
                 //case < 8:
                 ResetarValoresFase(numeroFase < 8 ? 5 : (numeroFase < 10 ? 10 : 15));
                 StartCoroutine(SpawnFireWhisp());
@@ -294,13 +294,16 @@ public class SpawnManager : Singleton<SpawnManager>
             GameObject enemyEye2 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[1].position, Quaternion.identity);
             _enemyMovement.FollowMovementPattern("RightToLeft2", enemyEye2.transform);
 
+            GameObject enemyEye3 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[2].position, Quaternion.identity);
+            _enemyMovement.FollowMovementPattern("RightToLeft3", enemyEye3.transform);
+
             GameObject enemyEye4 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[3].position, Quaternion.identity);
             _enemyMovement.FollowMovementPattern("RightToLeft4", enemyEye4.transform);
 
             GameObject enemyEye5 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[4].position, Quaternion.identity);
             _enemyMovement.FollowMovementPattern("RightToLeft5", enemyEye5.transform);
 
-            quantInimigosWave += 4;
+            quantInimigosWave += 5;
 
             while (quantInimigosWave > quantInimgiosMortos + quantInimigosEscondidos)
             {

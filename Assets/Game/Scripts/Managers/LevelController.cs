@@ -193,11 +193,11 @@ public class LevelController : Singleton<LevelController>
 
     public void MaisUmaChance()
     {
+        _uiController.ControlAdChancePanel(false);
         StartCoroutine(_playerController.Reviver());
         ReturnShotsAndObjectsPool();
-        _uiController.ControlAdChancePanel(false);
-        Time.timeScale = 1;
         SetEstadoJogo(EstadoJogo.Lutar);
+        Time.timeScale = 1;
     }
 
     private void ReturnShotsAndObjectsPool()
