@@ -4544,13 +4544,11 @@ MonoBehaviour:
   EscolherPoderPanel: {fileID: 1932462515}
   b_iniciarJogo: {fileID: 2021467670}
   b_creditos: {fileID: 1469732596}
-  b_video: {fileID: 0}
   b_pause: {fileID: 1926807558}
   b_ultimate: {fileID: 2104247836}
   b_reiniciarGameOver: {fileID: 791086566}
   b_menuGameOver: {fileID: 682598094}
-  b_adButton1: {fileID: 0}
-  b_adButton2: {fileID: 1702080010}
+  b_adButton: {fileID: 1702080010}
   b_escolhaAtual: {fileID: 712622387}
   b_escolhaNovo: {fileID: 1503104463}
   t_score: {fileID: 48567564}

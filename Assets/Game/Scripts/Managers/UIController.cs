@@ -20,13 +20,11 @@ public class UIController : Singleton<UIController>
     [Header("Botões")]
     [SerializeField] Button b_iniciarJogo;
     [SerializeField] Button b_creditos;
-    [SerializeField] Button b_video;
     [SerializeField] Button b_pause;
     [SerializeField] Button b_ultimate;
     [SerializeField] Button b_reiniciarGameOver;
     [SerializeField] Button b_menuGameOver;
-    [SerializeField] Button b_adButton1;
-    [SerializeField] Button b_adButton2;
+    [SerializeField] Button b_adButton;
     [SerializeField] Button b_escolhaAtual;
     [SerializeField] Button b_escolhaNovo;
 
@@ -73,7 +71,6 @@ public class UIController : Singleton<UIController>
     private AudioManager _audioManager => AudioManager.I;
     private new void Awake()
     {
-        b_video.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.9f;
         planetaAnimator = planetaObjeto.GetComponent<Animator>();
 
         im_PoderAtual = b_escolhaAtual.GetComponent<Image>();
@@ -84,8 +81,7 @@ public class UIController : Singleton<UIController>
         b_creditos.onClick.AddListener(() => ControlCreditsPanel(true));
         b_pause.onClick.AddListener(() => ControlPausePanel(true));
         b_ultimate.onClick.AddListener(ApertouUltimate);
-        b_adButton1.onClick.AddListener(ShowAd);
-        b_adButton2.onClick.AddListener(ShowAd);
+        b_adButton.onClick.AddListener(ShowAd);
         
 
         b_ultimate.enabled = false;
@@ -363,8 +359,7 @@ public class UIController : Singleton<UIController>
 
     private void ShowAd()
     {
-        b_adButton1.enabled = false;
-        b_adButton2.enabled = false;
+        b_adButton.enabled = false;
         _audioManager.PlaySfx("ButtonClick");
         AdController.I.ShowAd();
     }
