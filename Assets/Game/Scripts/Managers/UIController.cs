@@ -95,21 +95,23 @@ public class UIController : Singleton<UIController>
     {
         b_escolhaNovo.onClick.AddListener(() =>
         {
-            b_escolhaNovo.transform.DOScale(new Vector3(1.4f, 1.4f, 1.4f), 1).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+            b_escolhaNovo.interactable = false;
+            b_escolhaAtual.interactable = false;
+            b_escolhaNovo.transform.DOScale(new Vector3(1.4f, 1.4f, 1.4f), 0.4f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
             {
                 _levelController.EscolherPoderFinal(true);
-                b_escolhaNovo.interactable = false;
-                b_escolhaAtual.interactable = false;
+                
             });
             
         });
         b_escolhaAtual.onClick.AddListener(() =>
         {
+            b_escolhaNovo.interactable = false;
+            b_escolhaAtual.interactable = false;
             b_escolhaAtual.transform.DOScale(new Vector3(1.4f, 1.4f, 1.4f), 0.4f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
             {
                 _levelController.EscolherPoderFinal(false);
-                b_escolhaNovo.interactable = false;
-                b_escolhaAtual.interactable = false;
+                
             });
         });
 
