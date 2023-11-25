@@ -218,7 +218,7 @@ public class LevelController : Singleton<LevelController>
     {
         foreach (Asteroide asteroid in FindObjectsOfType<Asteroide>())
         {
-            if (asteroid.gameObject.activeInHierarchy && asteroid.GetComponent<SpriteRenderer>().isVisible)
+            if (asteroid.gameObject.activeInHierarchy)
             {
                 asteroid.Explode();
             }
@@ -226,7 +226,7 @@ public class LevelController : Singleton<LevelController>
 
         foreach (Shot shot in FindObjectsOfType<Shot>())
         {
-            if (shot.gameObject.activeInHierarchy && shot.GetComponent<SpriteRenderer>().isVisible)
+            if (shot.gameObject.activeInHierarchy)
             {
                 if (shot.shotPlayer)
                 {

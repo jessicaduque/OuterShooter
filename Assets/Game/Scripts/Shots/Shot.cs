@@ -7,7 +7,7 @@ public class Shot : MonoBehaviour
     [SerializeField] protected float shotSpeed;
     [SerializeField] private int dano;
     [SerializeField] private Pool efeitoExplosao;
-
+    private SpriteRenderer thisRenderer;
     [SerializeField] public bool shotPlayer;
 
     private PoolManager _poolManager => PoolManager.I;
@@ -15,6 +15,7 @@ public class Shot : MonoBehaviour
     protected void Awake()
     {
         Rb2D = GetComponent<Rigidbody2D>();
+        thisRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -29,7 +30,10 @@ public class Shot : MonoBehaviour
 
     public void Explodir()
     {
-        _poolManager.GetObject(efeitoExplosao.tagPool, transform.position, Quaternion.identity);
+        if (thisRenderer.isVisible)
+        {
+            _poolManager.GetObject(efeitoExplosao.tagPool, transform.position, Quaternion.identity);
+        }
         _poolManager.ReturnPool(gameObject);
     }
 

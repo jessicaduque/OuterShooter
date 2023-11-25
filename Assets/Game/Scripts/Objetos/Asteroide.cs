@@ -55,8 +55,8 @@ public class Asteroide : MonoBehaviour
         {
             Vibration.Vibrate();
             _poolManager.GetObject("ExplosionNormal", transform.position, transform.rotation);
-            _poolManager.ReturnPool(gameObject);
         }
+        _poolManager.ReturnPool(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

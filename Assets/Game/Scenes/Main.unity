@@ -1687,19 +1687,19 @@ PrefabInstance:
       objectReference: {fileID: 345904040327228919, guid: f90b481dfd454fb4894a714f2e6a9a80, type: 2}
     - target: {fileID: 1982879350020934437, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1982879350020934437, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1982879350020934437, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 785.08655
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1982879350020934437, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -97.19999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1982879350020934438, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1763,19 +1763,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2421013759726490454, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2421013759726490454, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2421013759726490454, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 545.08655
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2421013759726490454, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -97.19999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2615832172750910569, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
       propertyPath: m_Interactable
@@ -2936,17 +2936,6 @@ Transform:
   m_Father: {fileID: 716828771}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902083146 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2615832172750910569, guid: b4a54fab405bb074d8816589fc96c337, type: 3}
-  m_PrefabInstance: {fileID: 365663201}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &930398411
 GameObject:
   m_ObjectHideFlags: 0
@@ -4555,12 +4544,12 @@ MonoBehaviour:
   EscolherPoderPanel: {fileID: 1932462515}
   b_iniciarJogo: {fileID: 2021467670}
   b_creditos: {fileID: 1469732596}
-  b_video: {fileID: 902083146}
+  b_video: {fileID: 0}
   b_pause: {fileID: 1926807558}
   b_ultimate: {fileID: 2104247836}
   b_reiniciarGameOver: {fileID: 791086566}
   b_menuGameOver: {fileID: 682598094}
-  b_adButton1: {fileID: 902083146}
+  b_adButton1: {fileID: 0}
   b_adButton2: {fileID: 1702080010}
   b_escolhaAtual: {fileID: 712622387}
   b_escolhaNovo: {fileID: 1503104463}
@@ -5331,6 +5320,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: efe9be61cdc16ba4ba037580eb46c7d7, type: 2}
   faseTerra: {fileID: 11400000, guid: 7034e0ea7faf9cb4ca716aa54e56eecb, type: 2}
   SpawnObjetosGameObject: {fileID: 1420068021}
+  numeroFase: 0
 --- !u!1 &1754684335
 GameObject:
   m_ObjectHideFlags: 0
