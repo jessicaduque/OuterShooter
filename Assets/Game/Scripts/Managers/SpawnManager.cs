@@ -338,7 +338,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
                 atual += 3;
 
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(2f);
 
             }
 

@@ -95,15 +95,22 @@ public class UIController : Singleton<UIController>
     {
         b_escolhaNovo.onClick.AddListener(() =>
         {
-            _levelController.EscolherPoderFinal(true);
-            b_escolhaNovo.interactable = false;
-            b_escolhaAtual.interactable = false;
+            b_escolhaNovo.transform.DOScale(new Vector3(1.4f, 1.4f, 1.4f), 1).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+            {
+                _levelController.EscolherPoderFinal(true);
+                b_escolhaNovo.interactable = false;
+                b_escolhaAtual.interactable = false;
+            });
+            
         });
         b_escolhaAtual.onClick.AddListener(() =>
         {
-            _levelController.EscolherPoderFinal(false);
-            b_escolhaNovo.interactable = false;
-            b_escolhaAtual.interactable = false;
+            b_escolhaAtual.transform.DOScale(new Vector3(1.4f, 1.4f, 1.4f), 0.4f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+            {
+                _levelController.EscolherPoderFinal(false);
+                b_escolhaNovo.interactable = false;
+                b_escolhaAtual.interactable = false;
+            });
         });
 
 
@@ -259,27 +266,39 @@ public class UIController : Singleton<UIController>
         _levelController.IniciarJogoFinal();
     }
 
-    public IEnumerator MoverPlanetaPlayer()
+    public IEnumerator MoverPlanetaPlayer(float tempo = 7)
     {
         _backgroundController.MudarEstadoParallax(true);
         yield return new WaitForSeconds(0.4f);
         Vector3 posFinal = new Vector3(-7.2f, 0, 0);
-        planetaObjeto.transform.DOMove(posFinal, 7f).SetEase(Ease.OutSine);
-        while (planetaObjeto.transform.position.x != -7.2f)
+        planetaObjeto.transform.DOMove(posFinal, tempo).SetEase(Ease.OutSine);
+        while (planetaObjeto.transform.position.x > -7.2f)
         {
+            if(planetaObjeto.transform.position.x  < -7.205f)
+            {
+                planetaObjeto.transform.position = posFinal;
+                yield return null;
+            }
             yield return null;
         }
+        Debug.Log("asd");
         _levelController.EscolherPoder();
     }
 
-    private IEnumerator MoverPlanetaDentro()
+    public IEnumerator MoverPlanetaDentro()
     {
         _playerAttack = FindObjectOfType<PlayerAttack>();
         yield return new WaitForSeconds(1.5f);
         _backgroundController.MudarEstadoParallax(false);
-        planetaObjeto.transform.position = new Vector2(posXInicioPlanetaDentro, 0);
+        ResetPositionPlanet();
         Vector3 posFinal = new Vector3(posXFinalPlanetaDentro, 0, 0);
         planetaObjeto.transform.DOMove(posFinal, 4f).SetEase(Ease.OutSine).OnComplete(() => _levelController.SpawnInimigos());
+    }
+
+    public void ResetPositionPlanet()
+    {
+        planetaObjeto.transform.position = new Vector2(posXInicioPlanetaDentro, 0);
+        DOTween.Kill(planetaObjeto.transform);
     }
 
     #endregion
@@ -294,7 +313,6 @@ public class UIController : Singleton<UIController>
     public void SetarPlanetaAnimator(RuntimeAnimatorController animator)
     {
         planetaAnimator.runtimeAnimatorController = animator;
-        StartCoroutine(MoverPlanetaDentro());
     }
 
     #endregion

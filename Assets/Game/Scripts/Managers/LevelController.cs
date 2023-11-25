@@ -15,7 +15,7 @@ public class LevelController : Singleton<LevelController>
 
     private bool chanceExtra = true;   
 
-    private int numeroFase = 0;
+    [SerializeField] private int numeroFase = 0;
     private int fasesSemTerra = 0;
 
     private BankManager _bankManager => BankManager.I;
@@ -102,16 +102,15 @@ public class LevelController : Singleton<LevelController>
     {
         numeroFase++;
         fasesSemTerra++;
-        AleatorizarFase();
-        //if (fasesSemTerra == 3)
-        //{
-        //    SetEstadoJogo(EstadoJogo.Terra);
-        //    fasesSemTerra = 0;
-        //}
-        //else
-        //{
-        //    AleatorizarFase();
-        //}
+        if (fasesSemTerra == 3)
+        {
+            SetEstadoJogo(EstadoJogo.Terra);
+            fasesSemTerra = 0;
+        }
+        else
+        {
+            AleatorizarFase();
+        }
     }
 
     private void AleatorizarFase()
@@ -121,6 +120,7 @@ public class LevelController : Singleton<LevelController>
             faseAtual = fases[Random.Range(0, fases.Count)];
         }
         _uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
+        StartCoroutine(_uiController.MoverPlanetaDentro());
     }
 
     public void SpawnInimigos()
@@ -157,6 +157,7 @@ public class LevelController : Singleton<LevelController>
     {
         _playerMovement.AnimateBool("Mover", false);
         _uiController.ControlEscolhaPanel(true, _playerController.GetPoderAtual().poderSpriteEscolha, faseAtual.fasePoder.poderSpriteEscolha);
+        
     }
 
     public void EscolherPoderFinal(bool escolherPoderNovo)
@@ -178,7 +179,11 @@ public class LevelController : Singleton<LevelController>
     
     private void Terra()
     {
-
+        faseAtual = faseTerra;
+        _uiController.ResetPositionPlanet();
+        _uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
+        StartCoroutine(_playerMovement.MoverParaMeio());
+        StartCoroutine(_uiController.MoverPlanetaPlayer(9));
     }
 
     #endregion
