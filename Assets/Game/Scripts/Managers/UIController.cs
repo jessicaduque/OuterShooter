@@ -29,6 +29,10 @@ public class UIController : Singleton<UIController>
     [SerializeField] Button b_escolhaNovo;
 
     [Space(20)]
+    [Header("Imagens")]
+    [SerializeField] private Image proxPlaneta;
+
+    [Space(20)]
     [Header("Textos")]
     [SerializeField] private TMP_Text t_score;
     [SerializeField] private TMP_Text t_quantEstrelas;
@@ -231,10 +235,11 @@ public class UIController : Singleton<UIController>
         Time.timeScale = (estado ? 0 : 1);
     }
 
-    public void ControlEscolhaPanel(bool estado, Sprite atual, Sprite novo)
+    public void ControlEscolhaPanel(bool estado, Sprite atual=null, Sprite novo=null, Sprite planeta=null)
     {
         if (estado)
         {
+            proxPlaneta.sprite = planeta;
             b_escolhaNovo.interactable = true;
             b_escolhaAtual.interactable = true;
             im_PoderAtual.sprite = atual;

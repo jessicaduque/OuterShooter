@@ -17,3 +17,4 @@ MonoBehaviour:
   faseAnimControl: {fileID: 9100000, guid: 7d948a7126d434548b1e714e7dc51aa7, type: 2}
   fasePoder: {fileID: 11400000, guid: 181a402a23065f448954e32ad98a3a91, type: 2}
   faseInimiPossiveis: []
+  fasePlanetaSprite: {fileID: 460453174, guid: 2659688d99e5e2a469c6d15195b12a78, type: 3}

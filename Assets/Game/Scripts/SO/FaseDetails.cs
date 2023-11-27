@@ -8,4 +8,5 @@ public class FaseDetails : ScriptableObject
     public RuntimeAnimatorController faseAnimControl;
     public PoderDetails fasePoder;
     public Pool[] faseInimiPossiveis;
+    public Sprite fasePlanetaSprite;
 }

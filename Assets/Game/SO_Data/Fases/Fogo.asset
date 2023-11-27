@@ -20,3 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 421783e431efb24499344eb92acbe3db, type: 2}
   - {fileID: 11400000, guid: bfdc1229575f26e40a33121445a5a380, type: 2}
   - {fileID: 11400000, guid: d0350be80bbcf7b459f65c775cf71350, type: 2}
+  fasePlanetaSprite: {fileID: 21300000, guid: b80eb69ef131fbe4b99a172342e33390, type: 3}

@@ -19,3 +19,4 @@ MonoBehaviour:
   faseInimiPossiveis:
   - {fileID: 11400000, guid: 65b1b1ee1e1cda04c8c4109bd0f4e4eb, type: 2}
   - {fileID: 11400000, guid: 5986372f9da1f6f47ac252214013ba9b, type: 2}
+  fasePlanetaSprite: {fileID: 21300000, guid: e3467f1022512034a84547a23d68ed40, type: 3}

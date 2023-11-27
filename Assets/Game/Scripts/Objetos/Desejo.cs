@@ -54,4 +54,11 @@ public class Desejo : MonoBehaviour
             _poolManager.ReturnPool(gameObject);
         }
     }
+
+    public void MoveToPlayer()
+    {
+        Transform PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        thisRB.velocity = Vector2.zero;
+        transform.DOMove(PlayerTransform.position, 2f);
+    }
 }

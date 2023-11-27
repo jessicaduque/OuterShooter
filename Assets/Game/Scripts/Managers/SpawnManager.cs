@@ -15,6 +15,8 @@ public class SpawnManager : Singleton<SpawnManager>
     private NomeFase nomeFase;
     private int numeroFase;
 
+    GameObject[] enemiesAtuais = null;
+
     [Header("Start Points")]
     [SerializeField] private Transform[] Bottom;
     [SerializeField] private Transform[] Top;
@@ -70,9 +72,13 @@ public class SpawnManager : Singleton<SpawnManager>
         quantInimigosEscondidos++;
     }
 
-    public void AumentarInimigosMortos()
+    public void AumentarInimigosMortos(GameObject enemy)
     {
         quantInimgiosMortos++;
+        if(enemiesAtuais != null)
+        {
+            enemiesAtuais[enemy.GetComponent<Enemy>().posicaoMovement] = null;
+        }
     }
 
     #endregion
@@ -265,7 +271,7 @@ public class SpawnManager : Singleton<SpawnManager>
         switch (numeroFase)
         {
             case < 4:
-                ResetarValoresFase(numeroFase < 3 ? 5 : 10);
+                ResetarValoresFase(numeroFase < 3 ? 4 : 8);
                 StartCoroutine(SpawnFireEye1());
                 break;
             case < 6:
@@ -288,33 +294,48 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         if (quantInimgiosMortos < quantInimigosFase)
         {
-            GameObject enemyEye1 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[0].position, Quaternion.identity);
-            _enemyMovement.FollowMovementPattern("RightToLeft1", enemyEye1.transform);
-
-            GameObject enemyEye2 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[1].position, Quaternion.identity);
-            _enemyMovement.FollowMovementPattern("RightToLeft2", enemyEye2.transform);
-
-            GameObject enemyEye3 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[2].position, Quaternion.identity);
-            _enemyMovement.FollowMovementPattern("RightToLeft3", enemyEye3.transform);
-
-            GameObject enemyEye4 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[3].position, Quaternion.identity);
-            _enemyMovement.FollowMovementPattern("RightToLeft4", enemyEye4.transform);
-
-            GameObject enemyEye5 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[4].position, Quaternion.identity);
-            _enemyMovement.FollowMovementPattern("RightToLeft5", enemyEye5.transform);
-
-            quantInimigosWave += 5;
+            if(enemiesAtuais == null)
+            {
+                enemiesAtuais = new GameObject[5];
+                int semIni = Random.Range(1, 6);
+                for(int i=0; i < 5; i++)
+                {
+                    if(semIni != i + 1)
+                    {
+                        GameObject enemyEye = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[i].position, Quaternion.identity);
+                        _enemyMovement.FollowMovementPattern("RightToLeft" + (i + 1).ToString(), enemyEye.transform);
+                        enemyEye.GetComponent<Enemy>().posicaoMovement = i;
+                        enemiesAtuais[i] = enemyEye;
+                    }
+                }
+                quantInimigosWave += 4;
+            }
+            else
+            {
+                for(int i=0; i < 5; i++)
+                {
+                    if(enemiesAtuais[i] != null)
+                    {
+                        GameObject enemyEye = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[i].position, Quaternion.identity);
+                        _enemyMovement.FollowMovementPattern("RightToLeft" + (i + 1).ToString(), enemyEye.transform);
+                        enemyEye.GetComponent<Enemy>().posicaoMovement = i;
+                    }
+                }
+            }
+            
 
             while (quantInimigosWave > quantInimgiosMortos + quantInimigosEscondidos)
             {
                 yield return null;
             }
 
+            quantInimigosEscondidos = 0;
             StartCoroutine(SpawnFireEye1());
         }
         else
         {
             yield return new WaitForSeconds(0.6f);
+            enemiesAtuais = null;
             _levelController.SetEstadoJogo(EstadoJogo.EscolherPoder);
         }
     }

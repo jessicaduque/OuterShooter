@@ -356,7 +356,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 1, y: 2, z: 1, w: 2}
       outline: []
       physicsShape: []
@@ -364,6 +364,48 @@ TextureImporter:
       bones: []
       spriteID: 134c6e1b300f39a40aedd40e47de0b43
       internalID: -1044669039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceShooterAssetPack_IU_9
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9d43cc39271b664e87a68693c1eab2c
+      internalID: 1646237696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpaceShooterAssetPack_IU_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c43c04926e15b4cb073d831ad0afd1
+      internalID: 1363739374
       vertices: []
       indices: 
       edges: []
@@ -379,7 +421,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SpaceShooterAssetPack_IU_17: -1567293813
+      SpaceShooterAssetPack_IU_14: 1715976714
       SpaceShooterAssetPack_IU_25: -158320148
       SpaceShooterAssetPack_IU_10: 1363739374
       SpaceShooterAssetPack_IU_34: 834514075
@@ -410,11 +452,11 @@ TextureImporter:
       SpaceShooterAssetPack_IU_28: -1228740559
       SpaceShooterAssetPack_IU_36: 1327712170
       SpaceShooterAssetPack_IU_7: -1120968139
-      SpaceShooterAssetPack_IU_4: 1195000223
       SpaceShooterAssetPack_IU_5: -1507021545
-      SpaceShooterAssetPack_IU_27: -1870260484
       SpaceShooterAssetPack_IU_15: -867023643
-      SpaceShooterAssetPack_IU_14: 1715976714
+      SpaceShooterAssetPack_IU_27: -1870260484
+      SpaceShooterAssetPack_IU_4: 1195000223
+      SpaceShooterAssetPack_IU_17: -1567293813
       SpaceShooterAssetPack_IU_24: 1584703345
       SpaceShooterAssetPack_IU_26: -613652967
   spritePackingTag: 

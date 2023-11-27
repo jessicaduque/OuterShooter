@@ -377,7 +377,7 @@ TextureImporter:
         width: 14
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -385,6 +385,48 @@ TextureImporter:
       bones: []
       spriteID: 178e7617905d5e14eb2372f872b82ed0
       internalID: -40825995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel UI pack 1_13
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 418
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 116ad3136738d014fa79db27a8217761
+      internalID: -1338565494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel UI pack 1_14
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 192
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c01326f82027364c8cbf054cb2a7f69
+      internalID: 1682543174
       vertices: []
       indices: 
       edges: []
@@ -401,6 +443,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Pixel UI pack 1_0: -152045774
+      Pixel UI pack 1_13: -1338565494
       Pixel UI pack 1_7: 1942977136
       Pixel UI pack 1_10: -967052941
       Pixel UI pack 1_3: 209154400
@@ -413,6 +456,7 @@ TextureImporter:
       Pixel UI pack 1_8: -2018944440
       Pixel UI pack 1_2: 1962894384
       Pixel UI pack 1_11: 513707950
+      Pixel UI pack 1_14: 1682543174
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

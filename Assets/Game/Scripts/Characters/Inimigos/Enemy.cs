@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int energyToGive;
     [SerializeField] protected float[] timesShot;
     private float timeShot;
-
+    public int posicaoMovement;
     [Header("Shot Variables")]
     [SerializeField] protected Pool ShotPrefab;
     [SerializeField] protected Transform FirePointMiddle;
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
     {
         if (estaVivoEAtivo)
         {
-            _spawnManager.AumentarInimigosMortos();
+            _spawnManager.AumentarInimigosMortos(gameObject);
 
             _uiController.AdicionarPontosUltimate(energyToGive);
             _scoreManager.AdicionarPontosScore(pointsToGive);

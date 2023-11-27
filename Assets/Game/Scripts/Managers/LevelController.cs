@@ -102,27 +102,19 @@ public class LevelController : Singleton<LevelController>
     {
         numeroFase++;
         fasesSemTerra++;
-        if (fasesSemTerra == 3)
-        {
-            SetEstadoJogo(EstadoJogo.Terra);
-            fasesSemTerra = 0;
-        }
-        else
+        if(numeroFase == 1)
         {
             AleatorizarFase();
         }
-    }
-
-    private void AleatorizarFase()
-    {
-        while (faseAtual == fasePassada)
+        else if(faseAtual == faseTerra)
         {
-            faseAtual = fases[Random.Range(0, fases.Count)];
+            SetEstadoJogo(EstadoJogo.Terra);
+            return;
         }
         _uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
         StartCoroutine(_uiController.MoverPlanetaDentro());
+        
     }
-
     public void SpawnInimigos()
     {
         SetEstadoJogo(EstadoJogo.Lutar);
@@ -147,6 +139,7 @@ public class LevelController : Singleton<LevelController>
     {
         fasePassada = faseAtual;
         SpawnObjetosGameObject.SetActive(false);
+        FinalFase();
         ReturnShotsAndObjectsPool();
         _playerController.DefineActivateAttack(false);
         StartCoroutine(_playerMovement.MoverParaMeio());
@@ -156,17 +149,34 @@ public class LevelController : Singleton<LevelController>
     public void EscolherPoder()
     {
         _playerMovement.AnimateBool("Mover", false);
-        _uiController.ControlEscolhaPanel(true, _playerController.GetPoderAtual().poderSpriteEscolha, faseAtual.fasePoder.poderSpriteEscolha);
-        
+        AleatorizarFase();
+        _uiController.ControlEscolhaPanel(true, _playerController.GetPoderAtual().poderSpriteEscolha, fasePassada.fasePoder.poderSpriteEscolha, faseAtual.fasePlanetaSprite);
+    }
+
+    private void AleatorizarFase()
+    {
+        if (fasesSemTerra == 3)
+        {
+            faseAtual = faseTerra;
+            fasesSemTerra = 0;
+        }
+        else
+        {
+            while (faseAtual == fasePassada)
+            {
+                faseAtual = fases[Random.Range(0, fases.Count)];
+            }
+        }
+
     }
 
     public void EscolherPoderFinal(bool escolherPoderNovo)
     {
         if (escolherPoderNovo)
         {
-            _playerController.SetarPoder(faseAtual.fasePoder);
+            _playerController.SetarPoder(fasePassada.fasePoder);
         }
-        _uiController.ControlEscolhaPanel(false, null, null);
+        _uiController.ControlEscolhaPanel(false);
         _playerMovement.PermitirMovimento(true);
         _playerMovement.AnimateBool("Mover", true);
         fasePassada = faseAtual;
@@ -179,7 +189,6 @@ public class LevelController : Singleton<LevelController>
     
     private void Terra()
     {
-        faseAtual = faseTerra;
         _uiController.ResetPositionPlanet();
         _uiController.SetarPlanetaAnimator(faseAtual.faseAnimControl);
         StartCoroutine(_playerMovement.MoverParaMeio());
@@ -240,6 +249,24 @@ public class LevelController : Singleton<LevelController>
             }
         }
 
+    }
+
+    private void FinalFase()
+    {
+        foreach (Desejo desejo in FindObjectsOfType<Desejo>())
+        {
+            if (desejo.gameObject.activeInHierarchy)
+            {
+                if (desejo.GetComponent<SpriteRenderer>().isVisible)
+                {
+                    desejo.MoveToPlayer();
+                }
+                else
+                {
+                    _poolManager.ReturnPool(desejo.gameObject);
+                }
+            }
+        }
     }
 
     #endregion
