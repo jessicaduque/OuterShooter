@@ -6,10 +6,12 @@ public class Shot : MonoBehaviour
 
     [SerializeField] protected float shotSpeed;
     [SerializeField] private int dano;
-    [SerializeField] private Pool efeitoExplosao;
+    [SerializeField] public Pool efeitoExplosao;
     private SpriteRenderer thisRenderer;
     [SerializeField] public bool shotPlayer;
+    [SerializeField] private PoderDetails bomContra;
 
+    private LevelController _levelController => LevelController.I;
     private PoolManager _poolManager => PoolManager.I;
 
     protected void Awake()
@@ -28,7 +30,7 @@ public class Shot : MonoBehaviour
         Rb2D.velocity = new Vector2((shotPlayer ? shotSpeed : -shotSpeed), 0);
     }
 
-    public void Explodir()
+    public virtual void Explodir()
     {
         if (thisRenderer.isVisible)
         {
@@ -49,7 +51,15 @@ public class Shot : MonoBehaviour
             }
             else
             {
-                other.gameObject.GetComponent<Enemy>().LevarDano(dano);
+                if(bomContra == _levelController.GetFaseAtual().fasePoder)
+                {
+                    other.gameObject.GetComponent<Enemy>().LevarDano(dano + 1);
+                }
+                else
+                {
+                    other.gameObject.GetComponent<Enemy>().LevarDano(dano);
+                }
+                
             }
         }
         

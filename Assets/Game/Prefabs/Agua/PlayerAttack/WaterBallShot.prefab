@@ -124,6 +124,7 @@ MonoBehaviour:
   dano: 2
   efeitoExplosao: {fileID: 11400000, guid: 636a07b6f40c6c943821987d55b4e21a, type: 2}
   shotPlayer: 1
+  bomContra: {fileID: 11400000, guid: 41c4fecb49bcb2a428c8809408b069a3, type: 2}
 --- !u!50 &525307559
 Rigidbody2D:
   serializedVersion: 4

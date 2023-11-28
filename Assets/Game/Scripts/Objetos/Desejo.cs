@@ -43,6 +43,7 @@ public class Desejo : MonoBehaviour
     private void OnDisable()
     {
         thisSequence?.Kill();
+        StopAllCoroutines();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,8 +58,8 @@ public class Desejo : MonoBehaviour
 
     public void MoveToPlayer()
     {
-        Transform PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject Player = GameObject.FindGameObjectWithTag("Player");
         thisRB.velocity = Vector2.zero;
-        transform.DOMove(PlayerTransform.position, 2f);
+        transform.DOMove(new Vector2(-7.2f, 0), 3f).SetEase(Ease.InSine);
     }
 }

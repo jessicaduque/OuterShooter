@@ -275,7 +275,7 @@ public class SpawnManager : Singleton<SpawnManager>
                 StartCoroutine(SpawnFireEye1());
                 break;
             case < 6:
-                ResetarValoresFase(numeroFase == 4 ? 6 : 12);
+                ResetarValoresFase(6);
                 StartCoroutine(SpawnFireEye2());
                 break;
             case >= 6:
@@ -329,6 +329,11 @@ public class SpawnManager : Singleton<SpawnManager>
                 yield return null;
             }
 
+            if (quantInimigosEscondidos == 0)
+            {
+                enemiesAtuais = null;
+            }
+
             quantInimigosEscondidos = 0;
             StartCoroutine(SpawnFireEye1());
         }
@@ -344,37 +349,69 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         if (quantInimgiosMortos < quantInimigosFase)
         {
-            int atual = 0;
-
-            while(atual < 6)
+            if (enemiesAtuais == null)
             {
-                GameObject enemyEye1 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[0].position, Quaternion.identity);
-                _enemyMovement.FollowMovementPattern("RightToLeft1", enemyEye1.transform);
+                enemiesAtuais = new GameObject[6];
+                int atual = 0;
 
-                GameObject enemyEye2 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[2].position, Quaternion.identity);
-                _enemyMovement.FollowMovementPattern("RightToLeft3", enemyEye2.transform);
+                while (atual < 6)
+                {
+                    for(int i=0; i < 3; i++)
+                    {
+                        GameObject enemy = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[i * 2].position, Quaternion.identity);
+                        _enemyMovement.FollowMovementPattern("RightToLeft" + (1 + (i * 2)).ToString(), enemy.transform);
+                        enemiesAtuais[atual] = enemy;
+                        enemy.GetComponent<Enemy>().posicaoMovement = atual;
+                        atual++;
+                    }
+                    
 
-                GameObject enemyEye3 = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[4].position, Quaternion.identity);
-                _enemyMovement.FollowMovementPattern("RightToLeft5", enemyEye3.transform);
+                    yield return new WaitForSeconds(2f);
+                }
 
-                atual += 3;
+                quantInimigosWave += 6;
+            }
+            else
+            {
+                int atual = 0;
 
-                yield return new WaitForSeconds(2f);
+                while (atual < 6)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if(enemiesAtuais[atual] != null)
+                        {
+                            GameObject enemy = _poolManager.GetObject(InimigosPossiveisList[0].tagPool, Right[i * 2].position, Quaternion.identity);
+                            _enemyMovement.FollowMovementPattern("RightToLeft" + (1 + (i * 2)).ToString(), enemy.transform);
+                            enemiesAtuais[atual] = enemy;
+                            enemy.GetComponent<Enemy>().posicaoMovement = atual;
+                        }
+                        atual++;
 
+                    }
+
+                    yield return new WaitForSeconds(2f);
+                }
             }
 
-            quantInimigosWave += 6;
+
 
             while (quantInimigosWave > quantInimgiosMortos + quantInimigosEscondidos)
             {
                 yield return null;
             }
+            if (quantInimigosEscondidos == 0)
+            {
+                enemiesAtuais = null;
+            }
 
+            quantInimigosEscondidos = 0;
             StartCoroutine(SpawnFireEye2());
         }
         else
         {
             yield return new WaitForSeconds(0.6f);
+            enemiesAtuais = null;
             _levelController.SetEstadoJogo(EstadoJogo.EscolherPoder);
         }
     }

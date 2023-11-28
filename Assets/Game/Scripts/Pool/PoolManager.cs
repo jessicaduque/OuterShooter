@@ -10,6 +10,8 @@ public class PoolManager : Singleton<PoolManager>
 
     private List<GameObject> _containers = new List<GameObject>();
 
+    [SerializeField] private Transform HealthPanel;
+
     private void Awake()
     {
         _poolDictionary = new Dictionary<string, Queue<GameObject>>();
@@ -27,8 +29,17 @@ public class PoolManager : Singleton<PoolManager>
             if (pool != null)
             {
                 GameObject containerPool = new GameObject(pool.tagPool);
-                
-                containerPool.transform.SetParent(transform);
+
+                if (pool.tagPool == "HealthBar")
+                {
+                    containerPool.transform.SetParent(HealthPanel.transform);
+                    containerPool.transform.localScale = Vector3.one;
+                }
+                else
+                {
+                    
+                    containerPool.transform.SetParent(transform);
+                }
                 
                 _containers.Add(containerPool);
 
@@ -38,6 +49,10 @@ public class PoolManager : Singleton<PoolManager>
                 {
                     GameObject objectPool = SpawnObjectPool(pool.prefab, pool.tagPool);
                     objectPool.transform.SetParent(containerPool.transform);
+                    if (pool.tagPool == "HealthBar")
+                    {
+                        objectPool.transform.localScale = Vector3.one;
+                    }
                     objectsPool.Enqueue(objectPool);
                 }
 

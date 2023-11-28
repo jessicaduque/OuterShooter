@@ -8,7 +8,7 @@ public class PlayerAttackFire : PlayerAttack
 
     public override void Attack()
     {
-        if (this.enabled)
+        if (enabled)
         {
             _poolManager.GetObject(prefabAtaqueNormal.tagPool, pontoSaida.position, Quaternion.identity);
         }

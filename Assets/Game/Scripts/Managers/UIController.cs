@@ -280,11 +280,9 @@ public class UIController : Singleton<UIController>
             if(planetaObjeto.transform.position.x  < -7.205f)
             {
                 planetaObjeto.transform.position = posFinal;
-                yield return null;
             }
             yield return null;
         }
-        Debug.Log("asd");
         _levelController.EscolherPoder();
     }
 

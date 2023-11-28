@@ -5,7 +5,7 @@ public class Parallax : MonoBehaviour
 {
     private float comprimentoX;
     private float PosAtualX;
-    private Transform cam => Helpers.cam;
+    private Transform cam => Helpers.cam.transform;
     [SerializeField] private float tempoParalaxe;
     private float auxTimeParallax = 0f;
     [SerializeField] private bool parallaxRodando;

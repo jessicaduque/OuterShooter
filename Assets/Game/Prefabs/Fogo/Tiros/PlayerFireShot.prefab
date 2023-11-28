@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 885059739017583064}
   - component: {fileID: 5312263139552066758}
   - component: {fileID: 3854199287201976324}
-  - component: {fileID: 5684666469029985499}
   - component: {fileID: 5684666469029985492}
+  - component: {fileID: -4544861813388488767}
   m_Layer: 6
   m_Name: PlayerFireShot
   m_TagString: Untagged
@@ -110,22 +110,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &5684666469029985499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 432746547605926850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b685baf184c815418281c28b835d4f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shotSpeed: 6
-  dano: 2
-  efeitoExplosao: {fileID: 11400000, guid: b1bf69d879552d14cb4e2356390c4ec3, type: 2}
-  shotPlayer: 1
 --- !u!50 &5684666469029985492
 Rigidbody2D:
   serializedVersion: 4
@@ -147,6 +131,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-4544861813388488767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432746547605926850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d79187c31b79c499daf8aee9160312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSpeed: 6
+  dano: 3
+  efeitoExplosao: {fileID: 11400000, guid: b1bf69d879552d14cb4e2356390c4ec3, type: 2}
+  shotPlayer: 1
+  bomContra: {fileID: 11400000, guid: 20a6c1aa72abb964981f1dbe2a6b6c3e, type: 2}
 --- !u!1 &6355360734817147909
 GameObject:
   m_ObjectHideFlags: 0

@@ -174,7 +174,10 @@ MonoBehaviour:
   timesShot:
   - 2
   - 2.4
+  - 2.6
   - 3
+  - 3.1
+  posicaoMovement: 0
   ShotPrefab: {fileID: 11400000, guid: 21ddde3402749c64ea06959ae6bd50c4, type: 2}
   FirePointMiddle: {fileID: 3333365952508383118}
   estaVivoEAtivo: 0

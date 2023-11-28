@@ -32,7 +32,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
             Vector3 desCorri = Camera.main.ScreenToWorldPoint(destino);
 
             // Destino final corrigido
-            Vector3 dFinal = new Vector3(desCorri.x + 1f, Mathf.Clamp(desCorri.y, -3.8f, 3.8f), 0);
+            Vector3 dFinal = new Vector3(desCorri.x + 1.3f, Mathf.Clamp(desCorri.y, -3.8f, 3.8f), 0);
 
             // Mover objeto
             transform.position = Vector3.MoveTowards(transform.position, dFinal, tempoMover * Time.deltaTime);
@@ -80,6 +80,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         {
             yield return null;
         }
+        yield return new WaitForSeconds(2f);
         _backgroundController.MudarEstadoParallax(false);
     }
 

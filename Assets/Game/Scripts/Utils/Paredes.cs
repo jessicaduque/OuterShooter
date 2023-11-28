@@ -14,6 +14,13 @@ public class Paredes : MonoBehaviour
                 collision.GetComponent<Enemy>().estaVivoEAtivo = false;
             }
         }
+
+        if (collision.GetComponentInParent<ShotRotation>())
+        {
+            _poolManager.ReturnPool(collision.transform.parent.gameObject);
+            return;
+        }
+
         _poolManager.ReturnPool(collision.gameObject);
     }
 }

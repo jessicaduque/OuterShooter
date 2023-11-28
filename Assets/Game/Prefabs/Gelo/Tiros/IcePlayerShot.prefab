@@ -171,3 +171,4 @@ MonoBehaviour:
   dano: 1
   efeitoExplosao: {fileID: 11400000, guid: 33a90b565b1d8a0419489e6fdbbf871a, type: 2}
   shotPlayer: 1
+  bomContra: {fileID: 11400000, guid: 181a402a23065f448954e32ad98a3a91, type: 2}

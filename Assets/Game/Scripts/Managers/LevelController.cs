@@ -217,7 +217,7 @@ public class LevelController : Singleton<LevelController>
     public void MaisUmaChance()
     {
         _uiController.ControlAdChancePanel(false);
-        _playerController.Reviver();
+        StartCoroutine(_playerController.Reviver());
         ReturnShotsAndObjectsPool();
         SetEstadoJogo(EstadoJogo.Lutar);
         Time.timeScale = 1;
@@ -267,6 +267,11 @@ public class LevelController : Singleton<LevelController>
                 }
             }
         }
+    }
+
+    public FaseDetails GetFaseAtual()
+    {
+        return faseAtual;
     }
 
     #endregion

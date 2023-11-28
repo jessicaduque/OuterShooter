@@ -16,7 +16,10 @@ public class Enemy : MonoBehaviour
     [Header("Shot Variables")]
     [SerializeField] protected Pool ShotPrefab;
     [SerializeField] protected Transform FirePointMiddle;
-    
+
+    GameObject healthBar;
+    Image healthBarFill;
+
     protected SpriteRenderer thisSpriteRenderer;
 
     public bool estaVivoEAtivo;
@@ -38,10 +41,15 @@ public class Enemy : MonoBehaviour
         HealthAtual = enemyHealth;
         timeShot = timesShot[Random.Range(0, timesShot.Length)];
         StartCoroutine(Atirar());
+        healthBar = _poolManager.GetObject("HealthBar", transform.position, Quaternion.identity);
+        healthBarFill = healthBar.GetComponentsInChildren<Image>()[1];
+        healthBarFill.fillAmount = 1;
+        healthBar.GetComponent<HealthBar>().SetInimigo(gameObject);
     }
 
     private void OnDisable()
     {
+        if(healthBar != null) { _poolManager.ReturnPool(healthBar); }
         DOTween.Kill(this);
         estaVivoEAtivo = false;
         StopAllCoroutines();
@@ -54,6 +62,7 @@ public class Enemy : MonoBehaviour
         if (thisSpriteRenderer.isVisible)
         {
             HealthAtual -= dano;
+            healthBarFill.fillAmount -= (float)dano / enemyHealth;
             if (HealthAtual <= 0)
             {
                 Morrer();
@@ -94,6 +103,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Vibration.Vibrate();
+            _poolManager.GetObject(ShotPrefab.prefab.GetComponent<Shot>().efeitoExplosao.tagPool, transform.position, Quaternion.identity);
             _playerController.LevarDano();
             Morrer();
         }
