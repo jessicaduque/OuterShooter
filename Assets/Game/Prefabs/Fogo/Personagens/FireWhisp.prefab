@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f65fb13b2dc2394397c527ff03b7702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 2
+  enemyHealth: 4
   pointsToGive: 1
   energyToGive: 5
   timesShot:
