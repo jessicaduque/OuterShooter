@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpeed: 6
-  dano: 1
+  dano: 1.2
   efeitoExplosao: {fileID: 11400000, guid: 91954efcf0903844392112ba0290478a, type: 2}
   shotPlayer: 0
+  bomContra: {fileID: 0}

@@ -8,9 +8,15 @@ using Utils.Singleton;
 public class PlayerMovement : Singleton<PlayerMovement>
 {
     [SerializeField] private Vector2 posInicial;
-    private float tempoMover = 5f;
+    private float _moveSpeed = 5f;
     private Animator anim;
-    
+
+    private Camera MainCamera => Helpers.cam; 
+    private Vector2 screenBounds;
+
+    public FixedJoystick _joystick;
+    [SerializeField] private Rigidbody2D _rigidbody;
+    float _screenWidth, _screenHeight;
     private bool podeMover = false;
 
     private LevelController _levelController => LevelController.I;
@@ -19,23 +25,38 @@ public class PlayerMovement : Singleton<PlayerMovement>
     {
         transform.position = posInicial;
         anim = GetComponent<Animator>();
+        screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
+        _screenWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x; 
+        _screenHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y; 
     }
 
-    public void Mover()
+    private void OnValidate()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    private void LateUpdate()
+    {
+        Vector3 viewPos = transform.position;
+        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1 + _screenWidth, screenBounds.x - _screenWidth);
+        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1 + _screenHeight, screenBounds.y - _screenHeight);
+        transform.position = viewPos;
+    }
+
+    private void Move()
     {
         if (podeMover)
         {
-            // Captura a Posição do Mouse
-            Vector3 destino = Input.mousePosition;
-
-            // Corrigir posição
-            Vector3 desCorri = Camera.main.ScreenToWorldPoint(destino);
-
-            // Destino final corrigido
-            Vector3 dFinal = new Vector3(desCorri.x + 1.65f, Mathf.Clamp(desCorri.y, -3.8f, 3.8f), 0);
-
-            // Mover objeto
-            transform.position = Vector3.MoveTowards(transform.position, dFinal, tempoMover * Time.deltaTime);
+            _rigidbody.velocity = new Vector3(_joystick.Horizontal * _moveSpeed, _joystick.Vertical * _moveSpeed, 0);
+        }
+        else
+        {
+            _rigidbody.velocity = Vector2.zero;
         }
 
     }

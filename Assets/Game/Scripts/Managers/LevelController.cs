@@ -75,6 +75,7 @@ public class LevelController : Singleton<LevelController>
     {
         if(numeroFase == 0)
         {
+            _playerController.ActivateHealthBar();
             _playerController.SetarPoder(faseTerra.fasePoder);
             faseAtual = faseTerra;
             fasePassada = faseTerra;

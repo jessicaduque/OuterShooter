@@ -1,6 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils.Singleton;
 
 public class PlayerController : Singleton<PlayerController>
@@ -14,7 +15,13 @@ public class PlayerController : Singleton<PlayerController>
     private PoderDetails poderAtual;
 
     private BoxCollider2D thisCollider;
-    private int vidas = 1;
+
+    [Header("Vida")]
+    private int maxHP = 10;
+    private float currentHP;
+    GameObject healthBar;
+    Image healthBarFill;
+    CanvasGroup cg_HealthBar;
 
     private PlayerMovement _playerMovement => PlayerMovement.I;
     private LevelController _levelController => LevelController.I;
@@ -27,17 +34,35 @@ public class PlayerController : Singleton<PlayerController>
     {
         AnimController = GetComponent<Animator>();
         thisCollider = GetComponent<BoxCollider2D>();
+        currentHP = maxHP;
     }
 
     #region Dano
 
-    public void LevarDano(int dano = 1)
+    public void ActivateHealthBar()
+    {
+        healthBar = PoolManager.I.GetObject("HealthBar", transform.position, Quaternion.identity);
+        healthBarFill = healthBar.GetComponentsInChildren<Image>()[1];
+        healthBarFill.fillAmount = 1;
+        healthBar.GetComponent<HealthBar>().SetInimigo(gameObject);
+        cg_HealthBar = healthBar.AddComponent<CanvasGroup>();
+        cg_HealthBar.alpha = 0;
+        FadeHealthBar(true);
+    }
+
+    private void FadeHealthBar(bool estado)
+    {
+        cg_HealthBar.DOFade((estado ? 1 : 0), 0.5f).SetUpdate(true);
+    }
+
+    public void LevarDano(float dano = 1)
     {
         // Checar se tem escudo
 
-        vidas -= dano;
+        currentHP -= dano;
+        healthBarFill.fillAmount -= dano / maxHP;
 
-        if(vidas <= 0)
+        if (currentHP <= 0)
         {
             _playerMovement.SetAnimatorUnscaled(true);
             _uiController.PauseListener(false);
@@ -45,6 +70,7 @@ public class PlayerController : Singleton<PlayerController>
             _playerMovement.AnimateTrigger("TrigMorte");
             _playerMovement.PermitirMovimento(false);
             thisCollider.enabled = false;
+            FadeHealthBar(false);
             Time.timeScale = 0;
         }
     }
@@ -56,6 +82,9 @@ public class PlayerController : Singleton<PlayerController>
 
     public IEnumerator Reviver()
     {
+        healthBarFill.fillAmount = 1;
+        currentHP = maxHP;
+        FadeHealthBar(true);
         _uiController.PauseListener(true);
         _playerMovement.SetAnimatorUnscaled(false);
         _playerMovement.AnimateBool("Morte", false);

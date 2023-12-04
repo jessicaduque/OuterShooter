@@ -15,7 +15,6 @@ public class ShotFollow : Shot
 
     protected override void SetVelocity()
     {
-        Rb2D = GetComponent<Rigidbody2D>();
         if (Player != null)
         {
             Vector2 vel = (Player.transform.position - transform.position).normalized;

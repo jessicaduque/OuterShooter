@@ -173,8 +173,10 @@ MonoBehaviour:
   energyToGive: 5
   timesShot:
   - 2
+  - 2.2
   - 2.4
   - 2.6
+  - 2.9
   - 3
   - 3.1
   posicaoMovement: 0

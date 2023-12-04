@@ -64,7 +64,7 @@ public class Asteroide : MonoBehaviour
         if (collision.CompareTag("Player")){
             Vibration.Vibrate();
             thisRB.velocity = Vector3.zero;
-            _playerController.LevarDano();
+            _playerController.LevarDano(3.5f);
             _poolManager.GetObject("ExplosionNormal", transform.position, transform.rotation);
             _poolManager.ReturnPool(gameObject);
         }

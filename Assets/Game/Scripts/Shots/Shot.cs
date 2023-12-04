@@ -5,7 +5,7 @@ public class Shot : MonoBehaviour
     protected Rigidbody2D Rb2D;
 
     [SerializeField] protected float shotSpeed;
-    [SerializeField] private int dano;
+    [SerializeField] private float dano;
     [SerializeField] public Pool efeitoExplosao;
     private SpriteRenderer thisRenderer;
     [SerializeField] public bool shotPlayer;

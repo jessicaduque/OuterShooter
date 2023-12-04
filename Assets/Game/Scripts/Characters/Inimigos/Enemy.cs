@@ -6,8 +6,8 @@ using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected int enemyHealth;
-    private int HealthAtual;
+    [SerializeField] protected float enemyHealth;
+    private float HealthAtual;
     [SerializeField] protected int pointsToGive;
     [SerializeField] protected int energyToGive;
     [SerializeField] protected float[] timesShot;
@@ -57,12 +57,12 @@ public class Enemy : MonoBehaviour
 
     #region Levar Dano
 
-    public void LevarDano(int dano)
+    public void LevarDano(float dano)
     {
         if (thisSpriteRenderer.isVisible)
         {
             HealthAtual -= dano;
-            healthBarFill.fillAmount -= (float)dano / enemyHealth;
+            healthBarFill.fillAmount -= dano / enemyHealth;
             if (HealthAtual <= 0)
             {
                 Morrer();

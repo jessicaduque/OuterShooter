@@ -12,7 +12,7 @@ public class BankManager : Singleton<BankManager>
     [Header("Compras possíveis")]
     private float danoAMaisPorcNormal = 0f;
     //private float danoAMaisPorcUlt = 0f;
-    private float chanceAtaqueSeguir = 0f;
+    private float speedMaisPorc = 0f;
     private float vidaMaisPorcNormal = 0f;
 
     private bool podeReviver = false;
@@ -57,7 +57,7 @@ public class BankManager : Singleton<BankManager>
     {
         if (Comprar(valor))
         {
-            danoAMaisPorcUlt += 20;
+            vidaMaisPorcNormal += 20;
             return true;
         }
         else
@@ -70,7 +70,7 @@ public class BankManager : Singleton<BankManager>
     {
         if (Comprar(valor))
         {
-            chanceAtaqueSeguir += 10;
+            speedMaisPorc += 10;
             return true;
         }
         else
@@ -151,12 +151,12 @@ public class BankManager : Singleton<BankManager>
 
     private float GetInformarDanoUltAMais()
     {
-        return danoAMaisPorcUlt;
+        return speedMaisPorc;
     }
 
     private float GetChanceAtaqueSeguir()
     {
-        return chanceAtaqueSeguir;
+        return vidaMaisPorcNormal;
     }
 
     #endregion

@@ -8,16 +8,18 @@ public class HealthBar : MonoBehaviour
     private RectTransform rt;
     private SpriteRenderer spriteRenderer;
 
+    private float offsetY;
+
     private void OnValidate()
     {
         rt = GetComponent<RectTransform>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (inimigo != null)
         {
-            transform.position = new Vector3(inimigo.transform.position.x, spriteRenderer.bounds.max.y, 0);
+            transform.position = new Vector3(inimigo.transform.position.x, spriteRenderer.bounds.max.y - offsetY, 0);
         } 
     }
 
@@ -30,5 +32,13 @@ public class HealthBar : MonoBehaviour
     {
         this.inimigo = inimigo;
         spriteRenderer = inimigo.GetComponent<SpriteRenderer>();
+        if (inimigo.tag == "Player")
+        {
+            offsetY = 1.2f;
+        }
+        else
+        {
+            offsetY = 0;
+        }
     }
 }
