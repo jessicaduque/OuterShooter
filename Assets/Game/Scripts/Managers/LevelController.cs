@@ -270,6 +270,14 @@ public class LevelController : Singleton<LevelController>
         }
     }
 
+    #endregion
+
+    #region Public GET
+    public int GetNumeroFase()
+    {
+        return numeroFase;
+    }
+
     public FaseDetails GetFaseAtual()
     {
         return faseAtual;

@@ -8,13 +8,14 @@ using Utils.Singleton;
 public class PlayerMovement : Singleton<PlayerMovement>
 {
     [SerializeField] private Vector2 posInicial;
-    private float _moveSpeed = 5f;
+    [SerializeField] private float _moveSpeed = 5f;
     private Animator anim;
 
     private Camera MainCamera => Helpers.cam; 
     private Vector2 screenBounds;
 
     public FixedJoystick _joystick;
+    private CanvasGroup cg_FixedJoyStick;
     [SerializeField] private Rigidbody2D _rigidbody;
     float _screenWidth, _screenHeight;
     private bool podeMover = false;
@@ -27,7 +28,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
         anim = GetComponent<Animator>();
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
         _screenWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x; 
-        _screenHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y; 
+        _screenHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y;
+        cg_FixedJoyStick = _joystick.GetComponent<CanvasGroup>();
     }
 
     private void OnValidate()
@@ -78,6 +80,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public void PermitirMovimento(bool estado)
     {
         podeMover = estado;
+        cg_FixedJoyStick.DOFade((estado ? 1 : 0), 0.4f);
     }
 
     public IEnumerator MoverParaX()

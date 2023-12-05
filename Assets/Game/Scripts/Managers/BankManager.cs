@@ -6,18 +6,17 @@ public class BankManager : Singleton<BankManager>
 {
     public event Action AumentouEstrelas;
     private int estrelas = 0;
-
     private int maxEstrelas = 99;
 
     [Header("Compras possíveis")]
-    private float danoAMaisPorcNormal = 0f;
-    //private float danoAMaisPorcUlt = 0f;
-    private float speedMaisPorc = 0f;
-    private float vidaMaisPorcNormal = 0f;
+    private float danoAMaisPorcNormal = 0f; // 10%, 20%, 30%, 40%, 50% - 
+    //private float danoAMaisPorcUlt;
+    private float speedMaisPorc = 0f; // 5%, 10%, 15%, 20%, 25%
+    private float vidaMaisPorcNormal = 0f; // 20%, 40%, 60%, 80%, 100%
 
     private bool podeReviver = false;
     private bool barreiraContraMeteoros = false;
-    private bool maiorChanceAsEstre = false;
+    private bool maiorQuantEstrelas = false;
 
     private new void Awake()
     {

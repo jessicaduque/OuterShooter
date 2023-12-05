@@ -12,9 +12,9 @@ public class PlayerAttackGelo : PlayerAttack
     {
         if (this.enabled)
         {
-            _poolManager.GetObject(prefabAtaqueNormal.tagPool, pontoSaidaCima.position, Quaternion.Euler(0, 0, 45));
+            _poolManager.GetObject(prefabAtaqueNormal.tagPool, pontoSaidaCima.position, Quaternion.Euler(0, 0, 12));
             _poolManager.GetObject(prefabAtaqueNormal.tagPool, pontoSaidaMeio.position, Quaternion.identity);
-            _poolManager.GetObject(prefabAtaqueNormal.tagPool, pontoSaidaBaixo.position, Quaternion.Euler(0, 0, -45));
+            _poolManager.GetObject(prefabAtaqueNormal.tagPool, pontoSaidaBaixo.position, Quaternion.Euler(0, 0, -12));
         }
     }
 }

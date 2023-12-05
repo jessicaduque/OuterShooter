@@ -8,12 +8,15 @@ public class SpawnObjetos : Singleton<SpawnObjetos>
 
     [SerializeField] Transform[] pontosSpawn;
 
+    private int estrelasDaFase;
+
     [Space(20)]
     [Header("Tempo criação objetos")]
     private float meuTempo;
     [SerializeField] private float tempoCriacao = 10f;
 
     private PoolManager _poolManager => PoolManager.I;
+    private LevelController _levelController => LevelController.I;
 
     private new void Awake()
     {
@@ -23,6 +26,8 @@ public class SpawnObjetos : Singleton<SpawnObjetos>
     private void OnEnable()
     {
         meuTempo = 0.0f;
+        estrelasDaFase = (_levelController.GetNumeroFase() / 3) + 2;
+        Debug.Log("Quantidade de estrelas possíveis nesta fase: " + estrelasDaFase.ToString());
         StartCoroutine(GerarObjetos());
     }
 
@@ -55,7 +60,16 @@ public class SpawnObjetos : Singleton<SpawnObjetos>
         }
         else
         {
-            extraEscolhido = 1;
+            if(estrelasDaFase > 0)
+            {
+                extraEscolhido = 1;
+                estrelasDaFase--;
+            }
+            else
+            {
+                extraEscolhido = 0;
+            }
+            
         }
 
         _poolManager.GetObject(Objetos[extraEscolhido].tagPool, pontosSpawn[Random.Range(0, pontosSpawn.Length)].position, Quaternion.identity);
