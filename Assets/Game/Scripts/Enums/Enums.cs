@@ -23,4 +23,14 @@ public enum EstadoJogo
     EscolherPoder,
     Terra,
     Morte
-};
+}
+
+public enum Purchase
+{
+    AumentarDano,
+    AumentarVelocidade,
+    AumentarVida,
+    Reviver,
+    BarreiraMeteoros,
+    MaisEstrelas
+}
