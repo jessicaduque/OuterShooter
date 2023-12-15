@@ -129,9 +129,9 @@ public class BankManager : Singleton<BankManager>
         barreiraContraMeteoros = false;
     }
 
-    public void SetResetarChancesAsEst()
+    public void SetResetarMaisEst()
     {
-        maiorChanceAsEstre = false;
+        maiorQuantEstrelas = false;
     }
 
     #endregion
