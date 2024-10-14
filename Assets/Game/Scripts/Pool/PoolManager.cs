@@ -12,7 +12,7 @@ public class PoolManager : Singleton<PoolManager>
 
     [SerializeField] private Transform HealthPanel;
 
-    private void Awake()
+    private new void Awake()
     {
         _poolDictionary = new Dictionary<string, Queue<GameObject>>();
     }
