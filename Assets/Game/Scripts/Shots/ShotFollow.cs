@@ -22,7 +22,7 @@ public class ShotFollow : Shot
             float angle = Mathf.Atan2(vel.y, vel.x) * Mathf.Rad2Deg;
 
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
-            Rb2D.velocity = vel * shotSpeed;
+            Rb2D.linearVelocity = vel * shotSpeed;
         }
     }
 }

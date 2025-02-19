@@ -54,11 +54,11 @@ public class PlayerMovement : Singleton<PlayerMovement>
     {
         if (podeMover)
         {
-            _rigidbody.velocity = new Vector3(_joystick.Horizontal * _moveSpeed, _joystick.Vertical * _moveSpeed, 0);
+            _rigidbody.linearVelocity = new Vector3(_joystick.Horizontal * _moveSpeed, _joystick.Vertical * _moveSpeed, 0);
         }
         else
         {
-            _rigidbody.velocity = Vector2.zero;
+            _rigidbody.linearVelocity = Vector2.zero;
         }
 
     }

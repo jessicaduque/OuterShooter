@@ -36,8 +36,8 @@ public class Desejo : MonoBehaviour
         thisSequence.Join(newSeq);
         thisSequence.SetLoops(-1); 
 
-        // Fazer asteróideir para esquerda
-        thisRB.velocity = new Vector2(-velocidades[Random.Range(0, velocidades.Length)], 0);
+        // Fazer asterï¿½ideir para esquerda
+        thisRB.linearVelocity = new Vector2(-velocidades[Random.Range(0, velocidades.Length)], 0);
     }
 
     private void OnDisable()
@@ -59,7 +59,7 @@ public class Desejo : MonoBehaviour
     public void MoveToPlayer()
     {
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
-        thisRB.velocity = Vector2.zero;
+        thisRB.linearVelocity = Vector2.zero;
         transform.DOMove(new Vector2(-7.2f, 0), 3f).SetEase(Ease.InSine);
     }
 }

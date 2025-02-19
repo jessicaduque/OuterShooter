@@ -27,7 +27,7 @@ public class Shot : MonoBehaviour
 
     protected virtual void SetVelocity()
     {
-        Rb2D.velocity = (shotPlayer ? shotSpeed : -shotSpeed) * transform.right;
+        Rb2D.linearVelocity = (shotPlayer ? shotSpeed : -shotSpeed) * transform.right;
     }
 
     public virtual void Explodir()

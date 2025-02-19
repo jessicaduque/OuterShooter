@@ -37,11 +37,11 @@ public class Asteroide : MonoBehaviour
 
         int rotationSpeed = Random.Range(2, 4);
 
-        // Colocar asteróide para rotacionar infinitamente
+        // Colocar asterï¿½ide para rotacionar infinitamente
         thisTween = transform.DOLocalRotate(new Vector3(0, 0, (rotationSpeed == 3 ? -360 : 360)), rotationSpeed, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear).SetLoops(-1);
 
-        // Fazer asteróideir para esquerda
-        thisRB.velocity = new Vector2(-velocidades[Random.Range(0, velocidades.Length)], 0);
+        // Fazer asterï¿½ideir para esquerda
+        thisRB.linearVelocity = new Vector2(-velocidades[Random.Range(0, velocidades.Length)], 0);
     }
 
     private void OnDisable()
@@ -63,7 +63,7 @@ public class Asteroide : MonoBehaviour
     {
         if (collision.CompareTag("Player")){
             Vibration.Vibrate();
-            thisRB.velocity = Vector3.zero;
+            thisRB.linearVelocity = Vector3.zero;
             _playerController.LevarDano(3.5f);
             _poolManager.GetObject("ExplosionNormal", transform.position, transform.rotation);
             _poolManager.ReturnPool(gameObject);
